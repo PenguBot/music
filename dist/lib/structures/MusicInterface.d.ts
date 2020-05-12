@@ -1,0 +1,31 @@
+import { KlasaGuild, KlasaUser } from "klasa";
+import { MusicClient as Client } from "../Client";
+import { VoiceChannel, TextChannel } from "discord.js";
+import { Player, LavalinkNode, TrackData } from "@lavacord/discord.js";
+import { Song } from "./Song";
+export declare class MusicInterface {
+    client: Client;
+    guild: KlasaGuild;
+    textChannel: TextChannel | null;
+    queue: Array<Song>;
+    looping: boolean | null;
+    constructor(guild: KlasaGuild);
+    join(voiceChannel: VoiceChannel): Promise<this>;
+    leave(): Promise<this>;
+    add(user: KlasaUser, data: TrackData[]): Song[];
+    play(): Promise<this>;
+    skip(): Promise<this>;
+    pause(): Promise<this>;
+    setVolume(volume: number): Promise<this>;
+    clearQueue(): this;
+    shuffleQueue(): Promise<this>;
+    seek(position: number): Promise<this>;
+    destroy(): void;
+    get currentTimeString(): string | null;
+    get voiceChannel(): VoiceChannel | null;
+    get player(): Player | null;
+    get volume(): number;
+    get idealNode(): LavalinkNode | null;
+    get playing(): boolean;
+    paused(): boolean;
+}

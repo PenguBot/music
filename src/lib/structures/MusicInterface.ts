@@ -33,8 +33,8 @@ export class MusicInterface {
     }
 
     public async leave(): Promise<this> {
-       await this.client.lavalink.leave(this.guild.id);
-       return this;
+        await this.client.lavalink.leave(this.guild.id);
+        return this;
     }
 
     public add(user: KlasaUser, data: TrackData[]): Song[] {
@@ -81,9 +81,9 @@ export class MusicInterface {
         let len = this.queue.length;
         this.queue.shift();
 
-        while(len) {
+        while (len) {
             const i = Math.floor(Math.random() * len--);
-            [this.queue[len], this.queue[i]] = [this.queue[len], this.queue[i]];
+            [this.queue[len], this.queue[i]] = [this.queue[i], this.queue[len]];
         }
 
         await this.play();
@@ -105,9 +105,9 @@ export class MusicInterface {
         this.client.music.delete(this.guild.id);
     }
 
-    public get currentTimeString(): String | null {
+    public get currentTimeString(): string | null {
         const { player } = this;
-        if(player) return `${getTimeString(player.timestamp!)} / ${getTimeString(this.queue[0].length)}`;
+        if (player) return `${getTimeString(player.timestamp!)} / ${getTimeString(this.queue[0].length)}`;
         return null;
     }
 
@@ -127,15 +127,15 @@ export class MusicInterface {
         return this.client.lavalink.idealNodes[0] ?? null;
     }
 
-    public get playing(): Boolean {
+    public get playing(): boolean {
         const { player } = this;
-        if(player) return player.playing;
+        if (player) return player.playing;
         return false;
     }
 
-    public paused(): Boolean {
+    public paused(): boolean {
         const { player } = this;
-        if(player) return player.paused;
+        if (player) return player.paused;
         return false;
     }
 

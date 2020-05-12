@@ -1,20 +1,8 @@
-import { KlasaUser } from "klasa";
-import { TrackData } from "@lavacord/discord.js";
-import { getTimeString } from "../utils/utils";
-
-export class Song {
-
-    public id: string;
-    public requester: KlasaUser;
-    public track: string;
-    public title: string;
-    public author: string;
-    public seekable: boolean;
-    public stream: boolean;
-    public length: number;
-    public position: number;
-
-    public constructor(data: TrackData, requester: KlasaUser) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const utils_1 = require("../utils/utils");
+class Song {
+    constructor(data, requester) {
         this.id = data.info.identifier;
         this.requester = requester;
         this.track = data.track;
@@ -25,12 +13,10 @@ export class Song {
         this.length = data.info.length;
         this.position = data.info.position;
     }
-
-    public get friendlyDuration(): string {
-        return this.stream ? "Live Stream" : getTimeString(this.length);
+    get friendlyDuration() {
+        return this.stream ? "Live Stream" : utils_1.getTimeString(this.length);
     }
-
-    public get toJSON(): Record<string, any> {
+    get toJSON() {
         return {
             id: this.id,
             requester: this.requester,
@@ -44,5 +30,6 @@ export class Song {
             timeString: this.friendlyDuration
         };
     }
-
 }
+exports.Song = Song;
+//# sourceMappingURL=Song.js.map
