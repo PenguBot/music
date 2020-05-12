@@ -1,7 +1,7 @@
 import { KlasaGuild } from "klasa";
 import { MusicClient as Client } from "../Client";
 import { VoiceChannel, TextChannel } from "discord.js";
-import { Player } from "lavacord";
+import { Player, LavalinkNode } from "lavacord";
 
 export class MusicInterface {
 
@@ -13,7 +13,7 @@ export class MusicInterface {
     public paused: boolean | null;
     public looping: boolean | null;
 
-    constructor(guild: KlasaGuild) {
+    public constructor(guild: KlasaGuild) {
         this.client = guild.client as Client;
         this.guild = guild;
 
@@ -24,7 +24,7 @@ export class MusicInterface {
         this.looping = false;
     }
 
-    join(voiceChannel: VoiceChannel): Record<string, any> {
+    public join(voiceChannel: VoiceChannel): Record<string, any> {
         if (!this.idealNode) throw new Error("NO_NODES_AVAILABLE: There are no nodes available to use.");
         this.client.lavalink.join({
             guild: this.guild.id,
@@ -53,12 +53,12 @@ export class MusicInterface {
         return this.player;
     }
 
-
-    public skip(force = true): void {
-        if (this.player && force) this.player.stop();
+    public async skip(force = true): Promise<this> {
+        const { player } = this;
+        if (player && force) await player.stop();
         else this.queue.shift();
+        return this;
     }
-
 
     public pause(): boolean {
         if (!this.player) return false;
@@ -69,7 +69,8 @@ export class MusicInterface {
     }
 
     public setVolume(volume: number): void {
-        if (this.playing) this.player.volume(volume);
+        const { player } = this;
+        if (this.playing && player) player.volume(volume);
         this.guild.settings.update("misc.volume", volume);
     }
 
@@ -90,19 +91,19 @@ export class MusicInterface {
     }
 
     public get voiceChannel(): VoiceChannel | null {
-        return this.guild.me ? this.guild.me.voice.channel : null;
+        return this.guild.me?.voice.channel ?? null;
     }
 
-    public get player(): any {
-        return this.client.lavalink.players.get(this.guild.id) || null;
+    public get player(): Player | null {
+        return this.client.lavalink.players.get(this.guild.id) ?? null;
     }
 
     public get volume(): number {
         return this.guild.settings.get("misc.volume");
     }
 
-    public get idealNode(): Record<string, any> | null {
-        return this.client.lavalink.idealNodes[0] || null;
+    public get idealNode(): LavalinkNode | null {
+        return this.client.lavalink.idealNodes[0] ?? null;
     }
 
 }

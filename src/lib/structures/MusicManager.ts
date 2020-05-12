@@ -2,16 +2,16 @@ import { MusicInterface } from "./MusicInterface";
 import { KlasaGuild as Guild } from "klasa";
 import { Collection } from "discord.js";
 
-export class MusicManager extends Collection<string, Record<string, any>> {
+export class MusicManager extends Collection<string, MusicInterface> {
 
-    private getGuild(guild: Guild): any {
-        const data = this.get(guild.id);
-        if (typeof guild !== "undefined") return data;
+    public get(key: string): MusicInterface | undefined;
+    public get(guild: Guild): MusicInterface;
+    public get(keyOrGuild: string | Guild): MusicInterface | undefined {
+        if (typeof keyOrGuild === "string") return super.get(keyOrGuild);
+        return super.get(keyOrGuild.id) ?? this.add(keyOrGuild);
     }
 
-    public add(guild: Guild): MusicInterface {
-        if (!(guild instanceof Guild)) throw "The parameter 'Guild' must be a guild instance.";
-        if (this.has(guild.id)) return this.getGuild(guild);
+    private add(guild: Guild): MusicInterface {
         const guildInterface = new MusicInterface(guild);
         this.set(guild.id, guildInterface);
         return guildInterface;

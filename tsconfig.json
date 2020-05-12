@@ -8,7 +8,7 @@
 		"experimentalDecorators": true,
 		"strict": true,
 		"incremental": true,
-		"lib": ["esnext"],
+		"lib": ["es2019"],
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"noUnusedLocals": true,
@@ -19,7 +19,7 @@
 		"sourceMap": true,
 		"strictFunctionTypes": true,
 		"strictBindCallApply": true,
-		"target": "esnext",
+		"target": "es2019",
 		"types": ["node", "lavacord", "klasa", "discord.js"]
 	},
 	"exclude": ["node_modules"],

@@ -1,5 +1,5 @@
 export const OPTIONS = {
-    pengumusic: {
+    music: {
         nodes: [],
         id: ""
     }

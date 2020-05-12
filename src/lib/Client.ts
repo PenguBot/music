@@ -9,35 +9,30 @@ const registerCoreDirectory = join(__dirname, "..", "/");
 
 export class MusicClient extends Client {
 
-    public lavalink: LavalinkManager;
-    public music: Collection<string, Record<string, any>>;
+    public lavalink!: LavalinkManager;
+    public music!: Collection<string, Record<string, any>>;
 
     constructor(options?: KlasaClientOptions) {
         super(options);
 
         // @ts-ignore
-        this.constructor[MusicClient.plugin].call(this);
-        this.lavalink = new LavalinkManager(this.options.pengumusic.nodes, { user: this.options.pengumusic.id, shards: this.options.pengumusic.shards });
-        this.music = new MusicManager();
+        MusicClient[Client.plugin].call(this);
     }
 
     static [Client.plugin](this: MusicClient): void {
-        const typedThis = this as unknown as MusicClient;
-        util.mergeDefault(OPTIONS, typedThis.options);
-
-        // @ts-ignore
-        typedThis.arguments.registerCoreDirectory(registerCoreDirectory);
-        // @ts-ignore
-        typedThis.events.registerCoreDirectory(registerCoreDirectory);
-        // @ts-ignore
-        typedThis.inhibitors.registerCoreDirectory(registerCoreDirectory);
+        util.mergeDefault(OPTIONS, this.options);
+        this.lavalink = new LavalinkManager(this.options.music.nodes, { user: this.options.music.id, shards: this.options.music.shards });
+        this.music = new MusicManager();
+        this.arguments["registerCoreDirectory"](registerCoreDirectory);
+        this.events["registerCoreDirectory"](registerCoreDirectory);
+        this.inhibitors["registerCoreDirectory"](registerCoreDirectory);
     }
 
 }
 
 declare module "discord.js" {
     interface ClientOptions {
-        pengumusic: {
+        music: {
             nodes: Array<LavalinkNode>;
             shards: number;
             id: string;

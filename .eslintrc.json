@@ -77,7 +77,7 @@
         "error",
         "property"
       ],
-      "dot-notation":"error",
+      "dot-notation":"off",
       "eqeqeq":"error",
       "no-console":[
         "error",
