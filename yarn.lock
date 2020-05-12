@@ -55,7 +55,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.5.tgz#96ec3b0afafd64a4ccea9107b75bf8489f0e5765"
   integrity sha512-3ySmiBYJPqgjiHA7oEaIo2Rzz0HrOZ7yrNO5HWyaE5q0lQ3BppDZ3N53Miz8bw2I7gh1/zir2MGVZBvpb1zq9g==
 
-"@typescript-eslint/eslint-plugin@^2.32.0":
+"@typescript-eslint/eslint-plugin@^2.31.0":
   version "2.32.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.32.0.tgz#5d5cc2e00b1d4a4b848cc68bfdd3aede1ef0ad16"
   integrity sha512-nb1kSUa8cd22hGgxpGdVT6/iyP7IKyrnyZEGYo+tN8iyDdXvXa+nfsX03tJVeFfhbkwR/0CDk910zPbqSflAsg==
@@ -75,7 +75,7 @@
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
-"@typescript-eslint/parser@^2.32.0":
+"@typescript-eslint/parser@^2.31.0":
   version "2.32.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-2.32.0.tgz#a1ace8ab1af529580bfb6cc2cd55fd8d8b1e68ab"
   integrity sha512-swRtH835fUfm2khchiOVNchU3gVNaZNj2pY92QSx4kXan+RzaGNrwIRaCyX8uqzmK0xNPzseaUYHP8CsmrsjFw==
@@ -696,7 +696,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   dependencies:
     fs-nextra "^0.4.7"
 
-lavacord@^1.1.7, lavacord@latest:
+lavacord@latest:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/lavacord/-/lavacord-1.1.7.tgz#3ccf84a6037654a94b2e2512f689a1743ba2ddff"
   integrity sha512-LXuFA/NvbXjINaNf0P0EiCmB/vmCY1qQhOtwwg/g3Oaza3jR1ZCtl0yHgNII3DuSJzUdlGcRrCCt2HEeXcaPkA==
