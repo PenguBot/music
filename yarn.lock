@@ -28,6 +28,13 @@
   resolved "https://registry.yarnpkg.com/@discordjs/collection/-/collection-0.1.5.tgz#1781c620b4c88d619bd0373a1548e5a6025e3d3a"
   integrity sha512-CU1q0UXQUpFNzNB7gufgoisDHP7n+T3tkqTsp3MNUkVJ5+hS3BCvME8uCXAUFlz+6T2FbTCu75A+yQ7HMKqRKw==
 
+"@lavacord/discord.js@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@lavacord/discord.js/-/discord.js-0.0.6.tgz#8ce50041f62c0656d4019dc9d77c3698c53b7e55"
+  integrity sha512-IKwmUwTxTOYel5os5EVVyRLy3mh3qyNwUDYak0lQ2ivc6/3JTsfUvSNJ6fVV/WlErbV3OFtapRIa0Z+G+lYFHA==
+  dependencies:
+    lavacord latest
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -689,7 +696,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   dependencies:
     fs-nextra "^0.4.7"
 
-lavacord@^1.1.7:
+lavacord@^1.1.7, lavacord@latest:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/lavacord/-/lavacord-1.1.7.tgz#3ccf84a6037654a94b2e2512f689a1743ba2ddff"
   integrity sha512-LXuFA/NvbXjINaNf0P0EiCmB/vmCY1qQhOtwwg/g3Oaza3jR1ZCtl0yHgNII3DuSJzUdlGcRrCCt2HEeXcaPkA==

@@ -1,7 +1,7 @@
 import { KlasaGuild } from "klasa";
 import { MusicClient as Client } from "../Client";
 import { VoiceChannel, TextChannel } from "discord.js";
-import { Player, LavalinkNode } from "lavacord";
+import { Player, LavalinkNode } from "@lavacord/discord.js";
 
 export class MusicInterface {
 
