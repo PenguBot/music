@@ -26,7 +26,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "json-schema": "^0.2.5",
     "klasa": "github:dirigeants/klasa#be581f178e829b628f38f00d6397a98d27181600",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.2"
   },
   "engines": {
     "node": ">=10"
