@@ -5,8 +5,6 @@ import { Collection } from "discord.js";
 import type { MusicInterface } from "./structures/MusicInterface";
 import { join } from "path";
 
-const registerCoreDirectory = join(__dirname, "..", "/");
-
 export class MusicClient extends Client {
 
     public lavalink!: LavacordManager;
@@ -20,11 +18,13 @@ export class MusicClient extends Client {
     }
 
     static [Client.plugin](this: MusicClient): void {
+        const coreDirectory = join(__dirname, "../");
         this.lavalink = new LavacordManager(this, this.options.music.nodes, this.options.music);
         this.music = new MusicManager();
-        this.events["registerCoreDirectory"](registerCoreDirectory);
-        this.inhibitors["registerCoreDirectory"](registerCoreDirectory);
-        this.extendables["registerCoreDirectory"](registerCoreDirectory);
+
+        this.events["registerCoreDirectory"](coreDirectory);
+        this.inhibitors["registerCoreDirectory"](coreDirectory);
+        this.extendables["registerCoreDirectory"](coreDirectory);
     }
 
 }
