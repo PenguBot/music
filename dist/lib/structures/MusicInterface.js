@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MusicInterface = void 0;
 const Song_1 = require("./Song");
 const utils_1 = require("../utils/utils");
 class MusicInterface {
@@ -38,6 +39,8 @@ class MusicInterface {
             throw "Can't play songs from an empty queue. Queue up some songs!";
         const [song] = this.queue;
         await this.player.play(song.track);
+        if (!this.looping)
+            this.queue.shift();
         return this;
     }
     async skip() {

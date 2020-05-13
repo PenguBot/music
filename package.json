@@ -35,6 +35,7 @@
     "dist"
   ],
   "dependencies": {
+    "@klasa/utils": "^0.0.4",
     "@lavacord/discord.js": "^0.0.6"
   }
 }

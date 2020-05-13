@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getTimeString = void 0;
 function getTimeString(ms) {
     const sec = Math.floor((ms / 1000) % 60).toString();
     const min = Math.floor((ms / (1000 * 60)) % 60).toString();

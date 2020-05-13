@@ -51,6 +51,7 @@ export class MusicInterface {
         const [song] = this.queue;
 
         await this.player.play(song.track);
+        if (!this.looping) this.queue.shift();
         return this;
     }
 

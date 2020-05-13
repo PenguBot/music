@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MusicManager = void 0;
 const MusicInterface_1 = require("./MusicInterface");
 const discord_js_1 = require("discord.js");
 class MusicManager extends discord_js_1.Collection {
