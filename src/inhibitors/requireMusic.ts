@@ -1,4 +1,4 @@
-import { Inhibitor, InhibitorStore, KlasaMessage } from "klasa";
+import { Inhibitor, InhibitorStore, KlasaMessage, Command } from "klasa";
 import { MusicCommand } from "../lib/structures/MusicCommand";
 import { MusicInterface } from "../lib/structures/MusicInterface";
 import { Manager } from "@lavacord/discord.js";
@@ -11,7 +11,8 @@ export default class extends Inhibitor {
         });
     }
 
-    public async run(message: KlasaMessage, command: MusicCommand): Promise<void> {
+    public async run(message: KlasaMessage, command: MusicCommand | Command): Promise<void> {
+        if (!(command instanceof MusicCommand)) return;
         if (!(command.requireMusic ?? message.guild)) return;
         if (message.channel.type !== "text") return;
         if (!message.guild?.members.has(message.author.id)) await message.guild?.members.fetch(message.author);
