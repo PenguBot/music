@@ -22,11 +22,11 @@ export class MusicInterface {
         this.looping = false;
     }
 
-    public async join(voiceChannel: VoiceChannel): Promise<this> {
+    public async join(id: string): Promise<this> {
         if (!this.idealNode) throw new Error("NO_NODES_AVAILABLE: There are no nodes available to use.");
         await this.client.lavalink.join({
             guild: this.guild.id,
-            channel: voiceChannel.id,
+            channel: id,
             node: this.idealNode.id
         }, { selfdeaf: true });
         return this;

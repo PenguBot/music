@@ -10,7 +10,7 @@ export declare class MusicInterface {
     queue: Array<Song>;
     looping: boolean | null;
     constructor(guild: KlasaGuild);
-    join(voiceChannel: VoiceChannel): Promise<this>;
+    join(id: string): Promise<this>;
     leave(): Promise<this>;
     add(user: KlasaUser, data: TrackData[]): Song[];
     play(): Promise<this>;

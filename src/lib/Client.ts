@@ -24,6 +24,7 @@ export class MusicClient extends Client {
         this.music = new MusicManager();
         this.events["registerCoreDirectory"](registerCoreDirectory);
         this.inhibitors["registerCoreDirectory"](registerCoreDirectory);
+        this.extendables["registerCoreDirectory"](registerCoreDirectory);
     }
 
 }
