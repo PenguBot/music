@@ -11,7 +11,7 @@ class MusicClient extends klasa_1.Client {
         MusicClient[klasa_1.Client.plugin].call(this);
     }
     static [klasa_1.Client.plugin]() {
-        const coreDirectory = path_1.join(__dirname, "../");
+        const coreDirectory = path_1.join(__dirname, "..");
         this.lavalink = new discord_js_1.Manager(this, this.options.music.nodes, this.options.music);
         this.music = new MusicManager_1.MusicManager();
         this.events["registerCoreDirectory"](coreDirectory);
