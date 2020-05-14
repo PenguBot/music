@@ -18,7 +18,7 @@ export class MusicClient extends Client {
     }
 
     static [Client.plugin](this: MusicClient): void {
-        const coreDirectory = join(__dirname, "../");
+        const coreDirectory = join(__dirname, "..");
         this.lavalink = new LavacordManager(this, this.options.music.nodes, this.options.music);
         this.music = new MusicManager();
 
