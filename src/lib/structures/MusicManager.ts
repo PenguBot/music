@@ -11,7 +11,7 @@ export class MusicManager extends Collection<string, MusicInterface> {
         return super.get(keyOrGuild.id) ?? this.add(keyOrGuild);
     }
 
-    private add(guild: Guild): MusicInterface {
+    public add(guild: Guild): MusicInterface {
         const guildInterface = new MusicInterface(guild);
         this.set(guild.id, guildInterface);
         return guildInterface;

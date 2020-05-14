@@ -17,6 +17,7 @@ class MusicClient extends klasa_1.Client {
         this.events["registerCoreDirectory"](coreDirectory);
         this.inhibitors["registerCoreDirectory"](coreDirectory);
         this.extendables["registerCoreDirectory"](coreDirectory);
+        this.arguments["registerCoreDirectory"](coreDirectory);
     }
 }
 exports.MusicClient = MusicClient;

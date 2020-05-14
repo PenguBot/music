@@ -37,7 +37,7 @@ declare module "discord.js" {
 }
 
 declare module "klasa" {
-    interface Client {
+    interface KlasaClient {
         lavalink: Manager;
     }
 }

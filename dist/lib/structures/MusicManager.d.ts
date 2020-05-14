@@ -4,5 +4,5 @@ import { Collection } from "discord.js";
 export declare class MusicManager extends Collection<string, MusicInterface> {
     get(key: string): MusicInterface | undefined;
     get(guild: Guild): MusicInterface;
-    private add;
+    add(guild: Guild): MusicInterface;
 }
