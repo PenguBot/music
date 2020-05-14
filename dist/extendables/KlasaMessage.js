@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const klasa_1 = require("klasa");
+const discord_js_1 = require("discord.js");
 class default_1 extends klasa_1.Extendable {
     constructor(store, file, directory) {
-        super(store, file, directory, { appliesTo: [klasa_1.KlasaMessage] });
+        super(store, file, directory, { appliesTo: [discord_js_1.Message] });
     }
-    async prompt(content, time = 20000) {
+    async prompt(content, time = 30000) {
         await this.channel.send(content);
         const responses = await this.channel.awaitMessages(msg => msg.author === this.author, { time, max: 1 });
         if (responses.size === 0)

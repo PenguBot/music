@@ -9,7 +9,7 @@ class default_1 extends klasa_1.Argument {
         if (!arg)
             throw "No arguments were provided to search/load.";
         if (!message.guild)
-            return;
+            throw "This command can only be used in a guild.";
         arg = arg.replace(/<(.+)>/g, "$1");
         const validLink = this.isLink(arg);
         if (validLink) {

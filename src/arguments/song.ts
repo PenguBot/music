@@ -5,9 +5,9 @@ import { regexes, getTimeString } from "../lib/utils/utils";
 
 export default class extends Argument {
 
-    public async run(arg: string, _: Possible, message: KlasaMessage): Promise<TrackResponse|void> {
+    public async run(arg: string, _: Possible, message: KlasaMessage): Promise<TrackResponse|undefined> {
         if (!arg) throw "No arguments were provided to search/load.";
-        if (!message.guild) return;
+        if (!message.guild) throw "This command can only be used in a guild.";
         arg = arg.replace(/<(.+)>/g, "$1");
 
         const validLink = this.isLink(arg);
@@ -32,8 +32,10 @@ export default class extends Argument {
 
             const selectionMessage = await message.prompt(message, searchmsg.join("\n"), 15000);
             const selection = Number(selectionMessage.content);
+
             if (isNaN(selection) || selection < 1 || selection > 5) throw `Invalid Option Selected, please select one number between \`1-5\`. Cancelled song selection.`;
             if (!strippedList[selection - 1]) throw `Specified track could not be found, please try again with a different one.`;
+
             return { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
         }
     }

@@ -4,12 +4,13 @@ import { VoiceChannel, TextChannel } from "discord.js";
 import { Player, LavalinkNode, TrackResponse } from "@lavacord/discord.js";
 import { Song } from "./Song";
 import { getTimeString } from "../utils/utils";
+import { sleep } from "@klasa/utils";
 
 export class MusicInterface {
 
     public client: Client;
     public guild: KlasaGuild;
-    public textChannel: TextChannel | null;
+    public textChannelID: string;
     public queue: Array<Song>;
     public looping: boolean | null;
 
@@ -17,7 +18,7 @@ export class MusicInterface {
         this.client = guild.client as Client;
         this.guild = guild;
 
-        this.textChannel = null;
+        this.textChannelID = "";
         this.queue = [];
         this.looping = false;
     }
@@ -29,6 +30,7 @@ export class MusicInterface {
             channel: id,
             node: this.idealNode.id
         }, { selfdeaf: true });
+        await sleep(450);
         return this;
     }
 
@@ -51,7 +53,10 @@ export class MusicInterface {
         const [song] = this.queue;
 
         await this.player.play(song.track);
-        if (!this.looping) this.queue.shift();
+        if (!this.looping) {
+            await this.textChannel?.send(`> Now Playing: ${song.title}`);
+            this.queue.shift();
+        }
         return this;
     }
 
@@ -99,7 +104,7 @@ export class MusicInterface {
 
     public destroy(): void {
         this.queue = [];
-        this.textChannel = null;
+        this.textChannelID = "";
         this.looping = null;
 
         this.leave();
@@ -114,6 +119,10 @@ export class MusicInterface {
 
     public get voiceChannel(): VoiceChannel | null {
         return this.guild.me?.voice.channel ?? null;
+    }
+
+    public get textChannel(): TextChannel | null {
+        return this.guild.client.channels.get(this.textChannelID) as TextChannel ?? null;
     }
 
     public get player(): Player | null {
