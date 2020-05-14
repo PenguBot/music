@@ -23,6 +23,7 @@ export class MusicClient extends Client {
         this.inhibitors["registerCoreDirectory"](coreDirectory);
         this.extendables["registerCoreDirectory"](coreDirectory);
         this.arguments["registerCoreDirectory"](coreDirectory);
+        this.commands["registerCoreDirectory"](coreDirectory);
     }
 
 }
