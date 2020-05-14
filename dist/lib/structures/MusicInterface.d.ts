@@ -1,7 +1,7 @@
 import { KlasaGuild, KlasaUser } from "klasa";
 import { MusicClient as Client } from "../Client";
 import { VoiceChannel, TextChannel } from "discord.js";
-import { Player, LavalinkNode, TrackData } from "@lavacord/discord.js";
+import { Player, LavalinkNode, TrackResponse } from "@lavacord/discord.js";
 import { Song } from "./Song";
 export declare class MusicInterface {
     client: Client;
@@ -12,7 +12,7 @@ export declare class MusicInterface {
     constructor(guild: KlasaGuild);
     join(id: string): Promise<this>;
     leave(): Promise<this>;
-    add(user: KlasaUser, data: TrackData[]): Song[];
+    add(user: KlasaUser, data: TrackResponse): Song[];
     play(): Promise<this>;
     skip(): Promise<this>;
     pause(): Promise<this>;

@@ -26,7 +26,7 @@ class MusicInterface {
         return this;
     }
     add(user, data) {
-        const structuredSongs = data.map(s => new Song_1.Song(s, user));
+        const structuredSongs = data.tracks.map(s => new Song_1.Song(s, user));
         this.queue.push(...structuredSongs);
         return structuredSongs;
     }

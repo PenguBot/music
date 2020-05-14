@@ -1,7 +1,7 @@
 import { KlasaGuild, KlasaUser } from "klasa";
 import { MusicClient as Client } from "../Client";
 import { VoiceChannel, TextChannel } from "discord.js";
-import { Player, LavalinkNode, TrackData } from "@lavacord/discord.js";
+import { Player, LavalinkNode, TrackResponse } from "@lavacord/discord.js";
 import { Song } from "./Song";
 import { getTimeString } from "../utils/utils";
 
@@ -37,8 +37,8 @@ export class MusicInterface {
         return this;
     }
 
-    public add(user: KlasaUser, data: TrackData[]): Song[] {
-        const structuredSongs = data.map(s => new Song(s, user));
+    public add(user: KlasaUser, data: TrackResponse): Song[] {
+        const structuredSongs = data.tracks.map(s => new Song(s, user));
         this.queue.push(...structuredSongs);
         return structuredSongs;
     }
