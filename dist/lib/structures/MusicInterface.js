@@ -7,6 +7,7 @@ const utils_2 = require("@klasa/utils");
 class MusicInterface {
     constructor(guild) {
         this.textChannel = null;
+        this.looping = false;
         this.client = guild.client;
         this.guild = guild;
         this.queue = [];
@@ -79,8 +80,8 @@ class MusicInterface {
     async destroy() {
         this.queue = [];
         this.textChannel = null;
-        this.looping = null;
-        await this.leave();
+        this.looping = false;
+        await this.player.destroy();
         this.client.music.delete(this.guild.id);
     }
     get currentTimeString() {

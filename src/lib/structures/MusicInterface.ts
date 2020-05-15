@@ -11,8 +11,8 @@ export class MusicInterface {
     public client: Client;
     public guild: KlasaGuild;
     public textChannel: TextChannel | null = null;
-    public queue: Array<Song>;
-    public looping: boolean | null;
+    public queue: Song[];
+    public looping = false;
 
     public constructor(guild: KlasaGuild) {
         this.client = guild.client as Client;
@@ -96,9 +96,9 @@ export class MusicInterface {
     public async destroy(): Promise<void> {
         this.queue = [];
         this.textChannel = null;
-        this.looping = null;
+        this.looping = false;
 
-        await this.leave();
+        await this.player!.destroy();
         this.client.music.delete(this.guild.id);
     }
 

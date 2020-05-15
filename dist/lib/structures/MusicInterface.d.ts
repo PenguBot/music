@@ -7,8 +7,8 @@ export declare class MusicInterface {
     client: Client;
     guild: KlasaGuild;
     textChannel: TextChannel | null;
-    queue: Array<Song>;
-    looping: boolean | null;
+    queue: Song[];
+    looping: boolean;
     constructor(guild: KlasaGuild);
     join(id: string): Promise<this>;
     leave(): Promise<this>;
