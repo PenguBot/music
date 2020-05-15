@@ -7,12 +7,10 @@ const utils_2 = require("@klasa/utils");
 class MusicInterface {
     constructor(guild) {
         this.textChannel = null;
+        this.queue = [];
         this.looping = false;
         this.client = guild.client;
         this.guild = guild;
-        this.queue = [];
-        this.textChannel = null;
-        this.looping = false;
     }
     async join(id) {
         if (!this.idealNode)
@@ -25,9 +23,8 @@ class MusicInterface {
         await utils_2.sleep(450);
         return this;
     }
-    async leave() {
-        await this.client.lavalink.leave(this.guild.id);
-        return this;
+    leave() {
+        return this.client.lavalink.leave(this.guild.id);
     }
     add(user, data) {
         const structuredSongs = data.tracks.map(s => new Song_1.Song(s, user));
@@ -53,28 +50,23 @@ class MusicInterface {
         return this;
     }
     async setVolume(volume) {
-        const { player } = this;
-        if (this.playing && player)
-            await player.volume(volume);
+        if (this.playing && this.player)
+            await this.player.volume(volume);
         return this;
     }
     clearQueue() {
         this.queue = [];
         return this;
     }
-    async shuffleQueue() {
-        let len = this.queue.length;
+    shuffleQueue() {
+        const [first] = this.queue;
         this.queue.shift();
-        while (len) {
-            const i = Math.floor(Math.random() * len--);
-            [this.queue[len], this.queue[i]] = [this.queue[i], this.queue[len]];
-        }
-        await this.play();
+        this.queue = utils_1.shuffleArray(this.queue);
+        this.queue.unshift(first);
         return this;
     }
     async seek(position) {
-        const { player } = this;
-        await (player === null || player === void 0 ? void 0 : player.seek(position));
+        await this.player.seek(position);
         return this;
     }
     async destroy() {
@@ -85,9 +77,8 @@ class MusicInterface {
         this.client.music.delete(this.guild.id);
     }
     get currentTimeString() {
-        const { player } = this;
-        if (player)
-            return `${utils_1.getTimeString(player.timestamp)} / ${utils_1.getTimeString(this.queue[0].length)}`;
+        if (this.player)
+            return `${utils_1.getTimeString(this.player.timestamp)} / ${utils_1.getTimeString(this.queue[0].length)}`;
         return null;
     }
     hasPermission(member) {
@@ -110,15 +101,13 @@ class MusicInterface {
         return (_a = this.client.lavalink.idealNodes[0]) !== null && _a !== void 0 ? _a : null;
     }
     get playing() {
-        const { player } = this;
-        if (player)
-            return player.playing;
+        if (this.player)
+            return this.player.playing;
         return false;
     }
     get paused() {
-        const { player } = this;
-        if (player)
-            return player.paused;
+        if (this.player)
+            return this.player.paused;
         return false;
     }
     isMemberDJ(member) {

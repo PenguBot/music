@@ -3,7 +3,7 @@ import { MusicClient as Client } from "../Client";
 import { VoiceChannel, TextChannel, GuildMember } from "discord.js";
 import { Player, LavalinkNode, TrackResponse } from "@lavacord/discord.js";
 import { Song } from "./Song";
-import { getTimeString } from "../utils/utils";
+import { getTimeString, shuffleArray } from "../utils/utils";
 import { sleep } from "@klasa/utils";
 
 export class MusicInterface {
@@ -11,15 +11,12 @@ export class MusicInterface {
     public client: Client;
     public guild: KlasaGuild;
     public textChannel: TextChannel | null = null;
-    public queue: Song[];
+    public queue: Song[] = [];
     public looping = false;
 
     public constructor(guild: KlasaGuild) {
         this.client = guild.client as Client;
         this.guild = guild;
-        this.queue = [];
-        this.textChannel = null;
-        this.looping = false;
     }
 
     public async join(id: string): Promise<this> {
@@ -33,9 +30,8 @@ export class MusicInterface {
         return this;
     }
 
-    public async leave(): Promise<this> {
-        await this.client.lavalink.leave(this.guild.id);
-        return this;
+    public leave(): Promise<boolean> {
+        return this.client.lavalink.leave(this.guild.id);
     }
 
     public add(user: KlasaUser, data: TrackResponse): Song[] {
@@ -64,8 +60,7 @@ export class MusicInterface {
     }
 
     public async setVolume(volume: number): Promise<this> {
-        const { player } = this;
-        if (this.playing && player) await player.volume(volume);
+        if (this.playing && this.player) await this.player.volume(volume);
         return this;
     }
 
@@ -74,22 +69,16 @@ export class MusicInterface {
         return this;
     }
 
-    public async shuffleQueue(): Promise<this> {
-        let len = this.queue.length;
+    public shuffleQueue(): this {
+        const [first] = this.queue;
         this.queue.shift();
-
-        while (len) {
-            const i = Math.floor(Math.random() * len--);
-            [this.queue[len], this.queue[i]] = [this.queue[i], this.queue[len]];
-        }
-
-        await this.play();
+        this.queue = shuffleArray(this.queue as []);
+        this.queue.unshift(first);
         return this;
     }
 
     public async seek(position: number): Promise<this> {
-        const { player } = this;
-        await player?.seek(position);
+        await this.player!.seek(position);
         return this;
     }
 
@@ -103,8 +92,7 @@ export class MusicInterface {
     }
 
     public get currentTimeString(): string | null {
-        const { player } = this;
-        if (player) return `${getTimeString(player.timestamp!)} / ${getTimeString(this.queue[0].length)}`;
+        if (this.player) return `${getTimeString(this.player.timestamp!)} / ${getTimeString(this.queue[0].length)}`;
         return null;
     }
 
@@ -129,14 +117,12 @@ export class MusicInterface {
     }
 
     public get playing(): boolean {
-        const { player } = this;
-        if (player) return player.playing;
+        if (this.player) return this.player.playing;
         return false;
     }
 
     public get paused(): boolean {
-        const { player } = this;
-        if (player) return player.paused;
+        if (this.player) return this.player.paused;
         return false;
     }
 

@@ -11,14 +11,14 @@ export declare class MusicInterface {
     looping: boolean;
     constructor(guild: KlasaGuild);
     join(id: string): Promise<this>;
-    leave(): Promise<this>;
+    leave(): Promise<boolean>;
     add(user: KlasaUser, data: TrackResponse): Song[];
     play(): Promise<this>;
     skip(): Promise<this>;
     pause(): Promise<this>;
     setVolume(volume: number): Promise<this>;
     clearQueue(): this;
-    shuffleQueue(): Promise<this>;
+    shuffleQueue(): this;
     seek(position: number): Promise<this>;
     destroy(): Promise<void>;
     get currentTimeString(): string | null;

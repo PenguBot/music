@@ -15,3 +15,12 @@ export function regexes(type: string): RegExp {
         default: return /(?:scsearch:|ytsearch:).*/i;
     }
 }
+
+export function shuffleArray(array: []): [] {
+    let len = array.length;
+    while (array.length) {
+        const i = Math.floor(Math.random() * len--);
+        [array[len], array[i]] = [array[i], array[len]];
+    }
+    return array;
+}
