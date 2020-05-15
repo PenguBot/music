@@ -1,6 +1,6 @@
-import { MusicClient } from "../Client";
+import { Client } from "klasa";
 
-module.exports = MusicClient.defaultGuildSchema
+module.exports = Client.defaultGuildSchema
     .add("toggles", folder => folder
         .add("djmode", "boolean", { default: false }))
     .add("roles", roles => roles
