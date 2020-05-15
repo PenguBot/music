@@ -6,10 +6,11 @@ const utils_1 = require("../utils/utils");
 const utils_2 = require("@klasa/utils");
 class MusicInterface {
     constructor(guild) {
+        this.textChannelID = null;
         this.client = guild.client;
         this.guild = guild;
-        this._textChannelID = "";
         this.queue = [];
+        this.textChannelID = null;
         this.looping = false;
     }
     async join(id) {
@@ -77,7 +78,7 @@ class MusicInterface {
     }
     async destroy() {
         this.queue = [];
-        this.textChannelID = "";
+        this.textChannelID = null;
         this.looping = null;
         await this.leave();
         this.client.music.delete(this.guild.id);
@@ -102,12 +103,6 @@ class MusicInterface {
             return this.client.channels.get(this.textChannelID);
         const channel = await this.client.channels.fetch(this.textChannelID).catch(() => null);
         return (_a = channel) !== null && _a !== void 0 ? _a : null;
-    }
-    set textChannelID(id) {
-        this._textChannelID = id;
-    }
-    get textChannelID() {
-        return this._textChannelID;
     }
     get player() {
         var _a;
