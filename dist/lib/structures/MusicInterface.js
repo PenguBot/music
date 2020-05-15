@@ -33,7 +33,7 @@ class MusicInterface {
     }
     async play() {
         const [song] = this.queue;
-        await this.player?.play(song.track);
+        await this.player.play(song.track);
         this.client.emit("musicPlay", this.guild);
         return this;
     }
@@ -81,19 +81,23 @@ class MusicInterface {
         return null;
     }
     hasPermission(member) {
-        return (member.voice.channel.speakable || member.voice.channel.joinable) ?? null;
+        var _a;
+        return (_a = (member.voice.channel.speakable || member.voice.channel.joinable)) !== null && _a !== void 0 ? _a : null;
     }
     get voiceChannel() {
-        return this.guild.me.voice.channel ?? null;
+        var _a;
+        return (_a = this.guild.me.voice.channel) !== null && _a !== void 0 ? _a : null;
     }
     get player() {
-        return this.client.lavalink.players.get(this.guild.id) ?? null;
+        var _a;
+        return (_a = this.client.lavalink.players.get(this.guild.id)) !== null && _a !== void 0 ? _a : null;
     }
     get volume() {
         return this.guild.settings.get("misc.volume");
     }
     get idealNode() {
-        return this.client.lavalink.idealNodes[0] ?? null;
+        var _a;
+        return (_a = this.client.lavalink.idealNodes[0]) !== null && _a !== void 0 ? _a : null;
     }
     get playing() {
         if (this.player)
@@ -110,7 +114,7 @@ class MusicInterface {
             return true;
         const isDJ = this.guild.settings.get("user.dj").has(member.id);
         const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
-        return isDJ ?? hasDJRole;
+        return isDJ !== null && isDJ !== void 0 ? isDJ : hasDJRole;
     }
 }
 exports.MusicInterface = MusicInterface;

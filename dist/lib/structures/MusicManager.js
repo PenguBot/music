@@ -5,9 +5,10 @@ const MusicInterface_1 = require("./MusicInterface");
 const discord_js_1 = require("discord.js");
 class MusicManager extends discord_js_1.Collection {
     get(keyOrGuild) {
+        var _a;
         if (typeof keyOrGuild === "string")
             return super.get(keyOrGuild);
-        return super.get(keyOrGuild.id) ?? this.add(keyOrGuild);
+        return (_a = super.get(keyOrGuild.id)) !== null && _a !== void 0 ? _a : this.add(keyOrGuild);
     }
     add(guild) {
         if (this.has(guild.id))
