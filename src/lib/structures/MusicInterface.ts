@@ -10,7 +10,7 @@ export class MusicInterface {
 
     public client: Client;
     public guild: KlasaGuild;
-    public textChannelID: string;
+    private _textChannelID: string;
     public queue: Array<Song>;
     public looping: boolean | null;
 
@@ -18,7 +18,7 @@ export class MusicInterface {
         this.client = guild.client as Client;
         this.guild = guild;
 
-        this.textChannelID = "";
+        this._textChannelID = "";
         this.queue = [];
         this.looping = false;
     }
@@ -118,8 +118,17 @@ export class MusicInterface {
     }
 
     public async getTextChannel(): Promise<TextChannel|null> {
+        if (this.client.channels.has(this.textChannelID)) return this.client.channels.get(this.textChannelID) as TextChannel;
         const channel = await this.client.channels.fetch(this.textChannelID).catch(() => null);
         return channel as TextChannel ?? null;
+    }
+
+    public set textChannelID(id: string) {
+        this._textChannelID = id;
+    }
+
+    public get textChannelID(): string {
+        return this._textChannelID;
     }
 
     public get player(): Player | null {

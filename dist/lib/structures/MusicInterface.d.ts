@@ -6,7 +6,7 @@ import { Song } from "./Song";
 export declare class MusicInterface {
     client: Client;
     guild: KlasaGuild;
-    textChannelID: string;
+    private _textChannelID;
     queue: Array<Song>;
     looping: boolean | null;
     constructor(guild: KlasaGuild);
@@ -25,6 +25,8 @@ export declare class MusicInterface {
     hasPermission(member: GuildMember): boolean | null;
     get voiceChannel(): VoiceChannel | null;
     getTextChannel(): Promise<TextChannel | null>;
+    set textChannelID(id: string);
+    get textChannelID(): string;
     get player(): Player | null;
     get volume(): number;
     get idealNode(): LavalinkNode | null;

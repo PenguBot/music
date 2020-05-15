@@ -6,7 +6,7 @@ export default class extends Event {
         const { music } = guild;
         await music.destroy();
         const channel = await music.getTextChannel();
-        await channel?.send("> ⏹️ Music has been stopped!");
+        await channel?.send("> ⏹️ Queue has finished playing, stopping music and leaving voice channel!");
     }
 
 }

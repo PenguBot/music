@@ -6,7 +6,7 @@ class default_1 extends klasa_1.Event {
         const { music } = guild;
         await music.destroy();
         const channel = await music.getTextChannel();
-        await (channel === null || channel === void 0 ? void 0 : channel.send("> ⏹️ Music has been stopped!"));
+        await (channel === null || channel === void 0 ? void 0 : channel.send("> ⏹️ Queue has finished playing, stopping music and leaving voice channel!"));
     }
 }
 exports.default = default_1;

@@ -8,7 +8,7 @@ class MusicInterface {
     constructor(guild) {
         this.client = guild.client;
         this.guild = guild;
-        this.textChannelID = "";
+        this._textChannelID = "";
         this.queue = [];
         this.looping = false;
     }
@@ -98,8 +98,16 @@ class MusicInterface {
     }
     async getTextChannel() {
         var _a;
+        if (this.client.channels.has(this.textChannelID))
+            return this.client.channels.get(this.textChannelID);
         const channel = await this.client.channels.fetch(this.textChannelID).catch(() => null);
         return (_a = channel) !== null && _a !== void 0 ? _a : null;
+    }
+    set textChannelID(id) {
+        this._textChannelID = id;
+    }
+    get textChannelID() {
+        return this._textChannelID;
     }
     get player() {
         var _a;
