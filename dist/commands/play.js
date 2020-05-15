@@ -10,13 +10,14 @@ class default_1 extends MusicCommand_1.MusicCommand {
         });
     }
     async run(message, [song]) {
-        var _a, _b;
         const { music } = message.guild;
         if (!song.tracks.length)
             throw "The track could not be found or loaded.";
-        if (!music.voiceChannel && ((_a = message.member) === null || _a === void 0 ? void 0 : _a.voice.channel))
-            await music.join((_b = message.member) === null || _b === void 0 ? void 0 : _b.voice.channel.id);
-        music.textChannelID = message.channel.id;
+        if (!message.member)
+            await message.guild.members.fetch(message.author.id);
+        if (!music.voiceChannel && message.member.voice.channel)
+            await music.join(message.member.voice.channel.id);
+        music.textChannel = message.channel;
         music.add(message.author, song);
         if (!music.playing)
             await music.play();

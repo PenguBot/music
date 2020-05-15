@@ -6,11 +6,11 @@ const utils_1 = require("../utils/utils");
 const utils_2 = require("@klasa/utils");
 class MusicInterface {
     constructor(guild) {
-        this.textChannelID = null;
+        this.textChannel = null;
         this.client = guild.client;
         this.guild = guild;
         this.queue = [];
-        this.textChannelID = null;
+        this.textChannel = null;
         this.looping = false;
     }
     async join(id) {
@@ -42,13 +42,13 @@ class MusicInterface {
     }
     async skip() {
         const { player } = this;
-        if (player === null || player === void 0 ? void 0 : player.playing)
-            await (player === null || player === void 0 ? void 0 : player.stop());
+        if (player.playing)
+            await player.stop();
         return this;
     }
     async pause() {
         const { player } = this;
-        await (player === null || player === void 0 ? void 0 : player.pause(!this.paused));
+        await player.pause(!this.paused);
         return this;
     }
     async setVolume(volume) {
@@ -78,7 +78,7 @@ class MusicInterface {
     }
     async destroy() {
         this.queue = [];
-        this.textChannelID = null;
+        this.textChannel = null;
         this.looping = null;
         await this.leave();
         this.client.music.delete(this.guild.id);
@@ -90,19 +90,12 @@ class MusicInterface {
         return null;
     }
     hasPermission(member) {
-        var _a, _b, _c;
-        return (_c = (((_a = member.voice.channel) === null || _a === void 0 ? void 0 : _a.speakable) || ((_b = member.voice.channel) === null || _b === void 0 ? void 0 : _b.joinable))) !== null && _c !== void 0 ? _c : null;
+        var _a;
+        return (_a = (member.voice.channel.speakable || member.voice.channel.joinable)) !== null && _a !== void 0 ? _a : null;
     }
     get voiceChannel() {
-        var _a, _b;
-        return (_b = (_a = this.guild.me) === null || _a === void 0 ? void 0 : _a.voice.channel) !== null && _b !== void 0 ? _b : null;
-    }
-    async getTextChannel() {
         var _a;
-        if (this.client.channels.has(this.textChannelID))
-            return this.client.channels.get(this.textChannelID);
-        const channel = await this.client.channels.fetch(this.textChannelID).catch(() => null);
-        return (_a = channel) !== null && _a !== void 0 ? _a : null;
+        return (_a = this.guild.me.voice.channel) !== null && _a !== void 0 ? _a : null;
     }
     get player() {
         var _a;

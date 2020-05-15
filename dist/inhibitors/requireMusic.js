@@ -11,17 +11,16 @@ class default_1 extends klasa_1.Inhibitor {
         });
     }
     async run(message, command) {
-        var _a, _b, _c, _d;
         if ((!(command instanceof MusicCommand_1.MusicCommand) || !command.music.bitfield) || message.channel.type !== "text")
             return;
         const { music } = message.guild;
-        if (command.music.has(FLAGS.USER_VOICE_CHANNEL) && !((_a = message.member) === null || _a === void 0 ? void 0 : _a.voice.channel))
+        if (command.music.has(FLAGS.USER_VOICE_CHANNEL) && !message.member.voice.channel)
             throw "You're currently not in a voice channel";
-        if (command.music.has(FLAGS.BOT_VOICE_CHANNEL) && !((_b = music.guild.me) === null || _b === void 0 ? void 0 : _b.voice.channel))
+        if (command.music.has(FLAGS.BOT_VOICE_CHANNEL) && !music.guild.me.voice.channel)
             throw "I am not connected to a voice channel.";
         if (command.music.has(FLAGS.HAS_PERMISSION) && !music.hasPermission(message.member))
             throw "I have no permission to connect or play in your voice channel.";
-        if (command.music.has(FLAGS.COMMON_VOICE_CHANNEL) && (((_c = message.member) === null || _c === void 0 ? void 0 : _c.voice.channelID) !== ((_d = music.guild.me) === null || _d === void 0 ? void 0 : _d.voice.channelID)))
+        if (command.music.has(FLAGS.COMMON_VOICE_CHANNEL) && (message.member.voice.channelID !== music.guild.me.voice.channelID))
             throw "You are not in the same voice channel as the bot.";
         if (command.music.has(FLAGS.QUEUE_NOT_EMPTY) && !music.queue.length)
             throw "There are no songs in the queue.";
