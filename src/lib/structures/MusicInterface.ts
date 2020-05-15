@@ -117,11 +117,6 @@ export class MusicInterface {
         return this.guild.me?.voice.channel ?? null;
     }
 
-    public setTextChannel(id: string): this {
-        this.textChannelID = id;
-        return this;
-    }
-
     public async getTextChannel(): Promise<TextChannel|null> {
         const channel = await this.client.channels.fetch(this.textChannelID).catch(() => null);
         return channel as TextChannel ?? null;
