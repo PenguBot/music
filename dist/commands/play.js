@@ -16,7 +16,7 @@ class default_1 extends MusicCommand_1.MusicCommand {
             throw "The track could not be found or loaded.";
         if (!music.voiceChannel && ((_a = message.member) === null || _a === void 0 ? void 0 : _a.voice.channel))
             await music.join((_b = message.member) === null || _b === void 0 ? void 0 : _b.voice.channel.id);
-        music.setTextChannel(message.channel.id);
+        music.textChannelID = message.channel.id;
         music.add(message.author, song);
         if (!music.playing)
             await music.play();

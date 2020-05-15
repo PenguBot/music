@@ -96,10 +96,6 @@ class MusicInterface {
         var _a, _b;
         return (_b = (_a = this.guild.me) === null || _a === void 0 ? void 0 : _a.voice.channel) !== null && _b !== void 0 ? _b : null;
     }
-    setTextChannel(id) {
-        this.textChannelID = id;
-        return this;
-    }
     async getTextChannel() {
         var _a;
         const channel = await this.client.channels.fetch(this.textChannelID).catch(() => null);
