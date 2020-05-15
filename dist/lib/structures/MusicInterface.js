@@ -33,14 +33,9 @@ class MusicInterface {
         return structuredSongs;
     }
     async play() {
-        if (!this.voiceChannel)
-            throw "The bot isnt in the voice channel so it can't play you any songs";
-        if (!this.player)
-            throw "Something went wrong, try again.";
-        if (!this.queue.length)
-            throw "Can't play songs from an empty queue. Queue up some songs!";
+        var _a;
         const [song] = this.queue;
-        await this.player.play(song.track);
+        await ((_a = this.player) === null || _a === void 0 ? void 0 : _a.play(song.track));
         this.client.emit("musicPlayEvent", this.guild);
         return this;
     }
@@ -101,9 +96,14 @@ class MusicInterface {
         var _a, _b;
         return (_b = (_a = this.guild.me) === null || _a === void 0 ? void 0 : _a.voice.channel) !== null && _b !== void 0 ? _b : null;
     }
-    get textChannel() {
+    setTextChannel(id) {
+        this.textChannelID = id;
+        return this;
+    }
+    async getTextChannel() {
         var _a;
-        return (_a = this.guild.client.channels.get(this.textChannelID)) !== null && _a !== void 0 ? _a : null;
+        const channel = await this.client.channels.fetch(this.textChannelID).catch(() => null);
+        return (_a = channel) !== null && _a !== void 0 ? _a : null;
     }
     get player() {
         var _a;

@@ -46,13 +46,8 @@ export class MusicInterface {
     }
 
     public async play(): Promise<this> {
-        if (!this.voiceChannel) throw "The bot isnt in the voice channel so it can't play you any songs";
-        if (!this.player) throw "Something went wrong, try again.";
-        if (!this.queue.length) throw "Can't play songs from an empty queue. Queue up some songs!";
-
         const [song] = this.queue;
-        await this.player.play(song.track);
-
+        await this.player?.play(song.track);
         this.client.emit("musicPlayEvent", this.guild);
         return this;
     }
@@ -122,8 +117,14 @@ export class MusicInterface {
         return this.guild.me?.voice.channel ?? null;
     }
 
-    public get textChannel(): TextChannel | null {
-        return this.guild.client.channels.get(this.textChannelID) as TextChannel ?? null;
+    public setTextChannel(id: string): this {
+        this.textChannelID = id;
+        return this;
+    }
+
+    public async getTextChannel(): Promise<TextChannel|null> {
+        const channel = await this.client.channels.fetch(this.textChannelID).catch(() => null);
+        return channel as TextChannel ?? null;
     }
 
     public get player(): Player | null {

@@ -24,7 +24,8 @@ export declare class MusicInterface {
     get currentTimeString(): string | null;
     hasPermission(member: GuildMember): boolean | null;
     get voiceChannel(): VoiceChannel | null;
-    get textChannel(): TextChannel | null;
+    setTextChannel(id: string): this;
+    getTextChannel(): Promise<TextChannel | null>;
     get player(): Player | null;
     get volume(): number;
     get idealNode(): LavalinkNode | null;

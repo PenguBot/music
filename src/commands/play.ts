@@ -17,8 +17,8 @@ export default class extends MusicCommand {
         if (!song.tracks.length) throw "The track could not be found or loaded.";
         if (!music.voiceChannel && message.member?.voice.channel) await music.join(message.member?.voice.channel.id);
 
+        music.setTextChannel(message.channel.id);
         music.add(message.author, song);
-        music.textChannelID = message.channel.id;
         if (!music.playing) await music.play();
     }
 
