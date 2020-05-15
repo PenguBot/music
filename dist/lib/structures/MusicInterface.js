@@ -33,7 +33,6 @@ class MusicInterface {
         return structuredSongs;
     }
     async play() {
-        var _a;
         if (!this.voiceChannel)
             throw "The bot isnt in the voice channel so it can't play you any songs";
         if (!this.player)
@@ -42,10 +41,7 @@ class MusicInterface {
             throw "Can't play songs from an empty queue. Queue up some songs!";
         const [song] = this.queue;
         await this.player.play(song.track);
-        if (!this.looping) {
-            await ((_a = this.textChannel) === null || _a === void 0 ? void 0 : _a.send(`> Now Playing: ${song.title}`));
-            this.queue.shift();
-        }
+        this.client.emit("musicPlayEvent", this.guild);
         return this;
     }
     async skip() {
@@ -84,11 +80,11 @@ class MusicInterface {
         await (player === null || player === void 0 ? void 0 : player.seek(position));
         return this;
     }
-    destroy() {
+    async destroy() {
         this.queue = [];
         this.textChannelID = "";
         this.looping = null;
-        this.leave();
+        await this.leave();
         this.client.music.delete(this.guild.id);
     }
     get currentTimeString() {

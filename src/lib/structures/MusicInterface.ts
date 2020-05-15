@@ -51,12 +51,9 @@ export class MusicInterface {
         if (!this.queue.length) throw "Can't play songs from an empty queue. Queue up some songs!";
 
         const [song] = this.queue;
-
         await this.player.play(song.track);
-        if (!this.looping) {
-            await this.textChannel?.send(`> Now Playing: ${song.title}`);
-            this.queue.shift();
-        }
+
+        this.client.emit("musicPlayEvent", this.guild);
         return this;
     }
 
@@ -102,12 +99,12 @@ export class MusicInterface {
         return this;
     }
 
-    public destroy(): void {
+    public async destroy(): Promise<void> {
         this.queue = [];
         this.textChannelID = "";
         this.looping = null;
 
-        this.leave();
+        await this.leave();
         this.client.music.delete(this.guild.id);
     }
 

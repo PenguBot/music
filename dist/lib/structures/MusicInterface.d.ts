@@ -20,7 +20,7 @@ export declare class MusicInterface {
     clearQueue(): this;
     shuffleQueue(): Promise<this>;
     seek(position: number): Promise<this>;
-    destroy(): void;
+    destroy(): Promise<void>;
     get currentTimeString(): string | null;
     get voiceChannel(): VoiceChannel | null;
     get textChannel(): TextChannel | null;

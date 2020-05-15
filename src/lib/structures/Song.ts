@@ -13,6 +13,7 @@ export class Song {
     public stream: boolean;
     public length: number;
     public position: number;
+    public url: string;
 
     public constructor(data: TrackData, requester: KlasaUser) {
         this.id = data.info.identifier;
@@ -24,6 +25,7 @@ export class Song {
         this.stream = data.info.isStream;
         this.length = data.info.length;
         this.position = data.info.position;
+        this.url = data.info.uri;
     }
 
     public get friendlyDuration(): string {
@@ -41,7 +43,8 @@ export class Song {
             isStream: this.stream,
             length: this.length,
             position: this.position,
-            timeString: this.friendlyDuration
+            timeString: this.friendlyDuration,
+            url: this.url
         };
     }
 

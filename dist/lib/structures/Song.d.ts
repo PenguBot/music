@@ -10,6 +10,7 @@ export declare class Song {
     stream: boolean;
     length: number;
     position: number;
+    url: string;
     constructor(data: TrackData, requester: KlasaUser);
     get friendlyDuration(): string;
     get toJSON(): Record<string, any>;

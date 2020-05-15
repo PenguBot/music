@@ -13,6 +13,7 @@ class Song {
         this.stream = data.info.isStream;
         this.length = data.info.length;
         this.position = data.info.position;
+        this.url = data.info.uri;
     }
     get friendlyDuration() {
         return this.stream ? "Live Stream" : utils_1.getTimeString(this.length);
@@ -28,7 +29,8 @@ class Song {
             isStream: this.stream,
             length: this.length,
             position: this.position,
-            timeString: this.friendlyDuration
+            timeString: this.friendlyDuration,
+            url: this.url
         };
     }
 }
