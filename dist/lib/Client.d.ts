@@ -1,5 +1,6 @@
 import { Client, KlasaClientOptions } from "klasa";
 import { Manager as LavacordManager, ManagerOptions as LavacordManagerOptions, LavalinkNodeOptions } from "@lavacord/discord.js";
+import "../lib/schemas/guildSchema";
 export declare class MusicClient extends Client {
     lavalink: LavacordManager;
     constructor(options?: KlasaClientOptions);

@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const klasa_1 = require("klasa");
-class default_1 extends klasa_1.Command {
+const MusicCommand_1 = require("../lib/structures/MusicCommand");
+class default_1 extends MusicCommand_1.MusicCommand {
     constructor(store, file, directory) {
         super(store, file, directory, {
             description: "Play Music",
-            usage: "<song:song>"
+            usage: "<song:song>",
+            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION"]
         });
     }
     async run(message, [song]) {

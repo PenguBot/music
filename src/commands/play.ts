@@ -1,12 +1,14 @@
-import { CommandStore, KlasaMessage, Command } from "klasa";
+import { CommandStore, KlasaMessage } from "klasa";
 import { TrackResponse } from "@lavacord/discord.js";
+import { MusicCommand } from "../lib/structures/MusicCommand";
 
-export default class extends Command {
+export default class extends MusicCommand {
 
     public constructor(store: CommandStore, file: string[], directory: string) {
         super(store, file, directory, {
             description: "Play Music",
-            usage: "<song:song>"
+            usage: "<song:song>",
+            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION"]
         });
     }
 

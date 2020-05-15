@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const klasa_1 = require("klasa");
 const MusicCommand_1 = require("../lib/structures/MusicCommand");
+const MusicBitField_1 = require("../lib/structures/MusicBitField");
+const { FLAGS } = MusicBitField_1.MusicBitField;
 class default_1 extends klasa_1.Inhibitor {
     constructor(store, file, directory) {
         super(store, file, directory, {
@@ -9,24 +11,26 @@ class default_1 extends klasa_1.Inhibitor {
         });
     }
     async run(message, command) {
-        var _a, _b, _c, _d, _e, _f, _g;
-        if (!(command instanceof MusicCommand_1.MusicCommand))
+        var _a, _b, _c, _d;
+        if ((!(command instanceof MusicCommand_1.MusicCommand) || !command.music.bitfield) || message.channel.type !== "text")
             return;
-        if (!((_a = command.requireMusic) !== null && _a !== void 0 ? _a : message.guild))
-            return;
-        if (message.channel.type !== "text")
-            return;
-        if (!((_b = message.guild) === null || _b === void 0 ? void 0 : _b.members.has(message.author.id)))
-            await ((_c = message.guild) === null || _c === void 0 ? void 0 : _c.members.fetch(message.author));
         const { music } = message.guild;
-        if (!((_d = message.member) === null || _d === void 0 ? void 0 : _d.voice.channel))
-            throw "You are not connected in a voice channel.";
-        if (!music.voiceChannel)
-            throw "I am not connected in a voice channel.";
-        if (((_e = message.member) === null || _e === void 0 ? void 0 : _e.voice.channel) !== ((_g = (_f = message.guild) === null || _f === void 0 ? void 0 : _f.me) === null || _g === void 0 ? void 0 : _g.voice.channel))
-            throw "You must be in the same voice channel as me.";
-        if (!music.queue.length)
+        if (command.music.has(FLAGS.USER_VOICE_CHANNEL) && !((_a = message.member) === null || _a === void 0 ? void 0 : _a.voice.channel))
+            throw "You're currently not in a voice channel";
+        if (command.music.has(FLAGS.BOT_VOICE_CHANNEL) && !((_b = music.guild.me) === null || _b === void 0 ? void 0 : _b.voice.channel))
+            throw "I am not connected to a voice channel.";
+        if (command.music.has(FLAGS.HAS_PERMISSION) && !music.hasPermission)
+            throw "I have no permission to connect or play in your voice channel.";
+        if (command.music.has(FLAGS.COMMON_VOICE_CHANNEL) && (((_c = message.member) === null || _c === void 0 ? void 0 : _c.voice.channelID) !== ((_d = music.guild.me) === null || _d === void 0 ? void 0 : _d.voice.channelID)))
+            throw "You are not in the same voice channel as the bot.";
+        if (command.music.has(FLAGS.QUEUE_NOT_EMPTY) && !music.queue.length)
             throw "There are no songs in the queue.";
+        if (command.music.has(FLAGS.VOICE_PLAYING) && !music.playing)
+            throw "There is currently no music playing.";
+        if (command.music.has(FLAGS.VOICE_PAUSED) && !music.paused)
+            throw "The music is not paused.";
+        if (command.music.has(FLAGS.DJ_MEMBER) && !music.isMemberDJ(message.member))
+            throw "You must be a DJ to use this command.";
     }
     async init() {
         await this.client.lavalink.connect();

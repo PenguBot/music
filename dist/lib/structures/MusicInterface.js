@@ -93,6 +93,10 @@ class MusicInterface {
             return `${utils_1.getTimeString(player.timestamp)} / ${utils_1.getTimeString(this.queue[0].length)}`;
         return null;
     }
+    get hasPermission() {
+        var _a, _b, _c, _d, _e;
+        return (_e = (((_b = (_a = this.guild.me) === null || _a === void 0 ? void 0 : _a.voice.channel) === null || _b === void 0 ? void 0 : _b.speakable) || ((_d = (_c = this.guild.me) === null || _c === void 0 ? void 0 : _c.voice.channel) === null || _d === void 0 ? void 0 : _d.joinable))) !== null && _e !== void 0 ? _e : null;
+    }
     get voiceChannel() {
         var _a, _b;
         return (_b = (_a = this.guild.me) === null || _a === void 0 ? void 0 : _a.voice.channel) !== null && _b !== void 0 ? _b : null;
@@ -118,11 +122,18 @@ class MusicInterface {
             return player.playing;
         return false;
     }
-    paused() {
+    get paused() {
         const { player } = this;
         if (player)
             return player.paused;
         return false;
+    }
+    isMemberDJ(member) {
+        if (!this.guild.settings.get("toggles.djmode"))
+            return true;
+        const isDJ = this.guild.settings.get("user.dj").has(member.id);
+        const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
+        return isDJ !== null && isDJ !== void 0 ? isDJ : hasDJRole;
     }
 }
 exports.MusicInterface = MusicInterface;

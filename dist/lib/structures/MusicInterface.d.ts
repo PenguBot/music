@@ -1,6 +1,6 @@
 import { KlasaGuild, KlasaUser } from "klasa";
 import { MusicClient as Client } from "../Client";
-import { VoiceChannel, TextChannel } from "discord.js";
+import { VoiceChannel, TextChannel, GuildMember } from "discord.js";
 import { Player, LavalinkNode, TrackResponse } from "@lavacord/discord.js";
 import { Song } from "./Song";
 export declare class MusicInterface {
@@ -22,11 +22,13 @@ export declare class MusicInterface {
     seek(position: number): Promise<this>;
     destroy(): Promise<void>;
     get currentTimeString(): string | null;
+    get hasPermission(): boolean | null;
     get voiceChannel(): VoiceChannel | null;
     get textChannel(): TextChannel | null;
     get player(): Player | null;
     get volume(): number;
     get idealNode(): LavalinkNode | null;
     get playing(): boolean;
-    paused(): boolean;
+    get paused(): boolean;
+    isMemberDJ(member: GuildMember): boolean;
 }

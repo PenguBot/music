@@ -1,11 +1,11 @@
 import { Command, CommandStore, CommandOptions } from "klasa";
+import { MusicBitField, MusicBitFieldString } from "./MusicBitField";
+import { BitFieldResolvable } from "discord.js";
 export declare abstract class MusicCommand extends Command {
-    requireMusic: boolean | undefined;
-    requireDJ: boolean | undefined;
+    music: MusicBitField;
     protected constructor(store: CommandStore, file: string[], directory: string, options?: MusicCommandOptions);
 }
 interface MusicCommandOptions extends CommandOptions {
-    requireMusic?: boolean;
-    requireDJ?: boolean;
+    music?: BitFieldResolvable<MusicBitFieldString>;
 }
 export {};

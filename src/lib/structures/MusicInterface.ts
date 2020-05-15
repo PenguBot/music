@@ -1,6 +1,6 @@
 import { KlasaGuild, KlasaUser } from "klasa";
 import { MusicClient as Client } from "../Client";
-import { VoiceChannel, TextChannel } from "discord.js";
+import { VoiceChannel, TextChannel, GuildMember } from "discord.js";
 import { Player, LavalinkNode, TrackResponse } from "@lavacord/discord.js";
 import { Song } from "./Song";
 import { getTimeString } from "../utils/utils";
@@ -114,6 +114,10 @@ export class MusicInterface {
         return null;
     }
 
+    public get hasPermission(): boolean | null {
+        return (this.guild.me?.voice.channel?.speakable || this.guild.me?.voice.channel?.joinable) ?? null;
+    }
+
     public get voiceChannel(): VoiceChannel | null {
         return this.guild.me?.voice.channel ?? null;
     }
@@ -140,10 +144,17 @@ export class MusicInterface {
         return false;
     }
 
-    public paused(): boolean {
+    public get paused(): boolean {
         const { player } = this;
         if (player) return player.paused;
         return false;
+    }
+
+    public isMemberDJ(member: GuildMember): boolean {
+        if (!this.guild.settings.get("toggles.djmode")) return true;
+        const isDJ = this.guild.settings.get("user.dj").has(member.id);
+        const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
+        return isDJ ?? hasDJRole;
     }
 
 }

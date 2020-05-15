@@ -4,7 +4,8 @@ const MusicCommand_1 = require("../lib/structures/MusicCommand");
 class default_1 extends MusicCommand_1.MusicCommand {
     constructor(store, file, directory) {
         super(store, file, directory, {
-            description: "Stop Music"
+            description: "Stop Music",
+            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
         });
     }
     async run(message) {

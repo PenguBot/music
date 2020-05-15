@@ -3,6 +3,8 @@ import { Manager as LavacordManager, ManagerOptions as LavacordManagerOptions, L
 import { MusicManager } from "./structures/MusicManager";
 import { join } from "path";
 
+import "../lib/schemas/guildSchema";
+
 export class MusicClient extends Client {
 
     public lavalink!: LavacordManager;
