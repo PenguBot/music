@@ -1,3 +1,6 @@
+// Copyright (c) 2019-2020 Antonio Román. All rights reserved. Apache License 2.0.
+// Source: https://github.com/skyra-project/skyra
+
 import { BitField } from "discord.js";
 
 export class MusicBitField extends BitField<MusicBitFieldString> {

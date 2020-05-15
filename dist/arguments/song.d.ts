@@ -3,10 +3,9 @@ import { TrackResponse } from "@lavacord/discord.js";
 export default class extends Argument {
     run(arg: string, _: Possible, message: KlasaMessage): Promise<TrackResponse | undefined>;
     fetchTracks(arg: string): Promise<TrackResponse>;
-    isLink(arg: string): boolean | string;
 }
-declare module "klasa" {
-    interface KlasaMessage {
-        prompt(message: KlasaMessage, content: string, time: number): KlasaMessage;
+declare module "discord.js" {
+    interface Message {
+        prompt(message: Message, content: string, time: number): Message;
     }
 }

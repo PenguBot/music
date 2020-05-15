@@ -32,10 +32,9 @@ class MusicInterface {
         return structuredSongs;
     }
     async play() {
-        var _a;
         const [song] = this.queue;
-        await ((_a = this.player) === null || _a === void 0 ? void 0 : _a.play(song.track));
-        this.client.emit("musicPlayEvent", this.guild);
+        await this.player?.play(song.track);
+        this.client.emit("musicPlay", this.guild);
         return this;
     }
     async skip() {
@@ -82,23 +81,19 @@ class MusicInterface {
         return null;
     }
     hasPermission(member) {
-        var _a;
-        return (_a = (member.voice.channel.speakable || member.voice.channel.joinable)) !== null && _a !== void 0 ? _a : null;
+        return (member.voice.channel.speakable || member.voice.channel.joinable) ?? null;
     }
     get voiceChannel() {
-        var _a;
-        return (_a = this.guild.me.voice.channel) !== null && _a !== void 0 ? _a : null;
+        return this.guild.me.voice.channel ?? null;
     }
     get player() {
-        var _a;
-        return (_a = this.client.lavalink.players.get(this.guild.id)) !== null && _a !== void 0 ? _a : null;
+        return this.client.lavalink.players.get(this.guild.id) ?? null;
     }
     get volume() {
         return this.guild.settings.get("misc.volume");
     }
     get idealNode() {
-        var _a;
-        return (_a = this.client.lavalink.idealNodes[0]) !== null && _a !== void 0 ? _a : null;
+        return this.client.lavalink.idealNodes[0] ?? null;
     }
     get playing() {
         if (this.player)
@@ -115,7 +110,7 @@ class MusicInterface {
             return true;
         const isDJ = this.guild.settings.get("user.dj").has(member.id);
         const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
-        return isDJ !== null && isDJ !== void 0 ? isDJ : hasDJRole;
+        return isDJ ?? hasDJRole;
     }
 }
 exports.MusicInterface = MusicInterface;

@@ -11,7 +11,7 @@ export default class extends MusicCommand {
     }
 
     public async run(message: KlasaMessage): Promise<any> {
-        this.client.emit("musicStopEvent", message.guild);
+        this.client.emit("musicStop", message.guild);
     }
 
 }

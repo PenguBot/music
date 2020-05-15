@@ -1,25 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const klasa_1 = require("klasa");
-const url_1 = require("url");
 const discord_js_1 = require("@lavacord/discord.js");
 const utils_1 = require("../lib/utils/utils");
 class default_1 extends klasa_1.Argument {
     async run(arg, _, message) {
-        if (!arg)
-            throw "No arguments were provided to search/load.";
-        if (!message.guild)
-            throw "This command can only be used in a guild.";
         arg = arg.replace(/<(.+)>/g, "$1");
-        const validLink = this.isLink(arg);
-        if (validLink) {
-            const data = await this.fetchTracks(arg);
-            return data;
-        }
-        if (utils_1.regexes("wildcard").test(arg) && !validLink) {
-            const data = await this.fetchTracks(arg);
-            return data;
-        }
+        const validLink = utils_1.isLink(arg);
+        if (validLink)
+            return this.fetchTracks(arg);
+        if (utils_1.regexes("wildcard").test(arg) && !validLink)
+            return this.fetchTracks(arg);
         if (!validLink) {
             const data = await this.fetchTracks(`ytsearch:${arg}`);
             if (!data.tracks.length)
@@ -44,15 +35,6 @@ class default_1 extends klasa_1.Argument {
         if (result.loadType === "NO_MATCHES")
             throw "No tracks or playlists could be found with the given argument.";
         return result;
-    }
-    isLink(arg) {
-        try {
-            const url = new url_1.URL(arg);
-            return url.href;
-        }
-        catch (e) {
-            return false;
-        }
     }
 }
 exports.default = default_1;

@@ -15,7 +15,6 @@ export default class extends MusicCommand {
 
     public async run(message: KlasaMessage, [song]: [TrackResponse]): Promise<any> {
         const { music } = message.guild!;
-        if (!song.tracks.length) throw "The track could not be found or loaded.";
         if (!message.member) await message.guild!.members.fetch(message.author.id);
         if (!music.voiceChannel && message.member!.voice.channel) await music.join(message.member!.voice.channel.id);
 

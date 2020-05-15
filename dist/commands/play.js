@@ -11,8 +11,6 @@ class default_1 extends MusicCommand_1.MusicCommand {
     }
     async run(message, [song]) {
         const { music } = message.guild;
-        if (!song.tracks.length)
-            throw "The track could not be found or loaded.";
         if (!message.member)
             await message.guild.members.fetch(message.author.id);
         if (!music.voiceChannel && message.member.voice.channel)

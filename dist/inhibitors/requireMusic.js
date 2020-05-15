@@ -31,10 +31,6 @@ class default_1 extends klasa_1.Inhibitor {
         if (command.music.has(FLAGS.DJ_MEMBER) && !music.isMemberDJ(message.member))
             throw "You must be a DJ to use this command.";
     }
-    async init() {
-        await this.client.lavalink.connect();
-        return Promise.resolve();
-    }
 }
 exports.default = default_1;
 //# sourceMappingURL=requireMusic.js.map

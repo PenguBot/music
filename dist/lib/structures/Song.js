@@ -18,7 +18,7 @@ class Song {
     get friendlyDuration() {
         return this.stream ? "Live Stream" : utils_1.getTimeString(this.length);
     }
-    get toJSON() {
+    toJSON() {
         return {
             id: this.id,
             requester: this.requester,

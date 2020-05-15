@@ -1,25 +1,16 @@
 import { Argument, KlasaMessage, Possible } from "klasa";
-import { URL } from "url";
 import { Rest, TrackResponse } from "@lavacord/discord.js";
-import { regexes, getTimeString } from "../lib/utils/utils";
+import { regexes, getTimeString, isLink } from "../lib/utils/utils";
 
 export default class extends Argument {
 
     public async run(arg: string, _: Possible, message: KlasaMessage): Promise<TrackResponse|undefined> {
-        if (!arg) throw "No arguments were provided to search/load.";
-        if (!message.guild) throw "This command can only be used in a guild.";
         arg = arg.replace(/<(.+)>/g, "$1");
 
-        const validLink = this.isLink(arg);
-        if (validLink) {
-            const data = await this.fetchTracks(arg);
-            return data;
-        }
+        const validLink = isLink(arg);
+        if (validLink) return this.fetchTracks(arg);
 
-        if (regexes("wildcard").test(arg) && !validLink) {
-            const data = await this.fetchTracks(arg);
-            return data;
-        }
+        if (regexes("wildcard").test(arg) && !validLink) return this.fetchTracks(arg);
 
         if (!validLink) {
             const data = await this.fetchTracks(`ytsearch:${arg}`);
@@ -47,18 +38,10 @@ export default class extends Argument {
         return result;
     }
 
-    public isLink(arg: string): boolean | string {
-        try {
-            const url = new URL(arg);
-            return url.href;
-        } catch (e) {
-            return false;
-        }
-    }
 }
 
-declare module "klasa" {
-    interface KlasaMessage {
-        prompt(message: KlasaMessage, content: string, time: number): KlasaMessage;
+declare module "discord.js" {
+    interface Message {
+        prompt(message: Message, content: string, time: number): Message;
     }
 }

@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "repository": "https://github.com/PenguBot/music.git",
   "author": "Aditya N. Tripathi <adityatripathidelhi@gmail.com>",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "prepublishOnly": "yarn compile",
@@ -24,7 +24,6 @@
     "eslint": "^7.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "json-schema": "^0.2.5",
     "klasa": "github:dirigeants/klasa#be581f178e829b628f38f00d6397a98d27181600",
     "typescript": "^3.9.2"
   },

@@ -15,7 +15,7 @@ export class MusicInterface {
     public looping = false;
 
     public constructor(guild: KlasaGuild) {
-        this.client = guild.client as Client;
+        this.client = guild.client;
         this.guild = guild;
     }
 
@@ -43,7 +43,7 @@ export class MusicInterface {
     public async play(): Promise<this> {
         const [song] = this.queue;
         await this.player?.play(song.track);
-        this.client.emit("musicPlayEvent", this.guild);
+        this.client.emit("musicPlay", this.guild);
         return this;
     }
 

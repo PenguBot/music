@@ -13,5 +13,5 @@ export declare class Song {
     url: string;
     constructor(data: TrackData, requester: KlasaUser);
     get friendlyDuration(): string;
-    get toJSON(): Record<string, any>;
+    toJSON(): Record<string, any>;
 }

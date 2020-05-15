@@ -32,7 +32,7 @@ export class Song {
         return this.stream ? "Live Stream" : getTimeString(this.length);
     }
 
-    public get toJSON(): Record<string, any> {
+    public toJSON(): Record<string, any> {
         return {
             id: this.id,
             requester: this.requester,
@@ -46,6 +46,7 @@ export class Song {
             timeString: this.friendlyDuration,
             url: this.url
         };
+
     }
 
 }

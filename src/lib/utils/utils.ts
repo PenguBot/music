@@ -1,3 +1,5 @@
+import { URL } from "url";
+
 export function getTimeString(ms: number): string {
     const sec = Math.floor((ms / 1000) % 60).toString();
     const min = Math.floor((ms / (1000 * 60)) % 60).toString();
@@ -23,4 +25,14 @@ export function shuffleArray(array: []): [] {
         [array[len], array[i]] = [array[i], array[len]];
     }
     return array;
+}
+
+export function isLink(arg: string): boolean | string {
+    try {
+        // eslint-disable-next-line no-new
+        new URL(arg);
+        return true;
+    } catch (e) {
+        return false;
+    }
 }

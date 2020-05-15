@@ -4,6 +4,7 @@ import { MusicManager } from "./structures/MusicManager";
 import { join } from "path";
 
 import "../lib/schemas/defaultGuildSchema";
+import "../lib/extensions/KlasaGuild";
 
 export class MusicClient extends Client {
 
@@ -31,6 +32,11 @@ export class MusicClient extends Client {
 }
 
 declare module "discord.js" {
+    interface Client {
+        lavalink: LavacordManager;
+        music: MusicManager;
+    }
+
     interface ClientOptions {
         music: { nodes: LavalinkNodeOptions[]; } & LavacordManagerOptions;
     }

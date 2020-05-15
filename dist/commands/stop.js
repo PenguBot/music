@@ -9,7 +9,7 @@ class default_1 extends MusicCommand_1.MusicCommand {
         });
     }
     async run(message) {
-        this.client.emit("musicStopEvent", message.guild);
+        this.client.emit("musicStop", message.guild);
     }
 }
 exports.default = default_1;

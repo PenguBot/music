@@ -1,8 +1,9 @@
+// Copyright (c) 2019-2020 Antonio Román. All rights reserved. Apache License 2.0.
+// Source: https://github.com/skyra-project/skyra
+
 import { Inhibitor, InhibitorStore, KlasaMessage, Command } from "klasa";
 import { MusicCommand } from "../lib/structures/MusicCommand";
-import { MusicInterface } from "../lib/structures/MusicInterface";
 import { MusicBitField } from "../lib/structures/MusicBitField";
-import { Manager } from "@lavacord/discord.js";
 
 const { FLAGS } = MusicBitField;
 
@@ -28,20 +29,4 @@ export default class extends Inhibitor {
         if (command.music.has(FLAGS.DJ_MEMBER) && !music.isMemberDJ(message.member!)) throw "You must be a DJ to use this command.";
     }
 
-    public async init(): Promise<void> {
-        await this.client.lavalink.connect();
-        return Promise.resolve();
-    }
-}
-
-declare module "discord.js" {
-    interface Guild {
-        music: MusicInterface;
-    }
-}
-
-declare module "klasa" {
-    interface KlasaClient {
-        lavalink: Manager;
-    }
 }

@@ -6,6 +6,7 @@ const discord_js_1 = require("@lavacord/discord.js");
 const MusicManager_1 = require("./structures/MusicManager");
 const path_1 = require("path");
 require("../lib/schemas/defaultGuildSchema");
+require("../lib/extensions/KlasaGuild");
 class MusicClient extends klasa_1.Client {
     constructor(options) {
         super(options);
