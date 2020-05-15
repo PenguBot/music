@@ -93,9 +93,9 @@ class MusicInterface {
             return `${utils_1.getTimeString(player.timestamp)} / ${utils_1.getTimeString(this.queue[0].length)}`;
         return null;
     }
-    get hasPermission() {
-        var _a, _b, _c, _d, _e;
-        return (_e = (((_b = (_a = this.guild.me) === null || _a === void 0 ? void 0 : _a.voice.channel) === null || _b === void 0 ? void 0 : _b.speakable) || ((_d = (_c = this.guild.me) === null || _c === void 0 ? void 0 : _c.voice.channel) === null || _d === void 0 ? void 0 : _d.joinable))) !== null && _e !== void 0 ? _e : null;
+    hasPermission(member) {
+        var _a, _b, _c;
+        return (_c = (((_a = member.voice.channel) === null || _a === void 0 ? void 0 : _a.speakable) || ((_b = member.voice.channel) === null || _b === void 0 ? void 0 : _b.joinable))) !== null && _c !== void 0 ? _c : null;
     }
     get voiceChannel() {
         var _a, _b;

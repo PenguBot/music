@@ -22,7 +22,7 @@ export declare class MusicInterface {
     seek(position: number): Promise<this>;
     destroy(): Promise<void>;
     get currentTimeString(): string | null;
-    get hasPermission(): boolean | null;
+    hasPermission(member: GuildMember): boolean | null;
     get voiceChannel(): VoiceChannel | null;
     get textChannel(): TextChannel | null;
     get player(): Player | null;

@@ -114,8 +114,8 @@ export class MusicInterface {
         return null;
     }
 
-    public get hasPermission(): boolean | null {
-        return (this.guild.me?.voice.channel?.speakable || this.guild.me?.voice.channel?.joinable) ?? null;
+    public hasPermission(member: GuildMember): boolean | null {
+        return (member.voice.channel?.speakable || member.voice.channel?.joinable) ?? null;
     }
 
     public get voiceChannel(): VoiceChannel | null {
