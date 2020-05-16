@@ -3,12 +3,14 @@ import { Manager as LavacordManager, ManagerOptions as LavacordManagerOptions, L
 import { MusicManager } from "./structures/MusicManager";
 import { join } from "path";
 
-import "../lib/schemas/defaultGuildSchema";
-import "../lib/extensions/KlasaGuild";
+import "./schemas/defaultGuildSchema";
+import "./extensions/Guild";
+import "./extensions/Message";
 
 export class MusicClient extends Client {
 
     public lavalink!: LavacordManager;
+    public music!: MusicManager;
 
     constructor(options?: KlasaClientOptions) {
         super(options);
@@ -24,7 +26,6 @@ export class MusicClient extends Client {
 
         this.events["registerCoreDirectory"](coreDirectory);
         this.inhibitors["registerCoreDirectory"](coreDirectory);
-        this.extendables["registerCoreDirectory"](coreDirectory);
         this.arguments["registerCoreDirectory"](coreDirectory);
         this.commands["registerCoreDirectory"](coreDirectory);
     }

@@ -5,8 +5,9 @@ const klasa_1 = require("klasa");
 const discord_js_1 = require("@lavacord/discord.js");
 const MusicManager_1 = require("./structures/MusicManager");
 const path_1 = require("path");
-require("../lib/schemas/defaultGuildSchema");
-require("../lib/extensions/KlasaGuild");
+require("./schemas/defaultGuildSchema");
+require("./extensions/Guild");
+require("./extensions/Message");
 class MusicClient extends klasa_1.Client {
     constructor(options) {
         super(options);
@@ -18,7 +19,6 @@ class MusicClient extends klasa_1.Client {
         this.music = new MusicManager_1.MusicManager();
         this.events["registerCoreDirectory"](coreDirectory);
         this.inhibitors["registerCoreDirectory"](coreDirectory);
-        this.extendables["registerCoreDirectory"](coreDirectory);
         this.arguments["registerCoreDirectory"](coreDirectory);
         this.commands["registerCoreDirectory"](coreDirectory);
     }
