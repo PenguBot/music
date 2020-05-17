@@ -1,10 +1,8 @@
-import { Event, EventStore } from "klasa";
+import { Event, EventOptions } from "klasa";
+import { ApplyOptions } from "../lib/utils/Decorators";
 
+@ApplyOptions<EventOptions>({ name: "VOICE_STATE_UPDATE", emitter: "ws" })
 export default class extends Event {
-
-    public constructor(store: EventStore, file: string[], directory: string) {
-        super(store, file, directory, { name: "VOICE_STATE_UPDATE", emitter: "ws" });
-    }
 
     public async run(data: Record<string, any>): Promise<void> {
         const guild = this.client.guilds.get(data.guild_id);

@@ -1,10 +1,8 @@
-import { Event, EventStore } from "klasa";
+import { Event, EventOptions } from "klasa";
+import { ApplyOptions } from "../lib/utils/Decorators";
 
+@ApplyOptions<EventOptions>({ once: true })
 export default class extends Event {
-
-    public constructor(store: EventStore, file: string[], directory: string) {
-        super(store, file, directory, { once: true });
-    }
 
     public async run(): Promise<void> {
         await this.client.lavalink.connect();

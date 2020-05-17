@@ -5,7 +5,6 @@ export declare abstract class MusicCommand extends Command {
     music: MusicBitField;
     protected constructor(store: CommandStore, file: string[], directory: string, options?: MusicCommandOptions);
 }
-interface MusicCommandOptions extends CommandOptions {
+export interface MusicCommandOptions extends CommandOptions {
     music?: BitFieldResolvable<MusicBitFieldString>;
 }
-export {};

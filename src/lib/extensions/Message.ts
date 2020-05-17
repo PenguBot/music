@@ -1,4 +1,4 @@
-import { Structures, Message } from "discord.js";
+import { Structures } from "discord.js";
 
 Structures.extend("Message", M => {
     class Message extends M {
@@ -16,6 +16,6 @@ Structures.extend("Message", M => {
 
 declare module "discord.js" {
     interface Message {
-        prompt(message: Message, content: string, time: number): Promise<Message|undefined>;
+        prompt(message: Message, content: string, time?: number): Promise<Message|undefined>;
     }
 }

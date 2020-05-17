@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_1 = require("discord.js");
-discord_js_1.Structures.extend("Message", KlasaMessage => {
-    class ExtendedMessage extends KlasaMessage {
+discord_js_1.Structures.extend("Message", M => {
+    class Message extends M {
         async prompt(message, content, time = 30000) {
             await message.channel.send(content);
             const responses = await message.channel.awaitMessages(msg => msg.author === message.author, { time, max: 1 });
@@ -11,6 +11,6 @@ discord_js_1.Structures.extend("Message", KlasaMessage => {
             return responses.first();
         }
     }
-    return ExtendedMessage;
+    return Message;
 });
 //# sourceMappingURL=Message.js.map

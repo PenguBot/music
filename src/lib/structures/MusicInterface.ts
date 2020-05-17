@@ -1,10 +1,8 @@
 import { KlasaGuild, KlasaUser } from "klasa";
-import { MusicClient as Client } from "../Client";
-import { VoiceChannel, TextChannel, GuildMember } from "discord.js";
+import { VoiceChannel, TextChannel, GuildMember, Client } from "discord.js";
 import { Player, LavalinkNode, TrackResponse } from "@lavacord/discord.js";
 import { Song } from "./Song";
 import { getTimeString, shuffleArray } from "../utils/utils";
-import { sleep } from "@klasa/utils";
 
 export class MusicInterface {
 
@@ -19,49 +17,43 @@ export class MusicInterface {
         this.guild = guild;
     }
 
-    public async join(id: string): Promise<this> {
-        if (!this.idealNode) throw new Error("NO_NODES_AVAILABLE: There are no nodes available to use.");
-        await this.client.lavalink.join({
-            guild: this.guild.id,
-            channel: id,
-            node: this.idealNode.id
-        }, { selfdeaf: true });
-        await sleep(450);
-        return this;
-    }
-
-    public leave(): Promise<boolean> {
-        return this.client.lavalink.leave(this.guild.id);
-    }
-
     public add(user: KlasaUser, data: TrackResponse): Song[] {
         const structuredSongs = data.tracks.map(s => new Song(s, user));
         this.queue.push(...structuredSongs);
         return structuredSongs;
     }
 
-    public async play(): Promise<this> {
+    public join(id: string): Promise<Player> {
+        if (!this.idealNode) return Promise.reject(new Error("NO_NODES_AVAILABLE: There are no nodes available to use."));
+        return this.client.lavalink.join({
+            guild: this.guild.id,
+            channel: id,
+            node: this.idealNode.id
+        }, { selfdeaf: true });
+    }
+
+    public leave(): Promise<boolean> {
+        return this.client.lavalink.leave(this.guild.id);
+    }
+
+    public play(): Promise<boolean> {
         const [song] = this.queue;
-        await this.player!.play(song.track);
-        this.client.emit("musicPlay", this.guild);
-        return this;
+        return this.player!.play(song.track).then(d => {
+            this.client.emit("musicPlay", this.guild);
+            return d;
+        });
     }
 
-    public async skip(): Promise<this> {
-        const { player } = this;
-        if (player!.playing) await player!.stop();
-        return this;
+    public skip(): Promise<boolean> {
+        return this.player ? this.player.stop() : Promise.resolve(false);
     }
 
-    public async pause(): Promise<this> {
-        const { player } = this;
-        await player!.pause(!this.paused);
-        return this;
+    public pause(): Promise<boolean> {
+        return this.player!.pause(!this.paused);
     }
 
-    public async setVolume(volume: number): Promise<this> {
-        if (this.playing && this.player) await this.player.volume(volume);
-        return this;
+    public setVolume(volume: number): Promise<boolean> {
+        return this.player && this.playing ? this.player.volume(volume) : Promise.resolve(false);
     }
 
     public clearQueue(): this {
@@ -72,14 +64,13 @@ export class MusicInterface {
     public shuffleQueue(): this {
         const [first] = this.queue;
         this.queue.shift();
-        this.queue = shuffleArray(this.queue as []);
+        this.queue = shuffleArray(this.queue);
         this.queue.unshift(first);
         return this;
     }
 
-    public async seek(position: number): Promise<this> {
-        await this.player!.seek(position);
-        return this;
+    public seek(position: number): Promise<boolean> {
+        return this.player!.seek(position);
     }
 
     public async destroy(): Promise<void> {
@@ -91,13 +82,19 @@ export class MusicInterface {
         this.client.music.delete(this.guild.id);
     }
 
-    public get currentTimeString(): string | null {
-        if (this.player) return `${getTimeString(this.player.timestamp!)} / ${getTimeString(this.queue[0].length)}`;
-        return null;
-    }
-
     public hasPermission(member: GuildMember): boolean | null {
         return (member.voice.channel!.speakable || member.voice.channel!.joinable) ?? null;
+    }
+
+    public isMemberDJ(member: GuildMember): boolean {
+        if (!this.guild.settings.get("toggles.djmode")) return true;
+        const isDJ = this.guild.settings.get("user.dj").has(member.id);
+        const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
+        return isDJ ?? hasDJRole;
+    }
+
+    public get currentTimeString(): string | null {
+        return this.player ? `${getTimeString(this.player.timestamp!)} / ${getTimeString(this.queue[0].length)}` : null;
     }
 
     public get voiceChannel(): VoiceChannel | null {
@@ -117,20 +114,11 @@ export class MusicInterface {
     }
 
     public get playing(): boolean {
-        if (this.player) return this.player.playing;
-        return false;
+        return this.player ? this.player.playing : false;
     }
 
     public get paused(): boolean {
-        if (this.player) return this.player.paused;
-        return false;
-    }
-
-    public isMemberDJ(member: GuildMember): boolean {
-        if (!this.guild.settings.get("toggles.djmode")) return true;
-        const isDJ = this.guild.settings.get("user.dj").has(member.id);
-        const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
-        return isDJ ?? hasDJRole;
+        return this.player ? this.player.paused : false;
     }
 
 }

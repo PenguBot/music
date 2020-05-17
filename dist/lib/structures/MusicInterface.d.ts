@@ -1,6 +1,5 @@
 import { KlasaGuild, KlasaUser } from "klasa";
-import { MusicClient as Client } from "../Client";
-import { VoiceChannel, TextChannel, GuildMember } from "discord.js";
+import { VoiceChannel, TextChannel, GuildMember, Client } from "discord.js";
 import { Player, LavalinkNode, TrackResponse } from "@lavacord/discord.js";
 import { Song } from "./Song";
 export declare class MusicInterface {
@@ -10,24 +9,24 @@ export declare class MusicInterface {
     queue: Song[];
     looping: boolean;
     constructor(guild: KlasaGuild);
-    join(id: string): Promise<this>;
-    leave(): Promise<boolean>;
     add(user: KlasaUser, data: TrackResponse): Song[];
-    play(): Promise<this>;
-    skip(): Promise<this>;
-    pause(): Promise<this>;
-    setVolume(volume: number): Promise<this>;
+    join(id: string): Promise<Player>;
+    leave(): Promise<boolean>;
+    play(): Promise<boolean>;
+    skip(): Promise<boolean>;
+    pause(): Promise<boolean>;
+    setVolume(volume: number): Promise<boolean>;
     clearQueue(): this;
     shuffleQueue(): this;
-    seek(position: number): Promise<this>;
+    seek(position: number): Promise<boolean>;
     destroy(): Promise<void>;
-    get currentTimeString(): string | null;
     hasPermission(member: GuildMember): boolean | null;
+    isMemberDJ(member: GuildMember): boolean;
+    get currentTimeString(): string | null;
     get voiceChannel(): VoiceChannel | null;
     get player(): Player | null;
     get volume(): number;
     get idealNode(): LavalinkNode | null;
     get playing(): boolean;
     get paused(): boolean;
-    isMemberDJ(member: GuildMember): boolean;
 }

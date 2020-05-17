@@ -7,7 +7,7 @@ export function getTimeString(ms: number): string {
     return `${hrs.padStart(2, "0")}:${min.padStart(2, "0")}:${sec.padStart(2, "0")}`;
 }
 
-export function shuffleArray(array: []): [] {
+export function shuffleArray(array: any[]): any[] {
     let len = array.length;
     while (array.length) {
         const i = Math.floor(Math.random() * len--);

@@ -1,17 +1,15 @@
-import { CommandStore, KlasaMessage } from "klasa";
+import { KlasaMessage } from "klasa";
 import { TrackResponse } from "@lavacord/discord.js";
-import { MusicCommand } from "../lib/structures/MusicCommand";
+import { MusicCommand, MusicCommandOptions } from "../lib/structures/MusicCommand";
 import { TextChannel } from "discord.js";
+import { ApplyOptions } from "../lib/utils/Decorators";
 
+@ApplyOptions<MusicCommandOptions>({
+    description: "Play Music",
+    usage: "<song:song>",
+    music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION"]
+})
 export default class extends MusicCommand {
-
-    public constructor(store: CommandStore, file: string[], directory: string) {
-        super(store, file, directory, {
-            description: "Play Music",
-            usage: "<song:song>",
-            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION"]
-        });
-    }
 
     public async run(message: KlasaMessage, [song]: [TrackResponse]): Promise<any> {
         const { music } = message.guild!;
