@@ -33,14 +33,14 @@ export class MusicInterface {
     public async add(user: KlasaUser, data: TrackResponse): Promise<Song[]> {
         const structuredSongs = data.tracks.map(s => new Song(s, user));
         this.queue.push(...structuredSongs);
-        await this.client.emit("musicAdd", this.guild, structuredSongs, data);
+        await this.client.emit("add", this.guild, structuredSongs, data);
         return structuredSongs;
     }
 
     public async play(): Promise<boolean> {
         const [song] = this.queue;
         return this.player!.play(song.track).then(d => {
-            this.client.emit("musicPlay", this.guild);
+            this.client.emit("play", this.guild);
             return d;
         });
     }

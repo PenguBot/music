@@ -26,13 +26,13 @@ class MusicInterface {
     async add(user, data) {
         const structuredSongs = data.tracks.map(s => new Song_1.Song(s, user));
         this.queue.push(...structuredSongs);
-        await this.client.emit("musicAdd", this.guild, structuredSongs, data);
+        await this.client.emit("add", this.guild, structuredSongs, data);
         return structuredSongs;
     }
     async play() {
         const [song] = this.queue;
         return this.player.play(song.track).then(d => {
-            this.client.emit("musicPlay", this.guild);
+            this.client.emit("play", this.guild);
             return d;
         });
     }

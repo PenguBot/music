@@ -3,12 +3,12 @@ import { TrackResponse } from "@lavacord/discord.js";
 import { MusicCommand, MusicCommandOptions } from "../lib/structures/MusicCommand";
 import { TextChannel } from "discord.js";
 import { ApplyOptions } from "../lib/utils/Decorators";
-
 @ApplyOptions<MusicCommandOptions>({
     description: "Play Music",
     usage: "<song:song>",
     music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION"]
 })
+
 export default class extends MusicCommand {
 
     public async run(message: KlasaMessage, [song]: [TrackResponse]): Promise<any> {

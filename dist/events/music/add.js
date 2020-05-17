@@ -10,12 +10,12 @@ class default_1 extends klasa_1.Event {
         }
         const [song] = songs;
         const addString = ["> 🗒️ __**Added To Queue:**__",
-            `> **Title:** ${song.title}`,
-            `> **Author:** ${song.author}`,
-            `> **Length:** ${song.friendlyDuration}`,
-            `> **Requested By:** ${song.requester}`,
-            `> **Link:** <${song.url}>`];
-        await music.textChannel.send(addString.join("\n"));
+            `**Title:** ${song.title}`,
+            `**Author:** ${song.author}`,
+            `**Length:** ${song.friendlyDuration}`,
+            `**Requested By:** ${song.requester}`,
+            `**Link:** <${song.url}>`];
+        await music.textChannel.send(addString.join("\n> "));
     }
 }
 exports.default = default_1;

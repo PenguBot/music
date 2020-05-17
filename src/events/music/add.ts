@@ -12,12 +12,12 @@ export default class extends Event {
         }
         const [song] = songs;
         const addString = ["> 🗒️ __**Added To Queue:**__",
-            `> **Title:** ${song.title}`,
-            `> **Author:** ${song.author}`,
-            `> **Length:** ${song.friendlyDuration}`,
-            `> **Requested By:** ${song.requester}`,
-            `> **Link:** <${song.url}>`];
-        await music.textChannel!.send(addString.join("\n"));
+            `**Title:** ${song.title}`,
+            `**Author:** ${song.author}`,
+            `**Length:** ${song.friendlyDuration}`,
+            `**Requested By:** ${song.requester}`,
+            `**Link:** <${song.url}>`];
+        await music.textChannel!.send(addString.join("\n> "));
     }
 
 }

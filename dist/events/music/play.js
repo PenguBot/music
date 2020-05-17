@@ -15,12 +15,12 @@ let default_1 = (() => {
             if (!music.looping) {
                 const [song] = music.queue;
                 const playString = ["> ▶️ __**Now Playing:**__",
-                    `> **Title:** ${song.title}`,
-                    `> **Author:** ${song.author}`,
-                    `> **Length:** ${song.friendlyDuration}`,
-                    `> **Requested By:** ${song.requester}`,
-                    `> **Link:** <${song.url}>`];
-                await music.textChannel.send(playString.join("\n"));
+                    `**Title:** ${song.title}`,
+                    `**Author:** ${song.author}`,
+                    `**Length:** ${song.friendlyDuration}`,
+                    `**Requested By:** ${song.requester}`,
+                    `**Link:** <${song.url}>`];
+                await music.textChannel.send(playString.join("\n> "));
                 music.queue.shift();
             }
         }
