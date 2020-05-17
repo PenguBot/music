@@ -1,19 +1,15 @@
 // Copyright (c) 2019-2020 Antonio Román. All rights reserved. Apache License 2.0.
 // Source: https://github.com/skyra-project/skyra
 
-import { Inhibitor, InhibitorStore, KlasaMessage, Command } from "klasa";
+import { Inhibitor, KlasaMessage, Command, InhibitorOptions } from "klasa";
 import { MusicCommand } from "../lib/structures/MusicCommand";
 import { MusicBitField } from "../lib/structures/MusicBitField";
+import { ApplyOptions } from "../lib/utils/Decorators";
 
 const { FLAGS } = MusicBitField;
 
+@ApplyOptions<InhibitorOptions>({ spamProtection: true })
 export default class extends Inhibitor {
-
-    public constructor(store: InhibitorStore, file: string[], directory: string) {
-        super(store, file, directory, {
-            spamProtection: true
-        });
-    }
 
     public async run(message: KlasaMessage, command: MusicCommand | Command): Promise<void> {
         if ((!(command instanceof MusicCommand) || !command.music.bitfield) || message.channel.type !== "text") return;

@@ -11,6 +11,7 @@ export declare class Song {
     length: number;
     position: number;
     url: string;
+    skips: Set<KlasaUser>;
     constructor(data: TrackData, requester: KlasaUser);
     get friendlyDuration(): string;
     toJSON(): Record<string, any>;

@@ -1,6 +1,5 @@
 import { Structures } from "discord.js";
 import { MusicInterface } from "../structures/MusicInterface";
-import { MusicClient } from "../Client";
 
 Structures.extend("Guild", Guild => {
     class KlasaGuild extends Guild {
@@ -16,6 +15,5 @@ Structures.extend("Guild", Guild => {
 declare module "discord.js" {
     interface Guild {
         music: MusicInterface;
-        client: MusicClient;
     }
 }

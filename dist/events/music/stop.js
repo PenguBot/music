@@ -7,17 +7,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const klasa_1 = require("klasa");
-const Decorators_1 = require("../lib/utils/Decorators");
+const Decorators_1 = require("../../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends klasa_1.Event {
-        async run() {
-            await this.client.lavalink.connect();
+        async run(guild) {
+            const { music } = guild;
+            await music.leave();
+            await music.destroy();
+            await music.textChannel.send("> ⏹️ Queue has finished playing, stopping music and leaving voice channel!");
         }
     };
     default_1 = __decorate([
-        Decorators_1.ApplyOptions({ once: true })
+        Decorators_1.ApplyOptions({ name: "musicStop" })
     ], default_1);
     return default_1;
 })();
 exports.default = default_1;
-//# sourceMappingURL=klasaReady.js.map
+//# sourceMappingURL=stop.js.map

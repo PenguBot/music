@@ -18,6 +18,6 @@ export abstract class MusicCommand extends Command {
     }
 }
 
-interface MusicCommandOptions extends CommandOptions {
+export interface MusicCommandOptions extends CommandOptions {
     music?: BitFieldResolvable<MusicBitFieldString>;
 }
