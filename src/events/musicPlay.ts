@@ -6,7 +6,7 @@ export default class extends Event {
         const { music } = guild;
         if (!music.looping) {
             const [song] = music.queue;
-            const playString = ["> ▶️ **Now Playing:**",
+            const playString = ["> ▶️ __**Now Playing:**__",
                 `> **Title:** ${song.title}`,
                 `> **Author:** ${song.author}`,
                 `> **Length:** ${song.friendlyDuration}`,

@@ -14,6 +14,7 @@ export class Song {
     public length: number;
     public position: number;
     public url: string;
+    public skips: Set<KlasaUser>;
 
     public constructor(data: TrackData, requester: KlasaUser) {
         this.id = data.info.identifier;
@@ -26,6 +27,7 @@ export class Song {
         this.length = data.info.length;
         this.position = data.info.position;
         this.url = data.info.uri;
+        this.skips = new Set();
     }
 
     public get friendlyDuration(): string {

@@ -34,9 +34,10 @@ export class MusicInterface {
         return this.client.lavalink.leave(this.guild.id);
     }
 
-    public add(user: KlasaUser, data: TrackResponse): Song[] {
+    public async add(user: KlasaUser, data: TrackResponse): Promise<Song[]> {
         const structuredSongs = data.tracks.map(s => new Song(s, user));
         this.queue.push(...structuredSongs);
+        await this.client.emit("musicAdd", this.guild, structuredSongs, data);
         return structuredSongs;
     }
 
@@ -49,7 +50,10 @@ export class MusicInterface {
 
     public async skip(): Promise<this> {
         const { player } = this;
-        if (player!.playing) await player!.stop();
+        if (player!.playing) {
+            this.queue.shift();
+            await player!.stop();
+        }
         return this;
     }
 
