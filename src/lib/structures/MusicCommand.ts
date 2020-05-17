@@ -11,7 +11,7 @@ export abstract class MusicCommand extends Command {
     public music: MusicBitField;
 
     protected constructor(store: CommandStore, file: string[], directory: string, options: MusicCommandOptions = {}) {
-        mergeDefault({ runIn: ["text"] }, options);
+        mergeDefault({ runIn: ["text"], cooldown: 10, bucket: 2 }, options);
         super(store, file, directory, options);
 
         this.music = new MusicBitField(options.music);

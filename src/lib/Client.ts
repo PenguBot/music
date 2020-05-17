@@ -39,6 +39,6 @@ declare module "discord.js" {
     }
 
     interface ClientOptions {
-        music: { nodes: LavalinkNodeOptions[]; } & LavacordManagerOptions;
+        music: { nodes: LavalinkNodeOptions[]; lyrics: string; } & LavacordManagerOptions;
     }
 }

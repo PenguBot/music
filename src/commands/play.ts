@@ -4,7 +4,8 @@ import { MusicCommand, MusicCommandOptions } from "../lib/structures/MusicComman
 import { TextChannel } from "discord.js";
 import { ApplyOptions } from "../lib/utils/Decorators";
 @ApplyOptions<MusicCommandOptions>({
-    description: "Play Music",
+    description: "Start a party, let's play some music!",
+    aliases: ["musicplay"],
     usage: "<song:song>",
     music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION"]
 })

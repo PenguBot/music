@@ -24,7 +24,8 @@ let default_1 = (() => {
     };
     default_1 = __decorate([
         Decorators_1.ApplyOptions({
-            description: "Play Music",
+            description: "Start a party, let's play some music!",
+            aliases: ["musicplay"],
             usage: "<song:song>",
             music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION"]
         })

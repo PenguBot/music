@@ -11,16 +11,21 @@ const Decorators_1 = require("../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends MusicCommand_1.MusicCommand {
         async run(message) {
-            return this.client.emit("musicStop", message.guild);
+            const { music } = message.guild;
+            if (music.queue.length <= 2)
+                return message.channel.send(`> 🔃 Queue is too small to shuffle.`);
+            music.shuffleQueue();
+            return message.channel.send(`🔃 Queue has now been shuffled.`);
         }
     };
     default_1 = __decorate([
         Decorators_1.ApplyOptions({
-            description: "Stop Music",
-            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
+            description: "Shuffles the current music queue.",
+            aliases: ["shufflequeue", "queueshuffle"],
+            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER", "VOICE_PLAYING"]
         })
     ], default_1);
     return default_1;
 })();
 exports.default = default_1;
-//# sourceMappingURL=stop.js.map
+//# sourceMappingURL=shuffle.js.map

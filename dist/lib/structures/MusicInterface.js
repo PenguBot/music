@@ -37,6 +37,7 @@ class MusicInterface {
             return this.client.emit("musicStop", this.guild);
         return this.player.play(song.track).then(d => {
             this.client.emit("musicPlay", this.guild);
+            this.player.volume(this.volume);
             return d;
         });
     }
@@ -61,7 +62,8 @@ class MusicInterface {
     pause() {
         return this.player.pause(!this.paused);
     }
-    setVolume(volume) {
+    async setVolume(volume) {
+        await this.guild.settings.update("misc.volume", volume);
         return this.player && this.playing ? this.player.volume(volume) : Promise.resolve(false);
     }
     clearQueue() {

@@ -11,16 +11,19 @@ const Decorators_1 = require("../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends MusicCommand_1.MusicCommand {
         async run(message) {
-            return this.client.emit("musicStop", message.guild);
+            const { music } = message.guild;
+            music.pause();
+            return message.channel.send(`> ⏯️ Music is now **${!music.paused ? "Playing" : "Paused"}.**`);
         }
     };
     default_1 = __decorate([
         Decorators_1.ApplyOptions({
-            description: "Stop Music",
-            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
+            description: "Pause or Resume Music.",
+            aliases: ["resume", "togglepause"],
+            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER"]
         })
     ], default_1);
     return default_1;
 })();
 exports.default = default_1;
-//# sourceMappingURL=stop.js.map
+//# sourceMappingURL=pause.js.map

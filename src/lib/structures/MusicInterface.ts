@@ -43,6 +43,7 @@ export class MusicInterface {
         if (!this.queue.length) return this.client.emit("musicStop", this.guild);
         return this.player!.play(song.track).then(d => {
             this.client.emit("musicPlay", this.guild);
+            this.player!.volume(this.volume);
             return d;
         });
     }
@@ -69,7 +70,8 @@ export class MusicInterface {
         return this.player!.pause(!this.paused);
     }
 
-    public setVolume(volume: number): Promise<boolean> {
+    public async setVolume(volume: number): Promise<boolean> {
+        await this.guild.settings.update("misc.volume", volume);
         return this.player && this.playing ? this.player.volume(volume) : Promise.resolve(false);
     }
 

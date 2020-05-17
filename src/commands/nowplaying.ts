@@ -3,8 +3,9 @@ import { MusicCommand, MusicCommandOptions } from "../lib/structures/MusicComman
 import { ApplyOptions } from "../lib/utils/Decorators";
 
 @ApplyOptions<MusicCommandOptions>({
-    description: "Get the current song's information.",
-    music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
+    description: "Get the current playing song's information.",
+    aliases: ["np", "currentlyplaying", "dmsong", "savesong"],
+    music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "VOICE_PLAYING"]
 })
 
 export default class extends MusicCommand {
@@ -18,7 +19,8 @@ export default class extends MusicCommand {
             `**Length:** ${song.stream ? "Live Stream" : music.currentTimeString!}`,
             `**Requested By:** ${song.requester}`,
             `**Link:** <${song.url}>`];
-        await music.textChannel!.send(playString.join("\n> "));
+        if (!message.flagArgs) return message.channel.send(playString.join("\n> "));
+        if (message.flagArgs.dm && message.author.dmChannel.postable) return message.author.send(playString.join("\n"));
     }
 
 }

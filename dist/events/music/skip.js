@@ -14,7 +14,7 @@ let default_1 = (() => {
             const { music } = guild;
             const [song] = music.queue;
             if (music.looping)
-                return music.textChannel.send(`> Music is currently looping, unable to skip.`);
+                return music.textChannel.send(`> 🔴 Music is currently looping, unable to skip.`);
             if (song.skips.has(skipper))
                 return music.textChannel.send(`> ${skipper} you have already voted to skip this song.`);
             song.skips.add(skipper);

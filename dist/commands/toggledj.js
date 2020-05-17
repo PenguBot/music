@@ -11,16 +11,19 @@ const Decorators_1 = require("../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends MusicCommand_1.MusicCommand {
         async run(message) {
-            return this.client.emit("musicStop", message.guild);
+            const toggle = !message.guild.settings.get("toggles.djmode");
+            await message.guild.settings.update("toggles.djmode", toggle);
+            return message.channel.send(`> **Pengu DJ only mode has been ${toggle ? "Enabled" : "Disabled"}**`);
         }
     };
     default_1 = __decorate([
         Decorators_1.ApplyOptions({
-            description: "Stop Music",
-            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
+            description: "Enable or Disable DJ Only Mode.",
+            aliases: ["enabledjonly", "disablejonly", "djonly"],
+            permissionLevel: 5
         })
     ], default_1);
     return default_1;
 })();
 exports.default = default_1;
-//# sourceMappingURL=stop.js.map
+//# sourceMappingURL=toggledj.js.map
