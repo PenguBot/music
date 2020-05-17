@@ -33,24 +33,35 @@ export class MusicInterface {
     public async add(user: KlasaUser, data: TrackResponse): Promise<Song[]> {
         const structuredSongs = data.tracks.map(s => new Song(s, user));
         this.queue.push(...structuredSongs);
-        await this.client.emit("add", this.guild, structuredSongs, data);
+        await this.client.emit("musicAdd", this.guild, structuredSongs, data);
         return structuredSongs;
     }
 
     public async play(): Promise<boolean> {
         const [song] = this.queue;
+        if (!this.playing) this.managerPlayer();
+        if (!this.queue.length) return this.client.emit("musicStop", this.guild);
         return this.player!.play(song.track).then(d => {
-            this.client.emit("play", this.guild);
+            this.client.emit("musicPlay", this.guild);
             return d;
+        });
+    }
+
+    public managerPlayer(): void {
+        this.player!.once("end", async data => {
+            if (data.reason === "REPLACED") return;
+            if (!this.looping) await this.skip();
+            await this.play();
+        }).once("error", async event => {
+            await this.textChannel!.send(`I am very sorry but was an error, please try again or contact us at https://discord.gg/kWMcUNe | Error: ${event.reason}`);
+            await this.destroy();
         });
     }
 
     public async skip(): Promise<this> {
         const { player } = this;
-        if (player!.playing) {
-            this.queue.shift();
-            await player!.stop();
-        }
+        this.queue.shift();
+        await player!.stop();
         return this;
     }
 
@@ -84,7 +95,7 @@ export class MusicInterface {
         this.textChannel = null;
         this.looping = false;
 
-        await this.player!.destroy();
+        await this.leave();
         this.client.music.delete(this.guild.id);
     }
 
@@ -100,7 +111,7 @@ export class MusicInterface {
     }
 
     public get currentTimeString(): string | null {
-        return this.player ? `${getTimeString(this.player.timestamp!)} / ${getTimeString(this.queue[0].length)}` : null;
+        return this.player ? `${getTimeString(this.player.state.position!)} / ${getTimeString(this.queue[0].length)}` : null;
     }
 
     public get voiceChannel(): VoiceChannel | null {

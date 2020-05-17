@@ -13,6 +13,7 @@ export declare class MusicInterface {
     leave(): Promise<boolean>;
     add(user: KlasaUser, data: TrackResponse): Promise<Song[]>;
     play(): Promise<boolean>;
+    managerPlayer(): void;
     skip(): Promise<this>;
     pause(): Promise<boolean>;
     setVolume(volume: number): Promise<boolean>;

@@ -1,5 +1,7 @@
-import { Event, KlasaGuild, KlasaUser } from "klasa";
+import { Event, KlasaGuild, KlasaUser, EventOptions } from "klasa";
+import { ApplyOptions } from "../../lib/utils/Decorators";
 
+@ApplyOptions<EventOptions>({ name: "musicSkip" })
 export default class extends Event {
 
     public async run(guild: KlasaGuild, skipper: KlasaUser): Promise<any> {

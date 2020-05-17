@@ -15,7 +15,6 @@ export default class extends Event {
                 `**Requested By:** ${song.requester}`,
                 `**Link:** <${song.url}>`];
             await music.textChannel!.send(playString.join("\n> "));
-            music.queue.shift();
         }
     }
 

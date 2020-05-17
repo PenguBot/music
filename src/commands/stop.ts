@@ -10,7 +10,7 @@ import { ApplyOptions } from "../lib/utils/Decorators";
 export default class extends MusicCommand {
 
     public async run(message: KlasaMessage): Promise<any> {
-        this.client.emit("stop", message.guild);
+        this.client.emit("musicStop", message.guild);
     }
 
 }

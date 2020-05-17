@@ -12,9 +12,8 @@ let default_1 = (() => {
     let default_1 = class extends klasa_1.Event {
         async run(guild) {
             const { music } = guild;
-            await music.leave();
-            await music.destroy();
             await music.textChannel.send("> ⏹️ Queue has finished playing, stopping music and leaving voice channel!");
+            await music.destroy();
         }
     };
     default_1 = __decorate([

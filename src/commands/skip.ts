@@ -11,7 +11,7 @@ import { ApplyOptions } from "../lib/utils/Decorators";
 export default class extends MusicCommand {
 
     public async run(message: KlasaMessage): Promise<any> {
-        await this.client.emit("skip", message.guild, message.author);
+        await this.client.emit("musicSkip", message.guild, message.author);
     }
 
 }

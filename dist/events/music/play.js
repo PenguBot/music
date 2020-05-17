@@ -21,7 +21,6 @@ let default_1 = (() => {
                     `**Requested By:** ${song.requester}`,
                     `**Link:** <${song.url}>`];
                 await music.textChannel.send(playString.join("\n> "));
-                music.queue.shift();
             }
         }
     };

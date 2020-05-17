@@ -1,15 +1,19 @@
-import { Event, KlasaGuild } from "klasa";
+import { Event, KlasaGuild, EventOptions } from "klasa";
 import { Song } from "../../lib/structures/Song";
 import { TrackResponse } from "@lavacord/discord.js";
+import { ApplyOptions } from "../../lib/utils/Decorators";
 
+@ApplyOptions<EventOptions>({ name: "musicAdd" })
 export default class extends Event {
 
     public async run(guild: KlasaGuild, songs: Song[], trackres: TrackResponse): Promise<void> {
         const { music } = guild;
-        if (trackres.playlistInfo) {
+        if (trackres.playlistInfo.name) {
             await music.textChannel!.send(`> **${songs.length} songs** from the playlist **${trackres.playlistInfo.name}** have been added to the queue.`);
             return;
         }
+
+        if (music.queue.length < 2) return;
         const [song] = songs;
         const addString = ["> 🗒️ __**Added To Queue:**__",
             `**Title:** ${song.title}`,
