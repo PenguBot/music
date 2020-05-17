@@ -1,7 +1,7 @@
 import { Structures, Message } from "discord.js";
 
-Structures.extend("Message", KlasaMessage => {
-    class ExtendedMessage extends KlasaMessage {
+Structures.extend("Message", M => {
+    class Message extends M {
 
         public async prompt(message: Message, content: string, time = 30000): Promise<Message|undefined> {
             await message.channel.send(content);
@@ -11,7 +11,7 @@ Structures.extend("Message", KlasaMessage => {
         }
 
     }
-    return ExtendedMessage;
+    return Message;
 });
 
 declare module "discord.js" {
