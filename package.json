@@ -37,7 +37,7 @@
   ],
   "dependencies": {
     "@klasa/utils": "^0.0.4",
-    "@lavacord/discord.js": "^0.0.6",
+    "@lavacord/discord.js": "^0.0.7",
     "cheerio": "^1.0.0-rc.3",
     "node-fetch": "^2.6.0"
   }
