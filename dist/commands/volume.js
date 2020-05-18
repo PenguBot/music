@@ -13,11 +13,11 @@ let default_1 = (() => {
         async run(message, [volume]) {
             const { music } = message.guild;
             if (!volume)
-                return message.send(`> 🔈 **Current player volume is:** ${music.volume}%`);
-            if (volume < 1 || volume > 100)
-                return message.channel.send(`> 🔈 **Volume can not be lower than 1 or higher than 100.**`);
+                return message.send(`> 🔈 **Current player volume is:** ${music.volume}`);
+            if (volume < 1 || volume > 150)
+                return message.send(`> 🔈 **Volume can not be lower than 1 or higher than 100.**`);
             await music.setVolume(volume);
-            return message.channel.send(`> 🔈 **Volume has now been updated to:** ${volume}%`);
+            return message.send(`> 🔈 **Volume has now been updated to:** ${volume}%`);
         }
     };
     default_1 = __decorate([

@@ -7,14 +7,13 @@ import { ApplyOptions } from "../lib/utils/Decorators";
     aliases: ["shufflequeue", "queueshuffle"],
     music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER", "VOICE_PLAYING"]
 })
-
 export default class extends MusicCommand {
 
-    public async run(message: KlasaMessage): Promise<any> {
+    public async run(message: KlasaMessage): Promise<KlasaMessage> {
         const { music } = message.guild!;
-        if (music.queue.length <= 2) return message.channel.send(`> 🔃 Queue is too small to shuffle.`);
+        if (music.queue.length <= 2) return message.send(`> 🔃 Queue is too small to shuffle.`);
         music.shuffleQueue();
-        return message.channel.send(`🔃 Queue has now been shuffled.`);
+        return message.send(`🔃 Queue has now been shuffled.`);
     }
 
 }

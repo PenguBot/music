@@ -14,5 +14,18 @@ export declare class Song {
     skips: Set<KlasaUser>;
     constructor(data: TrackData, requester: KlasaUser);
     get friendlyDuration(): string;
-    toJSON(): Record<string, any>;
+    toJSON(): SongJSON;
+}
+export interface SongJSON {
+    id: string;
+    requester: KlasaUser;
+    track: string;
+    title: string;
+    author: string;
+    isSeekable: boolean;
+    isStream: boolean;
+    length: number;
+    position: number;
+    timeString: string;
+    url: string;
 }

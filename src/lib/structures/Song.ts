@@ -34,7 +34,7 @@ export class Song {
         return this.stream ? "Live Stream" : getTimeString(this.length);
     }
 
-    public toJSON(): Record<string, any> {
+    public toJSON(): SongJSON {
         return {
             id: this.id,
             requester: this.requester,
@@ -51,4 +51,18 @@ export class Song {
 
     }
 
+}
+
+export interface SongJSON {
+    id: string;
+    requester: KlasaUser;
+    track: string;
+    title: string;
+    author: string;
+    isSeekable: boolean;
+    isStream: boolean;
+    length: number;
+    position: number;
+    timeString: string;
+    url: string;
 }

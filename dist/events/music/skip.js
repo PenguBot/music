@@ -10,8 +10,7 @@ const klasa_1 = require("klasa");
 const Decorators_1 = require("../../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends klasa_1.Event {
-        async run(guild, skipper) {
-            const { music } = guild;
+        async run(music, skipper) {
             const [song] = music.queue;
             if (music.looping)
                 return music.textChannel.send(`> 🔴 Music is currently looping, unable to skip.`);

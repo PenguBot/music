@@ -1,27 +1,25 @@
-import { Event, KlasaGuild, EventOptions } from "klasa";
-import { Song } from "../../lib/structures/Song";
+import { Event, EventOptions } from "klasa";
 import { TrackResponse } from "@lavacord/discord.js";
 import { ApplyOptions } from "../../lib/utils/Decorators";
+import { Message } from "discord.js";
+import { MusicInterface } from "../../lib/structures/MusicInterface";
 
 @ApplyOptions<EventOptions>({ name: "musicAdd" })
 export default class extends Event {
 
-    public async run(guild: KlasaGuild, songs: Song[], trackres: TrackResponse): Promise<void> {
-        const { music } = guild;
-        if (trackres.playlistInfo.name) {
-            await music.textChannel!.send(`> **${songs.length} songs** from the playlist **${trackres.playlistInfo.name}** have been added to the queue.`);
-            return;
-        }
+    public async run(music: MusicInterface, data: TrackResponse): Promise<Message | void> {
+        if (data.playlistInfo.name) return music.textChannel!.send(`> **${data.tracks.length} songs** from the playlist **${data.playlistInfo.name}** have been added to the queue.`);
 
         if (music.queue.length < 2) return;
-        const [song] = songs;
-        const addString = ["> 🗒️ __**Added To Queue:**__",
+        const [song] = music.queue;
+        const addString = [
+            "> 🗒️ __**Added To Queue:**__",
             `**Title:** ${song.title}`,
             `**Author:** ${song.author}`,
             `**Length:** ${song.friendlyDuration}`,
             `**Requested By:** ${song.requester}`,
             `**Link:** <${song.url}>`];
-        await music.textChannel!.send(addString.join("\n> "));
+        return music.textChannel!.send(addString.join("\n> "));
     }
 
 }

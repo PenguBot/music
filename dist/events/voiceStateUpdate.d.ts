@@ -1,4 +1,5 @@
 import { Event } from "klasa";
+import { VoiceStateUpdate } from "@lavacord/discord.js";
 export default class extends Event {
-    run(data: Record<string, any>): Promise<void>;
+    run(data: VoiceStateUpdate): Promise<void>;
 }

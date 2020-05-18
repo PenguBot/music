@@ -6,15 +6,13 @@ import { ApplyOptions } from "../lib/utils/Decorators";
     description: "Pause or Resume Music.",
     aliases: ["resume", "togglepause"],
     music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER"]
-
 })
-
 export default class extends MusicCommand {
 
-    public async run(message: KlasaMessage): Promise<any> {
+    public async run(message: KlasaMessage): Promise<KlasaMessage> {
         const { music } = message.guild!;
-        music.pause();
-        return message.channel.send(`> ⏯️ Music is now **${!music.paused ? "Playing" : "Paused"}.**`);
+        await music.pause();
+        return message.send(`> ⏯️ Music is now **${!music.paused ? "Playing" : "Paused"}.**`);
     }
 
 }

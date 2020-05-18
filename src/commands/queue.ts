@@ -7,7 +7,6 @@ import { RichDisplay, KlasaMessage } from "klasa";
     description: "List of song's in the current queue.",
     music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
 })
-
 export default class extends MusicCommand {
 
     public async run(message: KlasaMessage): Promise<any> {
@@ -24,7 +23,7 @@ export default class extends MusicCommand {
             pages.addPage((t: MessageEmbed) => t.setDescription(curr.map(y => `\`${music.queue.findIndex(s => s.id === y.id) + 1}\` [${y.title.replace(/\*/g, "\\*")}](${y.url}) (${y.friendlyDuration})`).join("\n")));
         }
 
-        pages.run(await message.sendMessage("🔃 Loading Queue..."), {
+        await pages.run(await message.sendMessage("🔃 Loading Queue..."), {
             time: 120000,
             filter: (reaction, user) => user === message.author
         });

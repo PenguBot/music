@@ -1,4 +1,6 @@
-import { Event, KlasaGuild, KlasaUser } from "klasa";
+import { Event, KlasaUser } from "klasa";
+import { Message } from "discord.js";
+import { MusicInterface } from "../../lib/structures/MusicInterface";
 export default class extends Event {
-    run(guild: KlasaGuild, skipper: KlasaUser): Promise<any>;
+    run(music: MusicInterface, skipper: KlasaUser): Promise<Message>;
 }

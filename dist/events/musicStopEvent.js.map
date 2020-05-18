@@ -1,1 +1,0 @@
-{"version":3,"file":"musicStopEvent.js","sourceRoot":"","sources":["../../src/events/musicStopEvent.ts"],"names":[],"mappings":";;AAAA,iCAA0C;AAE1C,eAAqB,SAAQ,aAAK;IAEvB,KAAK,CAAC,GAAG,CAAC,KAAiB;QAC9B,MAAM,EAAE,KAAK,EAAE,GAAG,KAAK,CAAC;QACxB,MAAM,KAAK,CAAC,OAAO,EAAE,CAAC;QACtB,MAAM,KAAK,CAAC,WAAY,CAAC,IAAI,CAAC,4EAA4E,CAAC,CAAC;IAChH,CAAC;CAEJ;AARD,4BAQC"}

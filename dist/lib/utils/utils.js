@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.http = exports.dump = exports.isLink = exports.shuffleArray = exports.getTimeString = void 0;
+exports.fetch = exports.haste = exports.isLink = exports.shuffleArray = exports.getTimeString = void 0;
 const url_1 = require("url");
 const node_fetch_1 = __importDefault(require("node-fetch"));
 function getTimeString(ms) {
@@ -32,12 +32,12 @@ function isLink(arg) {
     }
 }
 exports.isLink = isLink;
-function dump(data, extension = "json") {
-    return http("https://paste.pengubot.com/documents", { method: "post", body: data })
+function haste(data, extension = "json") {
+    return fetch("https://paste.pengubot.com/documents", { method: "POST", body: data })
         .then(body => `https://paste.pengubot.com/${body.key}.${extension}`);
 }
-exports.dump = dump;
-async function http(url, options, type = "json") {
+exports.haste = haste;
+async function fetch(url, options, type) {
     if (typeof options === "undefined") {
         options = {};
         type = "json";
@@ -49,11 +49,11 @@ async function http(url, options, type = "json") {
     else if (typeof type === "undefined") {
         type = "json";
     }
-    const query = new url_1.URLSearchParams(options.query || {});
-    url = `${url}?${query}`;
+    if (options.query)
+        url = `${url}?${new url_1.URLSearchParams(options.query || {})}`;
     const result = await node_fetch_1.default(url, options);
     if (!result.ok)
-        throw new Error(`${url} - ${result.status}`);
+        throw new Error(`${result.status}: ${result.statusText}`);
     switch (type) {
         case "result": return result;
         case "buffer": return result.buffer();
@@ -62,5 +62,5 @@ async function http(url, options, type = "json") {
         default: throw new Error(`Unknown type ${type}`);
     }
 }
-exports.http = http;
+exports.fetch = fetch;
 //# sourceMappingURL=utils.js.map

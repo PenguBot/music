@@ -52,3 +52,4 @@ test/providers
 test/serializers
 test/tasks
 test/config.json
+test/config.js

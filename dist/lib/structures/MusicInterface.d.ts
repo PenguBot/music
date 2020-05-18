@@ -11,9 +11,8 @@ export declare class MusicInterface {
     constructor(guild: KlasaGuild);
     join(id: string): Promise<Player>;
     leave(): Promise<boolean>;
-    add(user: KlasaUser, data: TrackResponse): Promise<Song[]>;
+    add(user: KlasaUser, data: TrackResponse): Song[];
     play(): Promise<boolean>;
-    managerPlayer(): void;
     skip(): Promise<this>;
     pause(): Promise<boolean>;
     setVolume(volume: number): Promise<boolean>;

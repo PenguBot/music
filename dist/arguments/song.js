@@ -17,9 +17,11 @@ class default_1 extends klasa_1.Argument {
             if (!data.tracks.length)
                 throw "No search results found for this argument.";
             const strippedList = data.tracks.slice(0, 5);
-            const searchmsg = ["> 🎵 | __**Select a Song**__",
+            const searchmsg = [
+                "> 🎵 | __**Select a Song**__",
                 `> ${strippedList.map((song, index) => `➡ \`${++index}\` ${song.info.title} - ${song.info.author} (${utils_1.getTimeString(song.info.length)})`).join("\n> ")}`,
-                `> ${message.author}, Please select a track by replying from range \`1-5\` to add it to the queue.`];
+                `> ${message.author}, Please select a track by replying from range \`1-5\` to add it to the queue.`
+            ];
             const selectionMessage = await message.prompt(message, searchmsg.join("\n"), 15000);
             const selection = Number(selectionMessage.content);
             if (isNaN(selection) || selection < 1 || selection > 5)

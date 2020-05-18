@@ -13,9 +13,9 @@ let default_1 = (() => {
         async run(message) {
             const { music } = message.guild;
             if (music.queue.length <= 2)
-                return message.channel.send(`> 🔃 Queue is too small to shuffle.`);
+                return message.send(`> 🔃 Queue is too small to shuffle.`);
             music.shuffleQueue();
-            return message.channel.send(`🔃 Queue has now been shuffled.`);
+            return message.send(`🔃 Queue has now been shuffled.`);
         }
     };
     default_1 = __decorate([

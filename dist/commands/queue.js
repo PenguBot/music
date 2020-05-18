@@ -22,7 +22,7 @@ let default_1 = (() => {
                 const curr = music.queue.slice(i, i + 12);
                 pages.addPage((t) => t.setDescription(curr.map(y => `\`${music.queue.findIndex(s => s.id === y.id) + 1}\` [${y.title.replace(/\*/g, "\\*")}](${y.url}) (${y.friendlyDuration})`).join("\n")));
             }
-            pages.run(await message.sendMessage("🔃 Loading Queue..."), {
+            await pages.run(await message.sendMessage("🔃 Loading Queue..."), {
                 time: 120000,
                 filter: (reaction, user) => user === message.author
             });

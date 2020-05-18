@@ -1,10 +1,11 @@
 import { Event, EventOptions } from "klasa";
 import { ApplyOptions } from "../lib/utils/Decorators";
+import { VoiceStateUpdate } from "@lavacord/discord.js";
 
 @ApplyOptions<EventOptions>({ name: "VOICE_STATE_UPDATE", emitter: "ws" })
 export default class extends Event {
 
-    public async run(data: Record<string, any>): Promise<void> {
+    public async run(data: VoiceStateUpdate): Promise<void> {
         const guild = this.client.guilds.get(data.guild_id);
         if (!guild) return;
 

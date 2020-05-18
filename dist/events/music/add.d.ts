@@ -1,6 +1,7 @@
-import { Event, KlasaGuild } from "klasa";
-import { Song } from "../../lib/structures/Song";
+import { Event } from "klasa";
 import { TrackResponse } from "@lavacord/discord.js";
+import { Message } from "discord.js";
+import { MusicInterface } from "../../lib/structures/MusicInterface";
 export default class extends Event {
-    run(guild: KlasaGuild, songs: Song[], trackres: TrackResponse): Promise<void>;
+    run(music: MusicInterface, data: TrackResponse): Promise<Message | void>;
 }

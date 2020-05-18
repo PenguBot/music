@@ -10,17 +10,18 @@ const klasa_1 = require("klasa");
 const Decorators_1 = require("../../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends klasa_1.Event {
-        async run(guild) {
-            const { music } = guild;
+        async run(music) {
             if (!music.looping) {
                 const [song] = music.queue;
-                const playString = ["> ▶️ __**Now Playing:**__",
+                const playString = [
+                    "> ▶️ __**Now Playing:**__",
                     `**Title:** ${song.title}`,
                     `**Author:** ${song.author}`,
                     `**Length:** ${song.friendlyDuration}`,
                     `**Requested By:** ${song.requester}`,
-                    `**Link:** <${song.url}>`];
-                await music.textChannel.send(playString.join("\n> "));
+                    `**Link:** <${song.url}>`
+                ];
+                return music.textChannel.send(playString.join("\n> "));
             }
         }
     };

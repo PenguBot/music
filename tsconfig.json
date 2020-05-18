@@ -20,7 +20,7 @@
         "strictFunctionTypes": true,
         "strictBindCallApply": true,
         "target": "es2019",
-        "types": ["node", "lavacord", "klasa", "discord.js"]
+        "types": ["node", "lavacord", "klasa", "discord.js", "@types/node-fetch"]
     },
     "include": ["src"]
 }

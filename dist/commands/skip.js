@@ -11,7 +11,7 @@ const Decorators_1 = require("../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends MusicCommand_1.MusicCommand {
         async run(message) {
-            return await this.client.emit("musicSkip", message.guild, message.author);
+            return this.client.emit("musicSkip", message.guild.music, message.author);
         }
     };
     default_1 = __decorate([

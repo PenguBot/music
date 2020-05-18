@@ -6,11 +6,10 @@ import { ApplyOptions } from "../lib/utils/Decorators";
     description: "Stop Music",
     music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
 })
-
 export default class extends MusicCommand {
 
     public async run(message: KlasaMessage): Promise<any> {
-        return this.client.emit("musicStop", message.guild);
+        return this.client.emit("musicStop", message.guild!.music);
     }
 
 }

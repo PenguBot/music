@@ -13,14 +13,17 @@ let default_1 = (() => {
         async run(message) {
             const { music } = message.guild;
             const [song] = music.queue;
-            const playString = ["> ▶️ __**Now Playing:**__",
+            const playString = [
+                "> ▶️ __**Now Playing:**__",
                 `**Title:** ${song.title}`,
-                `**Author:** ${song.author}`, `**Length:** ${song.stream ? "Live Stream" : music.currentTimeString}`, `**Requested By:** ${song.requester}`,
-                `**Link:** <${song.url}>`];
-            if (!message.flagArgs)
-                return message.channel.send(playString.join("\n> "));
-            if (message.flagArgs.dm && message.author.dmChannel.postable)
-                return message.author.send(playString.join("\n"));
+                `**Author:** ${song.author}`,
+                `**Length:** ${song.stream ? "Live Stream" : music.currentTimeString}`,
+                `**Requested By:** ${song.requester}`,
+                `**Link:** <${song.url}>`
+            ];
+            if (message.flagArgs.dm)
+                return message.author.send(playString.join("\n")).catch(() => null);
+            return message.send(playString.join("\n> "));
         }
     };
     default_1 = __decorate([

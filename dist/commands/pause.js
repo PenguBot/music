@@ -12,8 +12,8 @@ let default_1 = (() => {
     let default_1 = class extends MusicCommand_1.MusicCommand {
         async run(message) {
             const { music } = message.guild;
-            music.pause();
-            return message.channel.send(`> ⏯️ Music is now **${!music.paused ? "Playing" : "Paused"}.**`);
+            await music.pause();
+            return message.send(`> ⏯️ Music is now **${!music.paused ? "Playing" : "Paused"}.**`);
         }
     };
     default_1 = __decorate([

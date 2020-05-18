@@ -1,5 +1,5 @@
 import { URL, URLSearchParams } from "url";
-import fetch from "node-fetch";
+import nodeFetch, { Response, RequestInit } from "node-fetch";
 
 export function getTimeString(ms: number): string {
     const sec = Math.floor((ms / 1000) % 60).toString();
@@ -27,12 +27,25 @@ export function isLink(arg: string): boolean | string {
     }
 }
 
-export function dump(data: string, extension = "json"): Promise<string> {
-    return http("https://paste.pengubot.com/documents", { method: "post", body: data })
+export function haste(data: string, extension = "json"): Promise<string> {
+    return fetch("https://paste.pengubot.com/documents", { method: "POST", body: data })
         .then(body => `https://paste.pengubot.com/${body.key}.${extension}`);
 }
 
-export async function http(url: string, options: Record<string, any>, type = "json"): Promise<any> {
+export interface FetchOptions extends RequestInit {
+    query?: string | URLSearchParams | { [key: string]: string | string[]; } | Iterable<[string, string]> | [string, string][];
+}
+
+export async function fetch(url: string, type: "json"): Promise<any>;
+export async function fetch(url: string, options: FetchOptions, type: "json"): Promise<any>;
+export async function fetch(url: string, type: "buffer"): Promise<Buffer>;
+export async function fetch(url: string, options: FetchOptions, type: "buffer"): Promise<Buffer>;
+export async function fetch(url: string, type: "text"): Promise<string>;
+export async function fetch(url: string, options: FetchOptions, type: "text"): Promise<string>;
+export async function fetch(url: string, type: "result"): Promise<Response>;
+export async function fetch(url: string, options: FetchOptions, type: "result"): Promise<Response>;
+export async function fetch(url: string, options: FetchOptions, type?: "result" | "json" | "buffer" | "text"): Promise<Response | Buffer | string | any>;
+export async function fetch(url: string, options: FetchOptions | "result" | "json" | "buffer" | "text", type?: "result" | "json" | "buffer" | "text"): Promise<any> {
     if (typeof options === "undefined") {
         options = {};
         type = "json";
@@ -43,12 +56,10 @@ export async function http(url: string, options: Record<string, any>, type = "js
         type = "json";
     }
 
-    const query = new URLSearchParams(options.query || {});
+    if (options.query) url = `${url}?${new URLSearchParams(options.query || {})}`;
 
-    url = `${url}?${query}`;
-
-    const result = await fetch(url, options);
-    if (!result.ok) throw new Error(`${url} - ${result.status}`);
+    const result: Response = await nodeFetch(url, options);
+    if (!result.ok) throw new Error(`${result.status}: ${result.statusText}`);
 
     switch (type) {
         case "result": return result;

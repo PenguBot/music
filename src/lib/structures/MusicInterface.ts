@@ -17,45 +17,43 @@ export class MusicInterface {
         this.guild = guild;
     }
 
-    public join(id: string): Promise<Player> {
+    public async join(id: string): Promise<Player> {
         if (!this.idealNode) return Promise.reject(new Error("NO_NODES_AVAILABLE: There are no nodes available to use."));
-        return this.client.lavalink.join({
+        const player = await this.client.lavalink.join({
             guild: this.guild.id,
             channel: id,
             node: this.idealNode.id
         }, { selfdeaf: true });
+
+        player!.on("end", async data => {
+            if (data.reason === "REPLACED") return;
+            if (!this.looping) await this.skip();
+            await this.play();
+        }).on("error", async event => {
+            await this.textChannel!.send(`I am very sorry but was an error, please try again or contact us at https://discord.gg/kWMcUNe | Error: ${event.reason || (event as any).error}`);
+            await this.destroy();
+        });
+
+        return player;
     }
 
     public leave(): Promise<boolean> {
         return this.client.lavalink.leave(this.guild.id);
     }
 
-    public async add(user: KlasaUser, data: TrackResponse): Promise<Song[]> {
+    public add(user: KlasaUser, data: TrackResponse): Song[] {
         const structuredSongs = data.tracks.map(s => new Song(s, user));
         this.queue.push(...structuredSongs);
-        await this.client.emit("musicAdd", this.guild, structuredSongs, data);
+        this.client.emit("musicAdd", this, data);
         return structuredSongs;
     }
 
-    public async play(): Promise<boolean> {
+    public play(): Promise<boolean> {
         const [song] = this.queue;
-        if (!this.playing) this.managerPlayer();
-        if (!this.queue.length) return this.client.emit("musicStop", this.guild);
-        return this.player!.play(song.track).then(d => {
-            this.client.emit("musicPlay", this.guild);
-            this.player!.volume(this.volume);
+        if (!this.queue.length) return Promise.resolve(this.client.emit("musicStop", this));
+        return this.player!.play(song.track, { volume: this.volume }).then(d => {
+            this.client.emit("musicPlay", this);
             return d;
-        });
-    }
-
-    public managerPlayer(): void {
-        this.player!.once("end", async data => {
-            if (data.reason === "REPLACED") return;
-            if (!this.looping) await this.skip();
-            await this.play();
-        }).once("error", async event => {
-            await this.textChannel!.send(`I am very sorry but was an error, please try again or contact us at https://discord.gg/kWMcUNe | Error: ${event.reason}`);
-            await this.destroy();
         });
     }
 
@@ -107,7 +105,7 @@ export class MusicInterface {
 
     public isMemberDJ(member: GuildMember): boolean {
         if (!this.guild.settings.get("toggles.djmode")) return true;
-        const isDJ = this.guild.settings.get("user.dj").has(member.id);
+        const isDJ = this.guild.settings.get("user.dj").includes(member.id);
         const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
         return isDJ ?? hasDJRole;
     }

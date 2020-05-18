@@ -1,11 +1,12 @@
-import { Event, KlasaGuild, KlasaUser, EventOptions } from "klasa";
+import { Event, KlasaUser, EventOptions } from "klasa";
 import { ApplyOptions } from "../../lib/utils/Decorators";
+import { Message } from "discord.js";
+import { MusicInterface } from "../../lib/structures/MusicInterface";
 
 @ApplyOptions<EventOptions>({ name: "musicSkip" })
 export default class extends Event {
 
-    public async run(guild: KlasaGuild, skipper: KlasaUser): Promise<any> {
-        const { music } = guild;
+    public async run(music: MusicInterface, skipper: KlasaUser): Promise<Message> {
         const [song] = music.queue;
         if (music.looping) return music.textChannel!.send(`> 🔴 Music is currently looping, unable to skip.`);
         if (song.skips.has(skipper)) return music.textChannel!.send(`> ${skipper} you have already voted to skip this song.`);

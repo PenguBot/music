@@ -11,17 +11,16 @@ import { ApplyOptions } from "../lib/utils/Decorators";
 
 export default class extends MusicCommand {
 
-    public async run(message: KlasaMessage, [songOrQueue = "song"]): Promise<any> {
+    public async run(message: KlasaMessage, [songOrQueue = "song"]): Promise<KlasaMessage> {
         const { music } = message.guild!;
 
         if (songOrQueue === "song") {
             music.looping = !music.looping;
-            await message.channel.send(`> 🔄 Music is now **${music.looping ? "" : "No Longer"} Looping** in **Song** mode.`);
-            return;
+            return message.send(`> 🔄 Music is now **${music.looping ? "" : "No Longer"} Looping** in **Song** mode.`);
         }
 
         music.queue = music.queue.concat(music.queue);
-        return message.channel.send(`> 🔄 Music is now **Looping** in **Queue** mode.`);
+        return message.send(`> 🔄 Music is now **Looping** in **Queue** mode.`);
     }
 
 }

@@ -1,4 +1,5 @@
-import { Event, KlasaGuild } from "klasa";
+import { Event } from "klasa";
+import { MusicInterface } from "../../lib/structures/MusicInterface";
 export default class extends Event {
-    run(guild: KlasaGuild): Promise<void>;
+    run(music: MusicInterface): Promise<void>;
 }

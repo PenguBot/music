@@ -10,8 +10,7 @@ const klasa_1 = require("klasa");
 const Decorators_1 = require("../../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends klasa_1.Event {
-        async run(guild) {
-            const { music } = guild;
+        async run(music) {
             await music.textChannel.send("> ⏹️ Queue has finished playing, stopping music and leaving voice channel!");
             await music.destroy();
         }

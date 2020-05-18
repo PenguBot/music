@@ -13,7 +13,7 @@ let default_1 = (() => {
         async run(message) {
             const toggle = !message.guild.settings.get("toggles.djmode");
             await message.guild.settings.update("toggles.djmode", toggle);
-            return message.channel.send(`> **Pengu DJ only mode has been ${toggle ? "Enabled" : "Disabled"}**`);
+            return message.send(`> **Pengu DJ only mode has been ${toggle ? "Enabled" : "Disabled"}**`);
         }
     };
     default_1 = __decorate([
