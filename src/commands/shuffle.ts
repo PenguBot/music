@@ -16,4 +16,9 @@ export default class extends MusicCommand {
         return message.send(`🔃 Queue has now been shuffled.`);
     }
 
+    public async init(): Promise<void> {
+        this.disable();
+        return Promise.resolve();
+    }
+
 }

@@ -17,6 +17,10 @@ let default_1 = (() => {
             music.shuffleQueue();
             return message.send(`🔃 Queue has now been shuffled.`);
         }
+        async init() {
+            this.disable();
+            return Promise.resolve();
+        }
     };
     default_1 = __decorate([
         Decorators_1.ApplyOptions({

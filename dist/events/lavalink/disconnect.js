@@ -10,8 +10,8 @@ const klasa_1 = require("klasa");
 const Decorators_1 = require("../../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends klasa_1.Event {
-        async run(error, node) {
-            this.client.console.error(`Lavalink Node "${node.id}" errored:`, error);
+        async run(eventData, node) {
+            this.client.console.error(`Lavalink Node "${node.id}" Disconnected\nwasClean: ${eventData.wasClean} | Code: ${eventData.code} | Reason: ${eventData.reason}`);
         }
     };
     default_1 = __decorate([
@@ -20,4 +20,4 @@ let default_1 = (() => {
     return default_1;
 })();
 exports.default = default_1;
-//# sourceMappingURL=error.js.map
+//# sourceMappingURL=disconnect.js.map
