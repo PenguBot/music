@@ -65,7 +65,8 @@ let default_1 = (() => {
         Decorators_1.ApplyOptions({
             description: "Get lyrics for the current song or any song by name.",
             usage: "[song:string]",
-            aliases: ["repeat", "loopsong"]
+            aliases: ["repeat", "loopsong"],
+            requiredPermissions: ["EMBED_LINKS"]
         })
     ], default_1);
     return default_1;

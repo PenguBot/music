@@ -5,7 +5,8 @@ import { RichDisplay, KlasaMessage } from "klasa";
 
 @ApplyOptions<MusicCommandOptions>({
     description: "List of song's in the current queue.",
-    music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
+    music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"],
+    requiredPermissions: ["EMBED_LINKS"]
 })
 export default class extends MusicCommand {
 

@@ -8,7 +8,8 @@ import cheerio from "cheerio";
 @ApplyOptions<MusicCommandOptions>({
     description: "Get lyrics for the current song or any song by name.",
     usage: "[song:string]",
-    aliases: ["repeat", "loopsong"]
+    aliases: ["repeat", "loopsong"],
+    requiredPermissions: ["EMBED_LINKS"]
 })
 export default class extends MusicCommand {
 

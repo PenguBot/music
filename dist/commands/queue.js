@@ -31,7 +31,8 @@ let default_1 = (() => {
     default_1 = __decorate([
         Decorators_1.ApplyOptions({
             description: "List of song's in the current queue.",
-            music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
+            music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"],
+            requiredPermissions: ["EMBED_LINKS"]
         })
     ], default_1);
     return default_1;
