@@ -51,6 +51,7 @@ export class MusicInterface {
     public play(): Promise<boolean> {
         const [song] = this.queue;
         if (!this.queue.length) return Promise.resolve(this.client.emit("musicStop", this));
+        if (!this.player) return Promise.resolve(false);
         return this.player!.play(song.track, { volume: this.volume }).then(d => {
             this.client.emit("musicPlay", this);
             return d;
@@ -78,12 +79,11 @@ export class MusicInterface {
         return this;
     }
 
-    public shuffleQueue(): this {
-        const [first] = this.queue;
-        this.queue.shift();
-        this.queue = shuffleArray(this.queue);
-        this.queue.unshift(first);
-        return this;
+    public shuffleQueue(): Song[] {
+        const first = this.queue.shift();
+        shuffleArray(this.queue);
+        this.queue.unshift(first!);
+        return this.queue;
     }
 
     public seek(position: number): Promise<boolean> {
@@ -111,7 +111,7 @@ export class MusicInterface {
     }
 
     public get currentTimeString(): string | null {
-        return this.player ? `${getTimeString(this.player.state.position!)} / ${getTimeString(this.queue[0].length)}` : null;
+        return this.player && this.queue[0] ? `${getTimeString(this.player.state.position!)} / ${getTimeString(this.queue[0].length)}` : null;
     }
 
     public get voiceChannel(): VoiceChannel | null {

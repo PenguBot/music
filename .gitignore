@@ -40,16 +40,4 @@ typings/
 
 # testing environment
 test/bwd
-test/arguments
-test/commands
-test/events
-test/extendables
-test/finalizers
-test/inhibitors
-test/languages
-test/monitors
-test/providers
-test/serializers
-test/tasks
-test/config.json
-test/config.js
+test/config.*

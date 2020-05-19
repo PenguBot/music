@@ -5,7 +5,8 @@ import { ApplyOptions } from "../lib/utils/Decorators";
 @ApplyOptions<MusicCommandOptions>({
     description: "Shuffles the current music queue.",
     aliases: ["shufflequeue", "queueshuffle"],
-    music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER", "VOICE_PLAYING"]
+    music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER", "VOICE_PLAYING"],
+    enabled: true
 })
 export default class extends MusicCommand {
 
@@ -14,11 +15,6 @@ export default class extends MusicCommand {
         if (music.queue.length <= 2) return message.send(`> 🔃 Queue is too small to shuffle.`);
         music.shuffleQueue();
         return message.send(`🔃 Queue has now been shuffled.`);
-    }
-
-    public async init(): Promise<void> {
-        this.disable();
-        return Promise.resolve();
     }
 
 }

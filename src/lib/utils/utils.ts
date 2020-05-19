@@ -9,10 +9,10 @@ export function getTimeString(ms: number): string {
 }
 
 export function shuffleArray(array: any[]): any[] {
-    let len = array.length;
-    while (array.length) {
-        const i = Math.floor(Math.random() * len--);
-        [array[len], array[i]] = [array[i], array[len]];
+    let m = array.length;
+    while (m) {
+        const i = Math.floor(Math.random() * m--);
+        [array[m], array[i]] = [array[i], array[m]];
     }
     return array;
 }

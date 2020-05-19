@@ -17,7 +17,7 @@ export declare class MusicInterface {
     pause(): Promise<boolean>;
     setVolume(volume: number): Promise<boolean>;
     clearQueue(): this;
-    shuffleQueue(): this;
+    shuffleQueue(): Song[];
     seek(position: number): Promise<boolean>;
     destroy(): Promise<void>;
     hasPermission(member: GuildMember): boolean | null;

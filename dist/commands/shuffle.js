@@ -17,16 +17,13 @@ let default_1 = (() => {
             music.shuffleQueue();
             return message.send(`🔃 Queue has now been shuffled.`);
         }
-        async init() {
-            this.disable();
-            return Promise.resolve();
-        }
     };
     default_1 = __decorate([
         Decorators_1.ApplyOptions({
             description: "Shuffles the current music queue.",
             aliases: ["shufflequeue", "queueshuffle"],
-            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER", "VOICE_PLAYING"]
+            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER", "VOICE_PLAYING"],
+            enabled: true
         })
     ], default_1);
     return default_1;
