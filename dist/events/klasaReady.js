@@ -11,6 +11,10 @@ const Decorators_1 = require("../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends klasa_1.Event {
         async run() {
+            if (this.client.shard)
+                for (const node of [...this.client.lavalink.nodes.values()])
+                    if (node.resumeKey)
+                        node.resumeKey += `-${this.client.shard.id || this.client.shard.ids[0]}`;
             await this.client.lavalink.connect();
         }
     };
