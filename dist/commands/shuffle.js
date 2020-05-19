@@ -22,8 +22,7 @@ let default_1 = (() => {
         Decorators_1.ApplyOptions({
             description: "Shuffles the current music queue.",
             aliases: ["shufflequeue", "queueshuffle"],
-            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER", "VOICE_PLAYING"],
-            enabled: true
+            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER", "VOICE_PLAYING"]
         })
     ], default_1);
     return default_1;
