@@ -11,15 +11,17 @@ const Decorators_1 = require("../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends klasa_1.Event {
         async run() {
-            if (this.client.shard)
+            if (this.client.shard) {
+                const shardID = typeof this.client.shard.id !== "undefined" ? this.client.shard.id : this.client.shard.ids[0];
                 for (const node of [...this.client.lavalink.nodes.values()])
                     if (node.resumeKey)
-                        node.resumeKey += `-${this.client.shard.id || this.client.shard.ids[0]}`;
+                        node.resumeKey += `-${shardID}`;
+            }
             await this.client.lavalink.connect();
         }
     };
     default_1 = __decorate([
-        Decorators_1.ApplyOptions({ name: "ready", once: true })
+        Decorators_1.ApplyOptions({ event: "ready" })
     ], default_1);
     return default_1;
 })();
