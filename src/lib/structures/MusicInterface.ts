@@ -50,7 +50,7 @@ export class MusicInterface {
 
     public play(): Promise<boolean> {
         const [song] = this.queue;
-        if (!this.queue.length) return Promise.resolve(this.client.emit("musicStop", this));
+        if (!this.queue.length) throw "> ⏹️ Queue has finished playing, stopping music and leaving voice channel!";
         if (!this.player) return Promise.resolve(false);
         return this.player!.play(song.track, { volume: this.volume }).then(d => {
             this.client.emit("musicPlay", this);
@@ -58,11 +58,9 @@ export class MusicInterface {
         });
     }
 
-    public async skip(): Promise<this> {
-        const { player } = this;
+    public skip(): Promise<boolean> {
         this.queue.shift();
-        await player!.stop();
-        return this;
+        return this.play();
     }
 
     public pause(): Promise<boolean> {

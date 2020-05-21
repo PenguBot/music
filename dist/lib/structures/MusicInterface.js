@@ -43,7 +43,7 @@ class MusicInterface {
     play() {
         const [song] = this.queue;
         if (!this.queue.length)
-            return Promise.resolve(this.client.emit("musicStop", this));
+            throw "> ⏹️ Queue has finished playing, stopping music and leaving voice channel!";
         if (!this.player)
             return Promise.resolve(false);
         return this.player.play(song.track, { volume: this.volume }).then(d => {
@@ -51,11 +51,9 @@ class MusicInterface {
             return d;
         });
     }
-    async skip() {
-        const { player } = this;
+    skip() {
         this.queue.shift();
-        await player.stop();
-        return this;
+        return this.play();
     }
     pause() {
         return this.player ? this.player.pause(!this.paused) : Promise.resolve(false);

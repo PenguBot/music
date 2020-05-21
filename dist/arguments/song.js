@@ -30,6 +30,7 @@ class default_1 extends klasa_1.Argument {
                 throw `Specified track could not be found, please try again with a different one.`;
             return { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
         }
+        throw "I could not find any search results, please try again later!";
     }
     async fetchTracks(arg) {
         const result = await discord_js_1.Rest.load(this.client.lavalink.idealNodes[0], arg);

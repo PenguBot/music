@@ -11,12 +11,42 @@ const Decorators_1 = require("../lib/utils/Decorators");
 let default_1 = (() => {
     let default_1 = class extends MusicCommand_1.MusicCommand {
         async run(message) {
-            return this.client.emit("musicSkip", message.guild.music, message.author);
+            const { music } = message.guild;
+            if (music.voiceChannel.members.size > 4) {
+                if ("force" in message.flagArgs) {
+                    const hasPermission = await message.hasAtLeastPermissionLevel(2);
+                    if (hasPermission === false)
+                        throw "You can't execute this command with the force flag. You must be a DJ.";
+                }
+                else {
+                    const response = this.handleSkips(music, message.author.id);
+                    if (response)
+                        return message.send(response);
+                }
+            }
+            const [song] = music.queue;
+            await music.skip();
+            return message.send(`> 🎧 **Skipped Track:** ${song.title}`);
+        }
+        handleSkips(musicInterface, user) {
+            const [song] = musicInterface.queue;
+            if (song.skips.has(user))
+                return "You have already voted to skip this song.";
+            song.skips.add(user);
+            const members = musicInterface.voiceChannel.members.size - 1;
+            return this.shouldInhibit(members, song.skips.size);
+        }
+        shouldInhibit(total, size) {
+            if (total <= 3)
+                return true;
+            return size >= total * 0.4 ? false : `🔸 | Votes: ${size} of ${Math.ceil(total * 0.4)}`;
         }
     };
     default_1 = __decorate([
         Decorators_1.ApplyOptions({
-            description: "Skips the current playing song.",
+            aliases: ["skipsong", "repeat"],
+            requiredPermissions: ["USE_EXTERNAL_EMOJIS"],
+            description: language => language.get("COMMAND_SKIP_DESCRIPTION"),
             music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER", "VOICE_PLAYING"]
         })
     ], default_1);

@@ -14,7 +14,7 @@ export class Song {
     public length: number;
     public position: number;
     public url: string;
-    public skips: Set<KlasaUser>;
+    public skips: Set<string>;
 
     public constructor(data: TrackData, requester: KlasaUser) {
         this.id = data.info.identifier;

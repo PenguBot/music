@@ -8,8 +8,10 @@ import { ApplyOptions } from "../lib/utils/Decorators";
 })
 export default class extends MusicCommand {
 
-    public async run(message: KlasaMessage): Promise<any> {
-        return this.client.emit("musicStop", message.guild!.music);
+    public async run(message: KlasaMessage): Promise<KlasaMessage> {
+        const { music } = message.guild!;
+        await music.destroy();
+        return message.send("> ⏹️ Succesfully stopped playing music!");
     }
 
 }

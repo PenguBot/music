@@ -5,7 +5,7 @@ import { WILDCARD } from "../lib/utils/constants";
 
 export default class extends Argument {
 
-    public async run(arg: string, _: Possible, message: KlasaMessage): Promise<TrackResponse|undefined> {
+    public async run(arg: string, _: Possible, message: KlasaMessage): Promise<TrackResponse|void> {
         arg = arg.replace(/<(.+)>/g, "$1");
 
         const validLink = isLink(arg);
@@ -31,6 +31,8 @@ export default class extends Argument {
 
             return { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
         }
+
+        throw "I could not find any search results, please try again later!";
     }
 
     public async fetchTracks(arg: string): Promise<TrackResponse> {
