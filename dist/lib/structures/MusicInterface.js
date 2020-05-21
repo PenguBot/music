@@ -40,9 +40,9 @@ class MusicInterface {
         this.client.emit("musicAdd", this, data);
         return structuredSongs;
     }
-    play() {
+    async play() {
         const [song] = this.queue;
-        if (!this.queue.length)
+        if (!song)
             throw "> ⏹️ Queue has finished playing, stopping music and leaving voice channel!";
         if (!this.player)
             return Promise.resolve(false);

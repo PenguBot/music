@@ -48,9 +48,9 @@ export class MusicInterface {
         return structuredSongs;
     }
 
-    public play(): Promise<boolean> {
+    public async play(): Promise<boolean> {
         const [song] = this.queue;
-        if (!this.queue.length) throw "> ⏹️ Queue has finished playing, stopping music and leaving voice channel!";
+        if (!song) throw "> ⏹️ Queue has finished playing, stopping music and leaving voice channel!";
         if (!this.player) return Promise.resolve(false);
         return this.player!.play(song.track, { volume: this.volume }).then(d => {
             this.client.emit("musicPlay", this);
