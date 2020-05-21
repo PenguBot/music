@@ -19,7 +19,7 @@ export default class extends MusicCommand {
 
         music.textChannel = message.channel as TextChannel;
         music.add(message.author, song);
-        if (!music.playing) await music.play();
+        if (!music.playing) return music.play();
     }
 
 }

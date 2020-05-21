@@ -19,7 +19,7 @@ let default_1 = (() => {
             music.textChannel = message.channel;
             music.add(message.author, song);
             if (!music.playing)
-                await music.play();
+                return music.play();
         }
     };
     default_1 = __decorate([
