@@ -8,29 +8,40 @@ class default_1 extends klasa_1.Argument {
     async run(arg, _, message) {
         arg = arg.replace(/<(.+)>/g, "$1");
         const validLink = utils_1.isLink(arg);
-        if (validLink)
+        if (validLink) {
+            if (constants_1.DUMP.test(arg))
+                return this.dump(message, arg);
             return this.fetchTracks(arg);
+        }
         if (constants_1.WILDCARD.test(arg) && !validLink)
             return this.fetchTracks(arg);
-        if (!validLink) {
-            const data = await this.fetchTracks(`ytsearch:${arg}`);
-            if (!data.tracks.length)
-                throw "No search results found for this argument.";
-            const strippedList = data.tracks.slice(0, 5);
-            const searchmsg = [
-                "> 🎵 | __**Select a Song**__",
-                `> ${strippedList.map((song, index) => `➡ \`${++index}\` ${song.info.title} - ${song.info.author} (${utils_1.getTimeString(song.info.length)})`).join("\n> ")}`,
-                `> ${message.author}, Please select a track by replying from range \`1-5\` to add it to the queue.`
-            ];
-            const selectionMessage = await message.prompt(searchmsg.join("\n"), 15000);
-            const selection = Number(selectionMessage.content);
-            if (isNaN(selection) || selection < 1 || selection > 5)
-                throw `Invalid Option Selected, please select one number between \`1-5\`. Cancelled song selection.`;
-            if (!strippedList[selection - 1])
-                throw `Specified track could not be found, please try again with a different one.`;
-            return { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
-        }
+        if (!validLink)
+            return this.search(message, arg);
         throw "I could not find any search results, please try again later!";
+    }
+    async search(message, arg) {
+        const data = await this.fetchTracks(`ytsearch:${arg}`);
+        if (!data.tracks.length)
+            throw "No search results found for this argument.";
+        const strippedList = data.tracks.slice(0, 5);
+        const searchmsg = [
+            "> 🎵 | __**Select a Song**__",
+            `> ${strippedList.map((song, index) => `➡ \`${++index}\` ${song.info.title} - ${song.info.author} (${utils_1.getTimeString(song.info.length)})`).join("\n> ")}`,
+            `> ${message.author}, Please select a track by replying from range \`1-5\` to add it to the queue.`
+        ];
+        const selectionMessage = await message.prompt(searchmsg.join("\n"), 15000);
+        const selection = Number(selectionMessage.content);
+        if (isNaN(selection) || selection < 1 || selection > 5)
+            throw `Invalid Option Selected, please select one number between \`1-5\`. Cancelled song selection.`;
+        if (!strippedList[selection - 1])
+            throw `Specified track could not be found, please try again with a different one.`;
+        return { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
+    }
+    async dump(message, arg) {
+        const tracks = await utils_1.fetch(`https://paste.pengubot.com/raw/${constants_1.DUMP.exec(arg)[1]}`, "json");
+        if (!tracks)
+            throw message.language.get("ER_MUSIC_NF");
+        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: "Pengubot Dump" }, tracks };
     }
     async fetchTracks(arg) {
         const result = await discord_js_1.Rest.load(this.client.lavalink.idealNodes[0], arg);

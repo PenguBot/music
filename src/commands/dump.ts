@@ -12,7 +12,7 @@ export default class extends MusicCommand {
 
     public async run(message: KlasaMessage): Promise<KlasaMessage> {
         const { music } = message.guild!;
-        const save = await haste(JSON.stringify(music.queue));
+        const save = await haste(JSON.stringify(music.queue.map(song => song.data)));
         return message.send(`> 📁 **The queue is saved:** <${save}>\n> Future usage: \`p!play <the url above>\` to play later!`);
     }
 

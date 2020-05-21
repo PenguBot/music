@@ -13,7 +13,7 @@ let default_1 = (() => {
     let default_1 = class extends MusicCommand_1.MusicCommand {
         async run(message) {
             const { music } = message.guild;
-            const save = await utils_1.haste(JSON.stringify(music.queue));
+            const save = await utils_1.haste(JSON.stringify(music.queue.map(song => song.data)));
             return message.send(`> 📁 **The queue is saved:** <${save}>\n> Future usage: \`p!play <the url above>\` to play later!`);
         }
     };

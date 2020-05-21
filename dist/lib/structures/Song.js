@@ -15,6 +15,7 @@ class Song {
         this.position = data.info.position;
         this.url = data.info.uri;
         this.skips = new Set();
+        this.data = data;
     }
     get friendlyDuration() {
         return this.stream ? "Live Stream" : utils_1.getTimeString(this.length);
