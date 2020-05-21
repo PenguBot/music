@@ -58,7 +58,7 @@ class MusicInterface {
         return this;
     }
     pause() {
-        return this.player.pause(!this.paused);
+        return this.player ? this.player.pause(!this.paused) : Promise.resolve(false);
     }
     async setVolume(volume) {
         await this.guild.settings.update("misc.volume", volume);

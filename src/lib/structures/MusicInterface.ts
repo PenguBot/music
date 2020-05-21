@@ -66,7 +66,7 @@ export class MusicInterface {
     }
 
     public pause(): Promise<boolean> {
-        return this.player!.pause(!this.paused);
+        return this.player ? this.player!.pause(!this.paused) : Promise.resolve(false);
     }
 
     public async setVolume(volume: number): Promise<boolean> {

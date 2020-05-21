@@ -6,7 +6,7 @@ import { MusicInterface } from "../../lib/structures/MusicInterface";
 export default class extends Event {
 
     public async run(music: MusicInterface): Promise<void> {
-        await music.textChannel!.send("> ⏹️ Queue has finished playing, stopping music and leaving voice channel!");
+        if (music.textChannel) await music.textChannel!.send("> ⏹️ Queue has finished playing, stopping music and leaving voice channel!");
         await music.destroy();
     }
 

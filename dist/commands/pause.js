@@ -20,7 +20,7 @@ let default_1 = (() => {
         Decorators_1.ApplyOptions({
             description: "Pause or Resume Music.",
             aliases: ["resume", "togglepause"],
-            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER"]
+            music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER", "BOT_VOICE_CHANNEL"]
         })
     ], default_1);
     return default_1;

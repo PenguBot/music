@@ -23,7 +23,7 @@ export default class extends Argument {
                 `> ${strippedList.map((song, index) => `➡ \`${++index}\` ${song.info.title} - ${song.info.author} (${getTimeString(song.info.length)})`).join("\n> ")}`,
                 `> ${message.author}, Please select a track by replying from range \`1-5\` to add it to the queue.`];
 
-            const selectionMessage = await message.prompt(message, searchmsg.join("\n"), 15000);
+            const selectionMessage = await message.prompt(searchmsg.join("\n"), 15000);
             const selection = Number(selectionMessage!.content);
 
             if (isNaN(selection) || selection < 1 || selection > 5) throw `Invalid Option Selected, please select one number between \`1-5\`. Cancelled song selection.`;
