@@ -49,13 +49,13 @@ export class MusicInterface {
     }
 
     public async play(): Promise<boolean> {
-        if (!this.queue.length) {
+        const [song] = this.queue;
+        if (!song) {
             await this.textChannel!.send("> ⏹️ Queue has finished playing, stopping music and leaving voice channel!");
             await this.destroy();
             return Promise.resolve(true);
         }
 
-        const [song] = this.queue;
         if (!this.player) return Promise.resolve(false);
         return this.player!.play(song.track, { volume: this.volume }).then(d => {
             this.client.emit("musicPlay", this);

@@ -12,20 +12,17 @@ class MusicInterface {
         this.guild = guild;
     }
     async join(id) {
-        if (!this.idealNode)
-            return Promise.reject(new Error("NO_NODES_AVAILABLE: There are no nodes available to use."));
+        if (!this.idealNode) { return Promise.reject(new Error("NO_NODES_AVAILABLE: There are no nodes available to use.")); }
         const player = await this.client.lavalink.join({
             guild: this.guild.id,
             channel: id,
             node: this.idealNode.id
         }, { selfdeaf: true });
-        player.on("end", async (data) => {
-            if (data.reason === "REPLACED")
-                return;
-            if (!this.looping)
-                return this.skip();
+        player.on("end", async data => {
+            if (data.reason === "REPLACED") { return; }
+            if (!this.looping) { return this.skip(); }
             await this.play();
-        }).on("error", async (event) => {
+        }).on("error", async event => {
             await this.textChannel.send(`I am very sorry but was an error, please try again or contact us at https://discord.gg/kWMcUNe | Error: ${event.reason || event.error}`);
             await this.destroy();
         });
@@ -47,8 +44,7 @@ class MusicInterface {
             return Promise.resolve(true);
         }
         const [song] = this.queue;
-        if (!this.player)
-            return Promise.resolve(false);
+        if (!this.player) { return Promise.resolve(false); }
         return this.player.play(song.track, { volume: this.volume }).then(d => {
             this.client.emit("musicPlay", this);
             return d;
@@ -86,12 +82,11 @@ class MusicInterface {
         this.client.music.delete(this.guild.id);
     }
     hasPermission(member) {
-        var _a;
+        let _a;
         return (_a = (member.voice.channel.speakable || member.voice.channel.joinable)) !== null && _a !== void 0 ? _a : null;
     }
     isMemberDJ(member) {
-        if (!this.guild.settings.get("toggles.djmode"))
-            return true;
+        if (!this.guild.settings.get("toggles.djmode")) { return true; }
         const isDJ = this.guild.settings.get("user.dj").includes(member.id);
         const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
         return isDJ !== null && isDJ !== void 0 ? isDJ : hasDJRole;
@@ -100,18 +95,18 @@ class MusicInterface {
         return this.player && this.queue[0] ? `${utils_1.getTimeString(this.player.state.position)} / ${utils_1.getTimeString(this.queue[0].length)}` : null;
     }
     get voiceChannel() {
-        var _a;
+        let _a;
         return (_a = this.guild.me.voice.channel) !== null && _a !== void 0 ? _a : null;
     }
     get player() {
-        var _a;
+        let _a;
         return (_a = this.client.lavalink.players.get(this.guild.id)) !== null && _a !== void 0 ? _a : null;
     }
     get volume() {
         return this.guild.settings.get("misc.volume");
     }
     get idealNode() {
-        var _a;
+        let _a;
         return (_a = this.client.lavalink.idealNodes[0]) !== null && _a !== void 0 ? _a : null;
     }
     get playing() {
@@ -122,4 +117,4 @@ class MusicInterface {
     }
 }
 exports.MusicInterface = MusicInterface;
-//# sourceMappingURL=MusicInterface.js.map
+// # sourceMappingURL=MusicInterface.js.map
