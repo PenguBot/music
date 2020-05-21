@@ -32,7 +32,7 @@ let default_1 = (() => {
         Decorators_1.ApplyOptions({
             description: "List of song's in the current queue.",
             music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"],
-            requiredPermissions: ["EMBED_LINKS"]
+            requiredPermissions: ["EMBED_LINKS", "MANAGE_MESSAGES"]
         })
     ], default_1);
     return default_1;

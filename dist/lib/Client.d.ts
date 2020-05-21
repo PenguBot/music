@@ -1,3 +1,4 @@
+/// <reference types="discord.js" />
 import { Client, KlasaClientOptions } from "klasa";
 import { Manager as LavacordManager, ManagerOptions as LavacordManagerOptions, LavalinkNodeOptions } from "@lavacord/discord.js";
 import { MusicManager } from "./structures/MusicManager";
@@ -18,6 +19,10 @@ declare module "discord.js" {
         music: {
             nodes: LavalinkNodeOptions[];
             lyrics: string;
+            spotify: {
+                buffer: Base64String;
+                token: string;
+            };
         } & LavacordManagerOptions;
     }
 }

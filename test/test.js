@@ -6,7 +6,7 @@ Client.use(require("../dist/lib/Client").MusicClient);
 
 const client = new Client({
     prefix: "t!",
-    music: { nodes: [{ id: "eu", host: "localhost", port: 2333, password: "youshallnotpass", reconnectInterval: 30000, resumeKey: "pengu-music" }], lyrics: config.lyrics },
+    music: { nodes: [{ id: "eu", host: "localhost", port: 2333, password: config.password, reconnectInterval: 30000, resumeKey: "pengu-music" }], lyrics: config.lyrics, spotify: { buffer: config.spotify, token: "" } },
     createPiecesFolders: false,
     commandEditing: true
 });

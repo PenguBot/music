@@ -7,6 +7,10 @@ const constants_1 = require("../lib/utils/constants");
 class default_1 extends klasa_1.Argument {
     async run(arg, _, message) {
         arg = arg.replace(/<(.+)>/g, "$1");
+        if (constants_1.SPOTIFY_TRACK.test(arg))
+            return this.spotifyTrack(message, arg);
+        if (constants_1.SPOTIFY_ALBUM.test(arg) || constants_1.SPOTIFY_PLAYLIST.test(arg))
+            return this.spotify(message, arg);
         const validLink = utils_1.isLink(arg);
         if (validLink) {
             if (constants_1.DUMP.test(arg))
@@ -42,6 +46,47 @@ class default_1 extends klasa_1.Argument {
         if (!tracks)
             throw message.language.get("ER_MUSIC_NF");
         return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: "Pengubot Dump" }, tracks };
+    }
+    async spotify(message, arg) {
+        const endpoint = constants_1.SPOTIFY_ALBUM.test(arg) ? "albums" : "playlists";
+        const id = endpoint.startsWith("a") ? constants_1.SPOTIFY_ALBUM.exec(arg)[1] : constants_1.SPOTIFY_PLAYLIST.exec(arg)[1];
+        const data = await utils_1.fetch(`https://api.spotify.com/v1/${endpoint}/${id}`, { headers: { Authorization: `Bearer ${this.client.options.music.spotify.token}` } }, "json");
+        if (!data)
+            throw message.language.get("ER_MUSIC_NF");
+        const loading = await message.channel.send(`***🔄 ${data.name} is loading from Spotify...***`);
+        const tracks = [];
+        if (endpoint.startsWith("a")) {
+            for (const track of data.tracks.items) {
+                console.log(track);
+                const res = await this.fetchTracks(`ytsearch:${data.artists[0].name || ""} ${track.title || track.name} audio`);
+                if (!res.tracks.length)
+                    continue;
+                tracks.push(res.tracks[0]);
+            }
+        }
+        else {
+            for (const { track } of data.tracks.items) {
+                console.log(track);
+                const res = await this.fetchTracks(`ytsearch:${track.artists[0].name || ""} ${track.title || track.name} audio`);
+                if (!res.tracks.length)
+                    continue;
+                tracks.push(res.tracks[0]);
+            }
+        }
+        if (!tracks.length)
+            throw "For some reason, I couldn't find alternatives for these tracks on YouTube, sorry!";
+        await loading.delete().catch(() => null);
+        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
+    }
+    async spotifyTrack(message, arg) {
+        const data = await utils_1.fetch(`https://api.spotify.com/v1/tracks/${constants_1.SPOTIFY_TRACK.exec(arg)[1]}`, { headers: { Authorization: `Bearer ${this.client.options.music.spotify.token}` } }, "json");
+        if (!data)
+            throw message.language.get("ER_MUSIC_NF");
+        const [artist] = data.artists;
+        const searchResult = await this.fetchTracks(`ytsearch:${artist ? artist.name : ""} ${data.name} audio`);
+        if (!searchResult.tracks.length)
+            throw message.language.get("ER_MUSIC_NF");
+        return { loadType: discord_js_1.LoadType.SEARCH_RESULT, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
     }
     async fetchTracks(arg) {
         const result = await discord_js_1.Rest.load(this.client.lavalink.idealNodes[0], arg);

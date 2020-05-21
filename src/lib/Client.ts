@@ -28,6 +28,7 @@ export class MusicClient extends Client {
         this.inhibitors["registerCoreDirectory"](coreDirectory);
         this.arguments["registerCoreDirectory"](coreDirectory);
         this.commands["registerCoreDirectory"](coreDirectory);
+        this.tasks["registerCoreDirectory"](coreDirectory);
     }
 
 }
@@ -39,6 +40,6 @@ declare module "discord.js" {
     }
 
     interface ClientOptions {
-        music: { nodes: LavalinkNodeOptions[]; lyrics: string; } & LavacordManagerOptions;
+        music: { nodes: LavalinkNodeOptions[]; lyrics: string; spotify: { buffer: Base64String; token: string; }; } & LavacordManagerOptions;
     }
 }

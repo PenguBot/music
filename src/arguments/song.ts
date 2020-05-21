@@ -1,12 +1,15 @@
 import { Argument, KlasaMessage, Possible } from "klasa";
 import { Rest, TrackResponse, TrackData, LoadType } from "@lavacord/discord.js";
 import { getTimeString, isLink, fetch } from "../lib/utils/utils";
-import { WILDCARD, DUMP } from "../lib/utils/constants";
+import { WILDCARD, DUMP, SPOTIFY_ALBUM, SPOTIFY_PLAYLIST, SPOTIFY_TRACK } from "../lib/utils/constants";
 
 export default class extends Argument {
 
     public async run(arg: string, _: Possible, message: KlasaMessage): Promise<TrackResponse|void> {
         arg = arg.replace(/<(.+)>/g, "$1");
+
+        if (SPOTIFY_TRACK.test(arg)) return this.spotifyTrack(message, arg);
+        if (SPOTIFY_ALBUM.test(arg) || SPOTIFY_PLAYLIST.test(arg)) return this.spotify(message, arg);
 
         const validLink = isLink(arg);
         if (validLink) {
@@ -15,7 +18,6 @@ export default class extends Argument {
         }
 
         if (WILDCARD.test(arg) && !validLink) return this.fetchTracks(arg);
-
         if (!validLink) return this.search(message, arg);
 
         throw "I could not find any search results, please try again later!";
@@ -45,6 +47,51 @@ export default class extends Argument {
         if (!tracks) throw message.language.get("ER_MUSIC_NF");
 
         return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: "Pengubot Dump" }, tracks };
+    }
+
+    public async spotify(message: KlasaMessage, arg: string): Promise<TrackResponse> {
+        const endpoint = SPOTIFY_ALBUM.test(arg) ? "albums" : "playlists";
+        const id = endpoint.startsWith("a") ? SPOTIFY_ALBUM.exec(arg)![1] : SPOTIFY_PLAYLIST.exec(arg)![1];
+
+        const data = await fetch(`https://api.spotify.com/v1/${endpoint}/${id}`,
+            { headers: { Authorization: `Bearer ${this.client.options.music.spotify.token}` } }, "json");
+        if (!data) throw message.language.get("ER_MUSIC_NF");
+
+        const loading = await message.channel.send(`***🔄 ${data.name} is loading from Spotify...***`);
+        const tracks: TrackData[] = [];
+
+        if (endpoint.startsWith("a")) {
+            for (const track of data.tracks.items) {
+                console.log(track);
+                const res = await this.fetchTracks(`ytsearch:${data.artists[0].name || ""} ${track.title || track.name} audio`);
+                if (!res.tracks.length) continue;
+                tracks.push(res.tracks[0]);
+            }
+        } else {
+            for (const { track } of data.tracks.items) {
+                console.log(track);
+                const res = await this.fetchTracks(`ytsearch:${track.artists[0].name || ""} ${track.title || track.name} audio`);
+                if (!res.tracks.length) continue;
+                tracks.push(res.tracks[0]);
+            }
+        }
+
+        if (!tracks.length) throw "For some reason, I couldn't find alternatives for these tracks on YouTube, sorry!";
+        await loading.delete().catch(() => null);
+        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
+
+    }
+
+    async spotifyTrack(message: KlasaMessage, arg: string): Promise<TrackResponse> {
+        const data = await fetch(`https://api.spotify.com/v1/tracks/${SPOTIFY_TRACK.exec(arg)![1]}`,
+            { headers: { Authorization: `Bearer ${this.client.options.music.spotify.token}` } }, "json");
+        if (!data) throw message.language.get("ER_MUSIC_NF");
+
+        const [artist] = data.artists;
+
+        const searchResult = await this.fetchTracks(`ytsearch:${artist ? artist.name : ""} ${data.name} audio`);
+        if (!searchResult.tracks.length) throw message.language.get("ER_MUSIC_NF");
+        return { loadType: LoadType.SEARCH_RESULT, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
     }
 
     public async fetchTracks(arg: string): Promise<TrackResponse> {

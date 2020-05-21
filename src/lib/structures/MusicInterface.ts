@@ -27,7 +27,7 @@ export class MusicInterface {
 
         player!.on("end", async data => {
             if (data.reason === "REPLACED") return;
-            if (!this.looping) await this.skip();
+            if (!this.looping) return this.skip();
             await this.play();
         }).on("error", async event => {
             await this.textChannel!.send(`I am very sorry but was an error, please try again or contact us at https://discord.gg/kWMcUNe | Error: ${event.reason || (event as any).error}`);
@@ -48,9 +48,14 @@ export class MusicInterface {
         return structuredSongs;
     }
 
-    public play(): Promise<boolean> {
+    public async play(): Promise<boolean> {
+        if (!this.queue.length) {
+            await this.textChannel!.send("> ⏹️ Queue has finished playing, stopping music and leaving voice channel!");
+            await this.destroy();
+            return Promise.resolve(true);
+        }
+
         const [song] = this.queue;
-        if (!this.queue.length) throw "> ⏹️ Queue has finished playing, stopping music and leaving voice channel!";
         if (!this.player) return Promise.resolve(false);
         return this.player!.play(song.track, { volume: this.volume }).then(d => {
             this.client.emit("musicPlay", this);
