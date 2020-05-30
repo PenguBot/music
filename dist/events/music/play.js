@@ -21,7 +21,8 @@ let default_1 = (() => {
                     `**Requested By:** ${song.requester}`,
                     `**Link:** <${song.url}>`
                 ];
-                return music.textChannel.send(playString.join("\n> "));
+                if (music.textChannel.postable)
+                    return music.textChannel.send(playString.join("\n> "));
             }
         }
     };

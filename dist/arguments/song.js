@@ -45,19 +45,18 @@ class default_1 extends klasa_1.Argument {
         const tracks = await utils_1.fetch(`https://paste.pengubot.com/raw/${constants_1.DUMP.exec(arg)[1]}`, "json");
         if (!tracks)
             throw message.language.get("ER_MUSIC_NF");
-        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: "Pengubot Dump" }, tracks };
+        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks };
     }
     async spotify(message, arg) {
         const endpoint = constants_1.SPOTIFY_ALBUM.test(arg) ? "albums" : "playlists";
         const id = endpoint.startsWith("a") ? constants_1.SPOTIFY_ALBUM.exec(arg)[1] : constants_1.SPOTIFY_PLAYLIST.exec(arg)[1];
         const data = await utils_1.fetch(`https://api.spotify.com/v1/${endpoint}/${id}`, { headers: { Authorization: `Bearer ${this.client.options.music.spotify.token}` } }, "json");
-        if (!data)
+        if (!data || !data.tracks || !data.tracks.items)
             throw message.language.get("ER_MUSIC_NF");
-        const loading = await message.channel.send(`***🔄 ${data.name} is loading from Spotify...***`);
+        await message.channel.send(`***🔄 ${data.name} is loading from Spotify...***`);
         const tracks = [];
         if (endpoint.startsWith("a")) {
             for (const track of data.tracks.items) {
-                console.log(track);
                 const res = await this.fetchTracks(`ytsearch:${data.artists[0].name || ""} ${track.title || track.name} audio`);
                 if (!res.tracks.length)
                     continue;
@@ -66,7 +65,6 @@ class default_1 extends klasa_1.Argument {
         }
         else {
             for (const { track } of data.tracks.items) {
-                console.log(track);
                 const res = await this.fetchTracks(`ytsearch:${track.artists[0].name || ""} ${track.title || track.name} audio`);
                 if (!res.tracks.length)
                     continue;
@@ -75,7 +73,6 @@ class default_1 extends klasa_1.Argument {
         }
         if (!tracks.length)
             throw "For some reason, I couldn't find alternatives for these tracks on YouTube, sorry!";
-        await loading.delete().catch(() => null);
         return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
     }
     async spotifyTrack(message, arg) {

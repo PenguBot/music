@@ -43,11 +43,7 @@ let default_1 = (() => {
         }
         async getGeniusLyrics(path, key) {
             return utils_1.fetch(`https://api.genius.com/${path}`, { headers: { Authorization: `Bearer ${key}` } })
-                .catch(error => {
-                if (error.body.error)
-                    throw new Error(`${error.body.error}: ${error.body.error_description}`);
-                throw error;
-            });
+                .catch(error => console.error(`[MUSIC ERROR] lyrics\n${error}`));
         }
         async scrapeLyrics(url) {
             const data = await utils_1.fetch(url, "text");

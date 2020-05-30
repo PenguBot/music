@@ -42,10 +42,7 @@ export default class extends MusicCommand {
 
     public async getGeniusLyrics(path: string, key: string): Promise<any> {
         return fetch(`https://api.genius.com/${path}`, { headers: { Authorization: `Bearer ${key}` } })
-            .catch(error => {
-                if (error.body.error) throw new Error(`${error.body.error}: ${error.body.error_description}`);
-                throw error;
-            });
+            .catch(error => console.error(`[MUSIC ERROR] lyrics\n${error}`));
     }
 
     public async scrapeLyrics(url: string): Promise<string|null> {
