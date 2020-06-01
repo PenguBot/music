@@ -27,8 +27,8 @@ export class MusicInterface {
 
         player!.on("end", async data => {
             if (data.reason === "REPLACED") return;
-            if (!this.looping) return this.skip();
-            await this.play();
+            if (!this.looping) return await this.skip();
+            return await this.play();
         }).on("error", async event => {
             await this.textChannel!.send(`I am very sorry but was an error, please try again or contact us at https://discord.gg/kWMcUNe | Error: ${event.reason || (event as any).error}`);
             await this.destroy();
@@ -108,8 +108,8 @@ export class MusicInterface {
 
     public isMemberDJ(member: GuildMember): boolean {
         if (!this.guild.settings.get("toggles.djmode")) return true;
-        const isDJ = this.guild.settings.get("user.dj").includes(member.id);
-        const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
+        const isDJ = (this.guild.settings.get("user.dj") as string[]).includes(member.id);
+        const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj") as string);
         return isDJ ?? hasDJRole;
     }
 
@@ -126,7 +126,7 @@ export class MusicInterface {
     }
 
     public get volume(): number {
-        return this.guild.settings.get("misc.volume");
+        return this.guild.settings.get("misc.volume") as number;
     }
 
     public get idealNode(): LavalinkNode | null {

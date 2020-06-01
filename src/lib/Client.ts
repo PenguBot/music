@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 import { Client, KlasaClientOptions } from "klasa";
 import { Manager as LavacordManager, ManagerOptions as LavacordManagerOptions, LavalinkNodeOptions } from "@lavacord/discord.js";
 import { MusicManager } from "./structures/MusicManager";
@@ -15,6 +16,7 @@ export class MusicClient extends Client {
     constructor(options?: KlasaClientOptions) {
         super(options);
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         MusicClient[Client.plugin].call(this);
     }
@@ -40,6 +42,10 @@ declare module "discord.js" {
     }
 
     interface ClientOptions {
-        music: { nodes: LavalinkNodeOptions[]; lyrics: string; spotify: { buffer: Base64String; token: string; }; } & LavacordManagerOptions;
+        music: {
+            nodes: LavalinkNodeOptions[];
+            lyrics: string;
+            spotify: { buffer: Base64String; token: string; };
+        } & LavacordManagerOptions;
     }
 }

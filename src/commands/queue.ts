@@ -26,7 +26,7 @@ export default class extends MusicCommand {
 
         await pages.run(await message.sendMessage("🔃 Loading Queue..."), {
             time: 120000,
-            filter: (reaction, user) => user === message.author
+            filter: (_reaction, user) => user === message.author
         });
     }
 }
