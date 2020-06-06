@@ -16,13 +16,8 @@ export default class extends Task {
         this.client.options.music.spotify.token = res.access_token;
     }
 
-    async init(): Promise<void> {
-        if (!this.client.settings!.get("schedules").some((task: Record<string, any>) => task.taskName === "spotify")) await this.client.schedule.create("spotify", "*/30 * * * *");
-
-        if (!this.client.options.music.spotify?.buffer) {
-            this.disable();
-            return Promise.resolve();
-        }
+    async init(): Promise<any> {
+        if (!this.client.options.music.spotify?.buffer) return this.disable();
         return this.run();
     }
 

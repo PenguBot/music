@@ -26,7 +26,6 @@
           "allowExpressions":true
         }
       ],
-      "@typescript-eslint/ban-ts-ignore": "off",
       "@typescript-eslint/interface-name-prefix":0,
       "indent":"off",
       "@typescript-eslint/indent":[
@@ -65,6 +64,23 @@
       ],
       "no-extra-parens":"off",
       "@typescript-eslint/no-extra-parens":"off",
+      "valid-jsdoc":[
+        "warn",
+        {
+          "requireReturn":false,
+          "requireReturnDescription":false,
+          "preferType":{
+            "String":"string",
+            "Number":"number",
+            "Boolean":"boolean",
+            "Symbol":"symbol",
+            "function":"Function",
+            "object":"Object",
+            "Date":"date",
+            "error":"Error"
+          }
+        }
+      ],
       "accessor-pairs":"warn",
       "array-callback-return":"error",
       "complexity":"warn",
@@ -77,7 +93,7 @@
         "error",
         "property"
       ],
-      "dot-notation":"off",
+      "dot-notation":"error",
       "eqeqeq":"error",
       "no-console":[
         "error",
@@ -192,7 +208,7 @@
         }
       ],
       "no-array-constructor":"error",
-      "no-bitwise":"off",
+      "no-bitwise":"warn",
       "no-inline-comments":"error",
       "no-lonely-if":"error",
       "no-mixed-operators":"error",
@@ -295,8 +311,6 @@
       "arrow-parens":[
         "error",
         "as-needed"
-      ],
-      "require-atomic-updates":"off",
-      "no-dupe-class-members": "off"
+      ]
     }
   }
