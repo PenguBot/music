@@ -9,22 +9,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const MusicCommand_1 = require("../lib/structures/MusicCommand");
 const Decorators_1 = require("../lib/utils/Decorators");
 const utils_1 = require("../lib/utils/utils");
-let default_1 = (() => {
-    let default_1 = class extends MusicCommand_1.MusicCommand {
-        async run(message) {
-            const { music } = message.guild;
-            const save = await utils_1.haste(JSON.stringify(music.queue.map(song => song.data)));
-            return message.send(`> 📁 **The queue is saved:** <${save}>\n> Future usage: \`p!play <the url above>\` to play later!`);
-        }
-    };
-    default_1 = __decorate([
-        Decorators_1.ApplyOptions({
-            description: "Save current queue in a link for later use.",
-            aliases: ["savesongs", "save"],
-            music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "USER_VOICE_CHANNEL", "COMMON_VOICE_CHANNEL"]
-        })
-    ], default_1);
-    return default_1;
-})();
+let default_1 = class extends MusicCommand_1.MusicCommand {
+    async run(message) {
+        const { music } = message.guild;
+        const save = await utils_1.haste(JSON.stringify(music.queue.map(song => song.data)));
+        return message.send(`> 📁 **The queue is saved:** <${save}>\n> Future usage: \`p!play <the url above>\` to play later!`);
+    }
+};
+default_1 = __decorate([
+    Decorators_1.ApplyOptions({
+        description: "Save current queue in a link for later use.",
+        aliases: ["savesongs", "save"],
+        music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "USER_VOICE_CHANNEL", "COMMON_VOICE_CHANNEL"]
+    })
+], default_1);
 exports.default = default_1;
 //# sourceMappingURL=dump.js.map

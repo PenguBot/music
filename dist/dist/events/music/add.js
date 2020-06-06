@@ -8,29 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const klasa_1 = require("klasa");
 const Decorators_1 = require("../../lib/utils/Decorators");
-let default_1 = (() => {
-    let default_1 = class extends klasa_1.Event {
-        async run(music, data) {
-            if (data.playlistInfo.name)
-                return music.textChannel.send(`> **${data.tracks.length} songs** from the playlist **${data.playlistInfo.name}** have been added to the queue.`);
-            if (music.queue.length < 2)
-                return;
-            const [song] = music.queue;
-            const addString = [
-                "> 🗒️ __**Added To Queue:**__",
-                `**Title:** ${song.title}`,
-                `**Author:** ${song.author}`,
-                `**Length:** ${song.friendlyDuration}`,
-                `**Requested By:** ${song.requester}`,
-                `**Link:** <${song.url}>`
-            ];
-            return music.textChannel.send(addString.join("\n> "));
-        }
-    };
-    default_1 = __decorate([
-        Decorators_1.ApplyOptions({ name: "musicAdd" })
-    ], default_1);
-    return default_1;
-})();
+let default_1 = class extends klasa_1.Event {
+    async run(music, data) {
+        if (data.playlistInfo.name)
+            return music.textChannel.send(`> **${data.tracks.length} songs** from the playlist **${data.playlistInfo.name}** have been added to the queue.`);
+        if (music.queue.length < 2)
+            return;
+        const [song] = music.queue;
+        const addString = [
+            "> 🗒️ __**Added To Queue:**__",
+            `**Title:** ${song.title}`,
+            `**Author:** ${song.author}`,
+            `**Length:** ${song.friendlyDuration}`,
+            `**Requested By:** ${song.requester}`,
+            `**Link:** <${song.url}>`
+        ];
+        return music.textChannel.send(addString.join("\n> "));
+    }
+};
+default_1 = __decorate([
+    Decorators_1.ApplyOptions({ name: "musicAdd" })
+], default_1);
 exports.default = default_1;
 //# sourceMappingURL=add.js.map

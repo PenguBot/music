@@ -8,16 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const klasa_1 = require("klasa");
 const Decorators_1 = require("../../lib/utils/Decorators");
-let default_1 = (() => {
-    let default_1 = class extends klasa_1.Event {
-        async run(eventData, node) {
-            this.client.console.error(`Lavalink Node "${node.id}" Disconnected\nwasClean: ${eventData.wasClean} | Code: ${eventData.code} | Reason: ${eventData.reason}`);
-        }
-    };
-    default_1 = __decorate([
-        Decorators_1.ApplyOptions({ emitter: "lavalink" })
-    ], default_1);
-    return default_1;
-})();
+let default_1 = class extends klasa_1.Event {
+    async run(eventData, node) {
+        this.client.console.error(`Lavalink Node "${node.id}" Disconnected\nwasClean: ${eventData.wasClean} | Code: ${eventData.code} | Reason: ${eventData.reason}`);
+    }
+};
+default_1 = __decorate([
+    Decorators_1.ApplyOptions({ emitter: "lavalink" })
+], default_1);
 exports.default = default_1;
 //# sourceMappingURL=disconnect.js.map
