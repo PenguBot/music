@@ -457,8 +457,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/ws/index.d.ts": {
-        "version": "75ce9fa40c86cf9a4f0a546958cc0e5104bf53e408e0f2b71c3757a610adb6b4",
-        "signature": "75ce9fa40c86cf9a4f0a546958cc0e5104bf53e408e0f2b71c3757a610adb6b4",
+        "version": "269448b4965c781cee62a47fcf12e079dad1fb527833293e6405723fcb91bb17",
+        "signature": "269448b4965c781cee62a47fcf12e079dad1fb527833293e6405723fcb91bb17",
         "affectsGlobalScope": false
       },
       "../node_modules/discord.js/typings/index.d.ts": {
@@ -1773,6 +1773,7 @@
         "../node_modules/@types/node/https.d.ts",
         "../node_modules/@types/node/net.d.ts",
         "../node_modules/@types/node/stream.d.ts",
+        "../node_modules/@types/node/tls.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/ts3.7/index.d.ts",
@@ -3250,6 +3251,7 @@
         "../node_modules/@types/node/https.d.ts",
         "../node_modules/@types/node/net.d.ts",
         "../node_modules/@types/node/stream.d.ts",
+        "../node_modules/@types/node/tls.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/ts3.7/index.d.ts",
