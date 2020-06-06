@@ -11,6 +11,7 @@ const { FLAGS } = MusicBitField;
 @ApplyOptions<InhibitorOptions>({ spamProtection: true })
 export default class extends Inhibitor {
 
+    // eslint-disable-next-line complexity
     public async run(message: KlasaMessage, command: MusicCommand | Command): Promise<void> {
         if ((!(command instanceof MusicCommand) || !command.music.bitfield) || message.channel.type !== "text") return;
 
@@ -22,7 +23,7 @@ export default class extends Inhibitor {
         if (command.music.has(FLAGS.QUEUE_NOT_EMPTY) && music.queue.length === 0) throw "There are no songs in the queue.";
         if (command.music.has(FLAGS.VOICE_PLAYING) && !music.playing) throw "There is currently no music playing.";
         if (command.music.has(FLAGS.VOICE_PAUSED) && !music.paused) throw "The music is not paused.";
-        if (command.music.has(FLAGS.DJ_MEMBER) && !music.isMemberDJ(message.member!)) throw "You must be a DJ to use this command.";
+        if ((command.music.has(FLAGS.DJ_MEMBER) && message.guild!.settings.get("toggles.djmode")) && !music.isMemberDJ(message.member!)) throw "You must be a DJ to use this command.";
     }
 
 }

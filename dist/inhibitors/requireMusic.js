@@ -31,7 +31,7 @@ let default_1 = (() => {
                 throw "There is currently no music playing.";
             if (command.music.has(FLAGS.VOICE_PAUSED) && !music.paused)
                 throw "The music is not paused.";
-            if (command.music.has(FLAGS.DJ_MEMBER) && !music.isMemberDJ(message.member))
+            if ((command.music.has(FLAGS.DJ_MEMBER) && message.guild.settings.get("toggles.djmode")) && !music.isMemberDJ(message.member))
                 throw "You must be a DJ to use this command.";
         }
     };
