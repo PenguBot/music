@@ -2,7 +2,7 @@ import { Client } from "klasa";
 
 module.exports = Client.defaultGuildSchema
     .add("misc", folder => folder
-        .add("volume", "number", { default: 100, minimum: 1, maximum: 100 }))
+        .add("volume", "number", { default: 100 }))
     .add("toggles", folder => folder
         .add("djmode", "boolean", { default: false }))
     .add("roles", roles => roles
