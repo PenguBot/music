@@ -26,7 +26,7 @@ let default_1 = class extends klasa_1.Event {
     }
 };
 default_1 = __decorate([
-    Decorators_1.ApplyOptions({ event: "ready" })
+    Decorators_1.ApplyOptions({ event: "klasaReady" })
 ], default_1);
 exports.default = default_1;
 //# sourceMappingURL=voiceReady.js.map

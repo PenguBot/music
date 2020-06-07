@@ -862,7 +862,7 @@
         "affectsGlobalScope": false
       },
       "../src/events/voiceReady.ts": {
-        "version": "433fb82ecaf3ddf703bc2a82cd67d30b43e7bd76eec233aa2504d96a9717c546",
+        "version": "fbeaf50a546f165107859b3fdca29548514f05aadd4cf644f5f320ed018a7da5",
         "signature": "f860842282f3c8927de892282ebd34d7b3b5dd884a6eb3a48629ab85c148e9aa",
         "affectsGlobalScope": false
       },
