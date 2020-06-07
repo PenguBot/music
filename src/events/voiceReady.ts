@@ -1,7 +1,7 @@
 import { Event, EventOptions, ScheduledTask } from "klasa";
 import { ApplyOptions } from "../lib/utils/Decorators";
 
-@ApplyOptions<EventOptions>({ event: "ready" })
+@ApplyOptions<EventOptions>({ event: "klasaReady" })
 export default class extends Event {
 
     public async run(): Promise<void> {
