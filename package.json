@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "repository": "https://github.com/PenguBot/music.git",
   "author": "Pengubot",
-  "license": "Apache-2.0",
+  "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "lint": "eslint --fix --ext ts src",

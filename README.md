@@ -8,4 +8,4 @@ Code of this module is based off the following projects:
  - [Skyra](https://github.com/skyra-project/skyra)
 
 ## License
-Apache 2.0
+UNLICENSED
