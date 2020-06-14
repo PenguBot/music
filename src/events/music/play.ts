@@ -16,7 +16,7 @@ export default class extends Event {
                 `**Length:** ${song.friendlyDuration}`,
                 `**Requested By:** ${song.requester}`,
                 `**Link:** <${song.url}>`];
-            if (music.textChannel!.postable) return music.textChannel!.send(playString.join("\n> "));
+            return music.textChannel!.send(playString.join("\n> "));
         }
     }
 

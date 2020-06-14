@@ -46,7 +46,7 @@ export default class extends Argument {
         const tracks: TrackData[] = await fetch(`https://paste.pengubot.com/raw/${DUMP.exec(arg)![1]}`, "json");
         if (!tracks) throw message.language.get("ER_MUSIC_NF");
 
-        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks };
+        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks: tracks };
     }
 
     public async spotify(message: KlasaMessage, arg: string): Promise<TrackResponse> {
@@ -75,7 +75,7 @@ export default class extends Argument {
         }
 
         if (!tracks.length) throw "For some reason, I couldn't find alternatives for these tracks on YouTube, sorry!";
-        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
+        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks: tracks };
 
     }
 
