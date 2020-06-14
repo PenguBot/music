@@ -667,7 +667,7 @@
         "affectsGlobalScope": false
       },
       "../src/arguments/song.ts": {
-        "version": "4c821a057fa4d4bbb16f51ce479fc63d3b0d80d50b39967a617293aa95277b9e",
+        "version": "f43e37211a4ae802831bd73e954fa0ce3c7d427b890c19063d69e64557aa7f1b",
         "signature": "64c01b0ede8c7c0f08ba370172e602f74e1ebcba02938d890ea1c9670164b35e",
         "affectsGlobalScope": false
       },
@@ -897,7 +897,7 @@
         "affectsGlobalScope": false
       },
       "../src/events/music/play.ts": {
-        "version": "c4e949c60e60503036e644b017b408abc1e39fe5f096d7f94f2ce167d91e751e",
+        "version": "201ad64804682f8bd980d76c9d4deed37a2a7babd828872a225ac4ecffef20af",
         "signature": "3c11881327fc607b7c6a71b6607c8cc19398708873bb70b2bcf4823d21fae9bd",
         "affectsGlobalScope": false
       },

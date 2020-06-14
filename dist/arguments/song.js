@@ -45,7 +45,7 @@ class default_1 extends klasa_1.Argument {
         const tracks = await utils_1.fetch(`https://paste.pengubot.com/raw/${constants_1.DUMP.exec(arg)[1]}`, "json");
         if (!tracks)
             throw message.language.get("ER_MUSIC_NF");
-        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks };
+        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks: tracks };
     }
     async spotify(message, arg) {
         const endpoint = constants_1.SPOTIFY_ALBUM.test(arg) ? "albums" : "playlists";
@@ -73,7 +73,7 @@ class default_1 extends klasa_1.Argument {
         }
         if (!tracks.length)
             throw "For some reason, I couldn't find alternatives for these tracks on YouTube, sorry!";
-        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
+        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks: tracks };
     }
     async spotifyTrack(message, arg) {
         const data = await utils_1.fetch(`https://api.spotify.com/v1/tracks/${constants_1.SPOTIFY_TRACK.exec(arg)[1]}`, { headers: { Authorization: `Bearer ${this.client.options.music.spotify.token}` } }, "json");

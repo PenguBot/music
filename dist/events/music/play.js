@@ -20,8 +20,7 @@ let default_1 = class extends klasa_1.Event {
                 `**Requested By:** ${song.requester}`,
                 `**Link:** <${song.url}>`
             ];
-            if (music.textChannel.postable)
-                return music.textChannel.send(playString.join("\n> "));
+            return music.textChannel.send(playString.join("\n> "));
         }
     }
 };
