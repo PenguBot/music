@@ -30,7 +30,7 @@ export class MusicInterface {
             if (!this.looping) return await this.skip();
             return await this.play();
         }).on("error", async event => {
-            await this.textChannel!.send(`I am very sorry but was an error, please try again or contact us at https://discord.gg/kWMcUNe | Error: ${event.reason || (event as any).error}`);
+            await this.textChannel!.send(`I am very sorry but was an error, please try again or contact us at https://discord.gg/u8WYw5r | Error: ${event.reason || (event as any).error}`);
             await this.destroy();
         });
 
