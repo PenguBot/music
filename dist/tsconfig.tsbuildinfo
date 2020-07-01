@@ -627,7 +627,7 @@
         "affectsGlobalScope": false
       },
       "../src/lib/structures/MusicInterface.ts": {
-        "version": "22413f0f2d721571ee7612a5fadcf4e0b535c14b431c0826bcfba8e87ce25848",
+        "version": "0ce20a2c334b0f622855506d64f31e818f6c4ec88b8d8fcf870f16e9a239387d",
         "signature": "494af54fdab80e3ad6b3609f0a21024c4c045718e6a78b87107719260a66656e",
         "affectsGlobalScope": false
       },
@@ -667,7 +667,7 @@
         "affectsGlobalScope": false
       },
       "../src/arguments/song.ts": {
-        "version": "f43e37211a4ae802831bd73e954fa0ce3c7d427b890c19063d69e64557aa7f1b",
+        "version": "b57e37dd62f844081fc273e6c396264e9d2cbeb3c83b14f3ee7e8426cd3e4693",
         "signature": "64c01b0ede8c7c0f08ba370172e602f74e1ebcba02938d890ea1c9670164b35e",
         "affectsGlobalScope": false
       },
@@ -812,7 +812,7 @@
         "affectsGlobalScope": true
       },
       "../src/commands/lyrics.ts": {
-        "version": "7bcd3cbb82bf0bf8d5db59f0f66a5fcbedae2da609031b9775c76e6e6e55262f",
+        "version": "6e46cf9fcf782689497ebfc613bb0a428f85015046200441d94a031ffe772e67",
         "signature": "3af18f3c5c4379be869402ad362857a23aa63286daf097cf8e1893bc4e60936e",
         "affectsGlobalScope": false
       },

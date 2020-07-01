@@ -36,16 +36,16 @@ class default_1 extends klasa_1.Argument {
         const selectionMessage = await message.prompt(searchmsg.join("\n"), 15000);
         const selection = Number(selectionMessage.content);
         if (isNaN(selection) || selection < 1 || selection > 5)
-            throw `Invalid Option Selected, please select one number between \`1-5\`. Cancelled song selection.`;
+            throw "Invalid Option Selected, please select one number between `1-5`. Cancelled song selection.";
         if (!strippedList[selection - 1])
-            throw `Specified track could not be found, please try again with a different one.`;
+            throw "Specified track could not be loaded, please try again with a different one.";
         return { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
     }
     async dump(message, arg) {
         const tracks = await utils_1.fetch(`https://paste.pengubot.com/raw/${constants_1.DUMP.exec(arg)[1]}`, "json");
         if (!tracks)
             throw message.language.get("ER_MUSIC_NF");
-        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks: tracks };
+        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks };
     }
     async spotify(message, arg) {
         const endpoint = constants_1.SPOTIFY_ALBUM.test(arg) ? "albums" : "playlists";
@@ -73,7 +73,7 @@ class default_1 extends klasa_1.Argument {
         }
         if (!tracks.length)
             throw "For some reason, I couldn't find alternatives for these tracks on YouTube, sorry!";
-        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks: tracks };
+        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
     }
     async spotifyTrack(message, arg) {
         const data = await utils_1.fetch(`https://api.spotify.com/v1/tracks/${constants_1.SPOTIFY_TRACK.exec(arg)[1]}`, { headers: { Authorization: `Bearer ${this.client.options.music.spotify.token}` } }, "json");
