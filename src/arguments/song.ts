@@ -36,8 +36,8 @@ export default class extends Argument {
         const selectionMessage = await message.prompt(searchmsg.join("\n"), 15000);
         const selection = Number(selectionMessage!.content);
 
-        if (isNaN(selection) || selection < 1 || selection > 5) throw `Invalid Option Selected, please select one number between \`1-5\`. Cancelled song selection.`;
-        if (!strippedList[selection - 1]) throw `Specified track could not be found, please try again with a different one.`;
+        if (isNaN(selection) || selection < 1 || selection > 5) throw "Invalid Option Selected, please select one number between `1-5`. Cancelled song selection.";
+        if (!strippedList[selection - 1]) throw "Specified track could not be loaded, please try again with a different one.";
 
         return { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
     }
@@ -46,7 +46,7 @@ export default class extends Argument {
         const tracks: TrackData[] = await fetch(`https://paste.pengubot.com/raw/${DUMP.exec(arg)![1]}`, "json");
         if (!tracks) throw message.language.get("ER_MUSIC_NF");
 
-        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks: tracks };
+        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks };
     }
 
     public async spotify(message: KlasaMessage, arg: string): Promise<TrackResponse> {
@@ -75,7 +75,7 @@ export default class extends Argument {
         }
 
         if (!tracks.length) throw "For some reason, I couldn't find alternatives for these tracks on YouTube, sorry!";
-        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks: tracks };
+        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
 
     }
 
