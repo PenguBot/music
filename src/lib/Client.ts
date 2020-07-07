@@ -16,7 +16,7 @@ export class MusicClient extends Client {
     constructor(options?: KlasaClientOptions) {
         super(options);
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         MusicClient[Client.plugin].call(this);
     }
@@ -25,7 +25,6 @@ export class MusicClient extends Client {
         const coreDirectory = join(__dirname, "..");
         this.lavalink = new LavacordManager(this, this.options.music.nodes, this.options.music);
         this.music = new MusicManager();
-
         this.events["registerCoreDirectory"](coreDirectory);
         this.inhibitors["registerCoreDirectory"](coreDirectory);
         this.arguments["registerCoreDirectory"](coreDirectory);

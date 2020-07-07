@@ -22,14 +22,14 @@ export default class extends MusicCommand {
 
         const req = await this.getGeniusLyrics(`search?q=${encodeURIComponent(song)}`, this.client.options.music.lyrics);
         const lyricdata = req.response.hits[0];
-        if (!lyricdata) return message.send("The provided song could not be found. Please try again with a different one or contact us at < https://discord.gg/u8WYw5r>.");
+        if (!lyricdata) return message.send("The provided song could not be found. Please try again with a different one or contact us at https://discord.gg/u8WYw5r.");
 
         const picture = lyricdata.result.song_art_image_thumbnail_url;
         const extendedsong = lyricdata.result.title_with_featured;
         const artist = lyricdata.result.primary_artist.name;
 
         const lyricsbody = await this.scrapeLyrics(lyricdata.result.url);
-        if (!lyricsbody) return message.send("The provided song's lyrics could not be found. Please try again with a different one or contact us at <https://discord.gg/u8WYw5r>.");
+        if (!lyricsbody) return message.send("The provided song's lyrics could not be found. Please try again with a different one or contact us at https://discord.gg/u8WYw5r.");
 
         return message.sendEmbed(new MessageEmbed()
             .setColor("#428bca")
