@@ -652,7 +652,7 @@
         "affectsGlobalScope": false
       },
       "../src/lib/Client.ts": {
-        "version": "12d606412e405f13c4cbb963b43d788db79cbce4fd2382a14acc45cd31bbdff8",
+        "version": "f11ae75300831788323ca19bab30bd8f43a7aa9bfc44df0d52796abab53e08d6",
         "signature": "7bcb25f25452101f9f518dee2b99cb588be1acb6b508f4c7b10fad21b86e4ff8",
         "affectsGlobalScope": false
       },
@@ -812,7 +812,7 @@
         "affectsGlobalScope": true
       },
       "../src/commands/lyrics.ts": {
-        "version": "6e46cf9fcf782689497ebfc613bb0a428f85015046200441d94a031ffe772e67",
+        "version": "2fc0b1b2c7b2963622a2be6d01415ace9cbe182d3136e59dece8453962330867",
         "signature": "3af18f3c5c4379be869402ad362857a23aa63286daf097cf8e1893bc4e60936e",
         "affectsGlobalScope": false
       },
