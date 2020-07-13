@@ -17,7 +17,7 @@ export default class extends MusicCommand {
             `**Title:** ${song.title}`,
             `**Author:** ${song.author}`,
             `**Length:** ${song.stream ? "Live Stream" : music.currentTimeString!}`,
-            `**Requested By:** ${song.requester}`,
+            `**Requested By:** ${song.requester.username}#${song.requester.tag}`,
             `**Link:** <${song.url}>`];
         if (message.flagArgs.dm) return message.author.send(playString.join("\n")).catch(() => null);
         return message.send(playString.join("\n> "));
