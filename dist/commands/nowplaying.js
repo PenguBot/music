@@ -17,7 +17,7 @@ let default_1 = class extends MusicCommand_1.MusicCommand {
             `**Title:** ${song.title}`,
             `**Author:** ${song.author}`,
             `**Length:** ${song.stream ? "Live Stream" : music.currentTimeString}`,
-            `**Requested By:** ${song.requester}`,
+            `**Requested By:** ${song.requester.username}#${song.requester.tag}`,
             `**Link:** <${song.url}>`
         ];
         if (message.flagArgs.dm)
