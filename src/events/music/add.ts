@@ -17,7 +17,7 @@ export default class extends Event {
             `**Title:** ${song.title}`,
             `**Author:** ${song.author}`,
             `**Length:** ${song.friendlyDuration}`,
-            `**Requested By:** ${song.requester.username}#${song.requester.tag}`,
+            `**Requested By:** ${song.requester.tag}`,
             `**Link:** <${song.url}>`];
         return music.textChannel!.send(addString.join("\n> "));
     }
