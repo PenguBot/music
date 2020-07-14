@@ -817,7 +817,7 @@
         "affectsGlobalScope": false
       },
       "../src/commands/nowplaying.ts": {
-        "version": "029241186342a4cbd4599857bea1258c92a0ae5e6afb94dc4e47414ef1e09881",
+        "version": "5a729c9a53dc7b7447e0e5374dd1fb44e5212db6a5a1c1ca1e3c65daeacdcccf",
         "signature": "72e4366827acc218196c91120884e252bb79bad22a3a98433fe17fdefe43a6e2",
         "affectsGlobalScope": false
       },
@@ -892,12 +892,12 @@
         "affectsGlobalScope": false
       },
       "../src/events/music/add.ts": {
-        "version": "c631dc5081e2f02deeb900a4a1850fbdca33088daa3088ba940f10d9daa3f955",
+        "version": "1089a98909aea6d7396ce1afb543df25716d0ef85c330149bd55f17f9daca7b2",
         "signature": "ec0be32473aa9c4b051d51e036a3f8f2f66f10f6f667bef06617fc623ba7373d",
         "affectsGlobalScope": false
       },
       "../src/events/music/play.ts": {
-        "version": "c51ba24e7204f96b43cb25348afe8e5ac84dcc4ffac5fee88bf6a300813a5bf4",
+        "version": "5d8a0574a1d78159c95e197b74bd1022d23d6c5e6c93f920c3091830162fdf32",
         "signature": "3c11881327fc607b7c6a71b6607c8cc19398708873bb70b2bcf4823d21fae9bd",
         "affectsGlobalScope": false
       },
