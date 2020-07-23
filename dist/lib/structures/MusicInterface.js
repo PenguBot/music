@@ -90,9 +90,7 @@ class MusicInterface {
         return (_a = (member.voice.channel.speakable || member.voice.channel.joinable)) !== null && _a !== void 0 ? _a : null;
     }
     isMemberDJ(member) {
-        if (!this.guild.settings.get("toggles.djmode"))
-            return true;
-        const isDJ = this.guild.settings.get("user.dj").includes(member.id);
+        const isDJ = this.guild.settings.get("users.dj").includes(member.id);
         const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
         return isDJ !== null && isDJ !== void 0 ? isDJ : hasDJRole;
     }

@@ -627,7 +627,7 @@
         "affectsGlobalScope": false
       },
       "../src/lib/structures/MusicInterface.ts": {
-        "version": "0ce20a2c334b0f622855506d64f31e818f6c4ec88b8d8fcf870f16e9a239387d",
+        "version": "58e6f9cf010c40874189964b253cf082d41a8d6380e3623ef070cf407b8cefc6",
         "signature": "494af54fdab80e3ad6b3609f0a21024c4c045718e6a78b87107719260a66656e",
         "affectsGlobalScope": false
       },
