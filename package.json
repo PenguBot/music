@@ -27,7 +27,7 @@
     "@types/node-fetch": "^2.5.7",
     "@types/ws": "^7.2.5",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
-    "@typescript-eslint/parser": "^3.1.0",
+    "@typescript-eslint/parser": "^3.7.0",
     "klasa": "dirigeants/klasa#settings",
     "discord.js": "github:discordjs/discord.js#fe7df708e44e0280dfaf0f8e457b154781bb5140",
     "eslint": "^7.2.0",
