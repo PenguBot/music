@@ -107,8 +107,7 @@ export class MusicInterface {
     }
 
     public isMemberDJ(member: GuildMember): boolean {
-        if (!this.guild.settings.get("toggles.djmode")) return true;
-        const isDJ = (this.guild.settings.get("user.dj") as string[]).includes(member.id);
+        const isDJ = (this.guild.settings.get("users.dj") as string[]).includes(member.id);
         const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj") as string);
         return isDJ ?? hasDJRole;
     }
