@@ -3,6 +3,5 @@ import { MusicClient as Client } from "./lib/Client";
 
 export { Client };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 module.exports[KlasaClient.plugin] = Client[KlasaClient.plugin];

@@ -311,6 +311,7 @@
       "arrow-parens":[
         "error",
         "as-needed"
-      ]
+      ],
+      "@typescript-eslint/ban-ts-ignore": "off"
     }
   }

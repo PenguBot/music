@@ -16,7 +16,6 @@ export class MusicClient extends Client {
     constructor(options?: KlasaClientOptions) {
         super(options);
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         MusicClient[Client.plugin].call(this);
     }
