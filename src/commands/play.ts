@@ -8,7 +8,7 @@ import { ApplyOptions } from "../lib/utils/Decorators";
     description: "Start a party, let's play some music!",
     aliases: ["musicplay"],
     usage: "<song:song>",
-    music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION"]
+    music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "DJ_MEMBER"]
 })
 export default class extends MusicCommand {
 

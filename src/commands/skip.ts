@@ -16,9 +16,8 @@ export default class extends MusicCommand {
 
         if (music.voiceChannel!.members.size > 4) {
             if ("force" in message.flagArgs) {
-                const hasPermission = await message.hasAtLeastPermissionLevel(2);
-                if (hasPermission === false) throw "You can't execute this command with the force flag. You must be a DJ.";
-            } else {
+                if (!music.isMemberDJ(message.member!)) throw "You can't execute this command with the force flag. You must be a DJ.";
+
                 const response = this.handleSkips(music, message.author.id);
                 if (response) return message.send(response);
             }

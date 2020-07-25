@@ -4,7 +4,7 @@ import { ApplyOptions } from "../lib/utils/Decorators";
 
 @ApplyOptions<MusicCommandOptions>({
     description: "Stop Music",
-    music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
+    music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER"]
 })
 export default class extends MusicCommand {
 
