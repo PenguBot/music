@@ -627,7 +627,7 @@
         "affectsGlobalScope": false
       },
       "../src/lib/structures/MusicInterface.ts": {
-        "version": "58e6f9cf010c40874189964b253cf082d41a8d6380e3623ef070cf407b8cefc6",
+        "version": "2bc3a74639e8a642f32df58bee06b16f2cdcde475129414313f396259b672d90",
         "signature": "494af54fdab80e3ad6b3609f0a21024c4c045718e6a78b87107719260a66656e",
         "affectsGlobalScope": false
       },
@@ -797,7 +797,7 @@
         "affectsGlobalScope": false
       },
       "../src/commands/dump.ts": {
-        "version": "51e9bb8d738761bc8068ddd6cd162ee9e5a149922aad5145b7ed13d8953349bc",
+        "version": "909690dfaeac90b6ec5f1f25e9cd5ba6f8dfd0fc14d88dfa33f1ff6c0d88a2b4",
         "signature": "2a35f48f18334d08ef63619f64ac8b48cc3d7f05ce069372b0c12cd6f509eadc",
         "affectsGlobalScope": false
       },
@@ -827,12 +827,12 @@
         "affectsGlobalScope": false
       },
       "../src/commands/play.ts": {
-        "version": "d95c863c43a7e1cf8ef587f2841c674412af6917912411e2907f56cacc836b50",
+        "version": "fd0ca66d75d696987674df34eb1b1766b3369f6dc350169fb48824fccd203271",
         "signature": "1c9bf4a036b4b706ef1ba765f470d02d07f1708a2caaa030c3f8e6a7cd205c5b",
         "affectsGlobalScope": false
       },
       "../src/commands/queue.ts": {
-        "version": "7dc510400579eb5d82b023fb9bb8164bc83a5fad9d4f0d0a580d2f4c75e461df",
+        "version": "a228517a5052b7346caec19f5240ec7f77cc483d8dc02cad3831e86319672819",
         "signature": "7767f236cf386840c40a710fe13ddaf97a5dede111d11c988c9c461899664c90",
         "affectsGlobalScope": false
       },
@@ -842,12 +842,12 @@
         "affectsGlobalScope": false
       },
       "../src/commands/skip.ts": {
-        "version": "abb75fa46cccf2a00014070eb46f4ccca6079476c222524e2ea051431aa9bfbd",
+        "version": "047aeee7da84849ddeefb69cd3152f932fcfc6895feadcf8931652e82b06c6e5",
         "signature": "c7b7edf1b20d83fdd628ed34c118e1fbcbb3af76e34e656c23b61b4baf6c1f79",
         "affectsGlobalScope": false
       },
       "../src/commands/stop.ts": {
-        "version": "e3ca8a451789da641b87424a8582161b0f45619de0d6a6f9b327f2ac7dda296a",
+        "version": "810041a832c931a58ac1f4288ff04371dc42dde7a70ebddfbdf47d7659cfecb9",
         "signature": "2a35f48f18334d08ef63619f64ac8b48cc3d7f05ce069372b0c12cd6f509eadc",
         "affectsGlobalScope": false
       },

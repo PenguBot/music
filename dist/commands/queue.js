@@ -30,8 +30,8 @@ let default_1 = class extends MusicCommand_1.MusicCommand {
 default_1 = __decorate([
     Decorators_1.ApplyOptions({
         description: "List of song's in the current queue.",
-        music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"],
-        requiredPermissions: ["EMBED_LINKS", "MANAGE_MESSAGES"]
+        requiredPermissions: ["EMBED_LINKS", "MANAGE_MESSAGES"],
+        music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
     })
 ], default_1);
 exports.default = default_1;

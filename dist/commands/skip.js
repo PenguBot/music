@@ -13,11 +13,8 @@ let default_1 = class extends MusicCommand_1.MusicCommand {
         const { music } = message.guild;
         if (music.voiceChannel.members.size > 4) {
             if ("force" in message.flagArgs) {
-                const hasPermission = await message.hasAtLeastPermissionLevel(2);
-                if (hasPermission === false)
+                if (!music.isMemberDJ(message.member))
                     throw "You can't execute this command with the force flag. You must be a DJ.";
-            }
-            else {
                 const response = this.handleSkips(music, message.author.id);
                 if (response)
                     return message.send(response);

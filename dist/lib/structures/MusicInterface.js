@@ -90,9 +90,9 @@ class MusicInterface {
         return (_a = (member.voice.channel.speakable || member.voice.channel.joinable)) !== null && _a !== void 0 ? _a : null;
     }
     isMemberDJ(member) {
-        const isDJ = this.guild.settings.get("users.dj").includes(member.id);
-        const hasDJRole = member.roles.has(this.guild.settings.get("roles.dj"));
-        return isDJ !== null && isDJ !== void 0 ? isDJ : hasDJRole;
+        const isDJ = member.guild.settings.get("users.dj").includes(member.id);
+        const hasDJRole = member.roles.has(member.guild.settings.get("roles.dj"));
+        return isDJ || hasDJRole;
     }
     get currentTimeString() {
         return this.player && this.queue[0] ? `${utils_1.getTimeString(this.player.state.position)} / ${utils_1.getTimeString(this.queue[0].length)}` : null;

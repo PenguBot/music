@@ -18,7 +18,7 @@ let default_1 = class extends MusicCommand_1.MusicCommand {
 default_1 = __decorate([
     Decorators_1.ApplyOptions({
         description: "Stop Music",
-        music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY"]
+        music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "COMMON_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "DJ_MEMBER"]
     })
 ], default_1);
 exports.default = default_1;

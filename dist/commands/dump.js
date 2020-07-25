@@ -20,7 +20,7 @@ default_1 = __decorate([
     Decorators_1.ApplyOptions({
         description: "Save current queue in a link for later use.",
         aliases: ["savesongs", "save"],
-        music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "USER_VOICE_CHANNEL", "COMMON_VOICE_CHANNEL"]
+        music: ["BOT_VOICE_CHANNEL", "QUEUE_NOT_EMPTY", "USER_VOICE_CHANNEL", "COMMON_VOICE_CHANNEL", "DJ_MEMBER"]
     })
 ], default_1);
 exports.default = default_1;

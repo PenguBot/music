@@ -26,7 +26,7 @@ default_1 = __decorate([
         description: "Start a party, let's play some music!",
         aliases: ["musicplay"],
         usage: "<song:song>",
-        music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION"]
+        music: ["USER_VOICE_CHANNEL", "HAS_PERMISSION", "DJ_MEMBER"]
     })
 ], default_1);
 exports.default = default_1;
