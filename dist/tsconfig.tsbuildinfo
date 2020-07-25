@@ -652,12 +652,12 @@
         "affectsGlobalScope": false
       },
       "../src/lib/Client.ts": {
-        "version": "f11ae75300831788323ca19bab30bd8f43a7aa9bfc44df0d52796abab53e08d6",
+        "version": "87e2106194f028c7c52085eff49a6d375384bdf232f0038c718f3dbde350d623",
         "signature": "7bcb25f25452101f9f518dee2b99cb588be1acb6b508f4c7b10fad21b86e4ff8",
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "431f211c19b4c1a52065937882c8af2a26d138fc8d420802924518944c5324ba",
+        "version": "aeb1d6630a973ad9e9806cadd1da2c66660249377cabb5f64be7470ec83c9bd5",
         "signature": "1f27262464c79893b67df5ff3bd3ee5c64bb297c3e4797a65d58998ebc7c6a57",
         "affectsGlobalScope": false
       },
