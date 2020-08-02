@@ -11,6 +11,7 @@ export default class extends MusicCommand {
 
     public async run(message: KlasaMessage): Promise<KlasaMessage> {
         const { music } = message.guild!;
+        if (!music.player) throw "There's currently no music playing.";
         await music.pause();
         return message.send(`> ⏯️ Music is now **${!music.paused ? "Playing" : "Paused"}.**`);
     }

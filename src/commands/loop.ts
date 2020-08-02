@@ -11,6 +11,7 @@ import { ApplyOptions } from "../lib/utils/Decorators";
 
 export default class extends MusicCommand {
 
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     public async run(message: KlasaMessage, [songOrQueue = "song"]): Promise<KlasaMessage> {
         const { music } = message.guild!;
 
