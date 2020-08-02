@@ -11,6 +11,8 @@ const Decorators_1 = require("../lib/utils/Decorators");
 let default_1 = class extends MusicCommand_1.MusicCommand {
     async run(message) {
         const { music } = message.guild;
+        if (!music.player)
+            throw "There's currently no music playing.";
         await music.pause();
         return message.send(`> ⏯️ Music is now **${!music.paused ? "Playing" : "Paused"}.**`);
     }

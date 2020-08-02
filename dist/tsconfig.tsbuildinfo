@@ -802,7 +802,7 @@
         "affectsGlobalScope": false
       },
       "../src/commands/loop.ts": {
-        "version": "63c092f3d79b9cde71f7db1758f7763874874c155cb05747a80e8b00a3678eff",
+        "version": "ad53f09d8f44ee5cefa488862a64d1f240c15d22f35b1f249306f93c6707510d",
         "signature": "40502969b4f0fe4daf37abb43f4bebae8b3a0659129f71421392156ba7c8f888",
         "affectsGlobalScope": false
       },
@@ -822,7 +822,7 @@
         "affectsGlobalScope": false
       },
       "../src/commands/pause.ts": {
-        "version": "8f7795358d9fc111f52297e9b54b1d262013b3cf0715eb8809af9c7ee2f72a5e",
+        "version": "27d1a01fdb67dc283790088f6d1a82a05f319f0ea06fd685137745b7fe2d7bb7",
         "signature": "2a35f48f18334d08ef63619f64ac8b48cc3d7f05ce069372b0c12cd6f509eadc",
         "affectsGlobalScope": false
       },
@@ -892,7 +892,7 @@
         "affectsGlobalScope": false
       },
       "../src/events/music/add.ts": {
-        "version": "1089a98909aea6d7396ce1afb543df25716d0ef85c330149bd55f17f9daca7b2",
+        "version": "ec3d64c40f2e34890f623e3fa87f0e5d2cda4d1d3e963202eca0cab3b205beef",
         "signature": "ec0be32473aa9c4b051d51e036a3f8f2f66f10f6f667bef06617fc623ba7373d",
         "affectsGlobalScope": false
       },

@@ -14,7 +14,7 @@ let default_1 = class extends klasa_1.Event {
             return music.textChannel.send(`> **${data.tracks.length} songs** from the playlist **${data.playlistInfo.name}** have been added to the queue.`);
         if (music.queue.length < 2)
             return;
-        const [song] = music.queue;
+        const song = music.queue[music.queue.length - 1];
         const addString = [
             "> 🗒️ __**Added To Queue:**__",
             `**Title:** ${song.title}`,
