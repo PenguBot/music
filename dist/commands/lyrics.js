@@ -10,7 +10,7 @@ const MusicCommand_1 = require("../lib/structures/MusicCommand");
 const Decorators_1 = require("../lib/utils/Decorators");
 const discord_js_1 = require("discord.js");
 const utils_1 = require("../lib/utils/utils");
-const cheerio_1 = require("cheerio");
+const node_html_parser_1 = require("node-html-parser");
 let default_1 = class extends MusicCommand_1.MusicCommand {
     async run(message, [song]) {
         const { music } = message.guild;
@@ -43,9 +43,9 @@ let default_1 = class extends MusicCommand_1.MusicCommand {
     }
     async scrapeLyrics(url) {
         const data = await utils_1.fetch(url, "text");
-        const $ = cheerio_1.default.load(data);
-        const lyrics = $(".lyrics");
-        return lyrics ? lyrics.text().trim() : null;
+        const parsedDOM = node_html_parser_1.parse(data);
+        const lyrics = parsedDOM.querySelector(".lyrics");
+        return lyrics ? lyrics.text.trim() : null;
     }
     async init() {
         if (!this.client.options.music.lyrics)

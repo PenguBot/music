@@ -667,8 +667,8 @@
         "affectsGlobalScope": false
       },
       "../src/arguments/song.ts": {
-        "version": "b57e37dd62f844081fc273e6c396264e9d2cbeb3c83b14f3ee7e8426cd3e4693",
-        "signature": "64c01b0ede8c7c0f08ba370172e602f74e1ebcba02938d890ea1c9670164b35e",
+        "version": "b394c561ca7a444056d2f4763f8704e69a1659a44db84bae9eaa44b46762cf7f",
+        "signature": "5c010795055cf7e5e1e59714d3a73a4e11f21a07915cf51f79aed666b7eff938",
         "affectsGlobalScope": false
       },
       "../node_modules/@klasa/utils/dist/src/lib/clean.d.ts": {
@@ -806,13 +806,43 @@
         "signature": "40502969b4f0fe4daf37abb43f4bebae8b3a0659129f71421392156ba7c8f888",
         "affectsGlobalScope": false
       },
-      "../node_modules/@types/cheerio/index.d.ts": {
-        "version": "fefdd124f6b0e9d0a8a2770c1bc83f00b1be3a4db1ee0009e36e8bfb40ee2a7f",
-        "signature": "fefdd124f6b0e9d0a8a2770c1bc83f00b1be3a4db1ee0009e36e8bfb40ee2a7f",
-        "affectsGlobalScope": true
+      "../node_modules/node-html-parser/dist/nodes/type.d.ts": {
+        "version": "59a50afa27798d65c7a71e987ee0d9ce9e114bb06bac138a73f3c49c12b63487",
+        "signature": "59a50afa27798d65c7a71e987ee0d9ce9e114bb06bac138a73f3c49c12b63487",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/node-html-parser/dist/nodes/node.d.ts": {
+        "version": "4b96313f77c6ebd5c9cf5a94fb23d7cdf5c84dcd4a46b361c1ae4b9e35a9a070",
+        "signature": "4b96313f77c6ebd5c9cf5a94fb23d7cdf5c84dcd4a46b361c1ae4b9e35a9a070",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/node-html-parser/dist/nodes/comment.d.ts": {
+        "version": "10113d1c391cab56282c633bd9cc5c8cdeb52ea43ceb848e9bbc28d60b3233ca",
+        "signature": "10113d1c391cab56282c633bd9cc5c8cdeb52ea43ceb848e9bbc28d60b3233ca",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/node-html-parser/dist/nodes/text.d.ts": {
+        "version": "9bf9f4ec82a3ce3929546af7c2431fbd6fc2f8654329a6695eda46c0cdefd565",
+        "signature": "9bf9f4ec82a3ce3929546af7c2431fbd6fc2f8654329a6695eda46c0cdefd565",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/node-html-parser/dist/matcher.d.ts": {
+        "version": "e56d23f455b13c1eff2747735435f750c3e4fd78da7648d9836c2d53d8bc458c",
+        "signature": "e56d23f455b13c1eff2747735435f750c3e4fd78da7648d9836c2d53d8bc458c",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/node-html-parser/dist/nodes/html.d.ts": {
+        "version": "a4c84e1c708b731005593988018b95266fd4dfd9d7c9fcfb0acdb5e0bcda7ff4",
+        "signature": "a4c84e1c708b731005593988018b95266fd4dfd9d7c9fcfb0acdb5e0bcda7ff4",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/node-html-parser/dist/index.d.ts": {
+        "version": "9fdbd49d7174d369cfb783a7bff4fae18f79ec9ea74c7019c0f4266c5bcacf24",
+        "signature": "9fdbd49d7174d369cfb783a7bff4fae18f79ec9ea74c7019c0f4266c5bcacf24",
+        "affectsGlobalScope": false
       },
       "../src/commands/lyrics.ts": {
-        "version": "2fc0b1b2c7b2963622a2be6d01415ace9cbe182d3136e59dece8453962330867",
+        "version": "ee62b61624a59a9c160c9b4da76ca2d85f13c93fe7a7dac1c09eff3e201be686",
         "signature": "3af18f3c5c4379be869402ad362857a23aa63286daf097cf8e1893bc4e60936e",
         "affectsGlobalScope": false
       },
@@ -902,7 +932,7 @@
         "affectsGlobalScope": false
       },
       "../src/inhibitors/requireMusic.ts": {
-        "version": "b972469354f6b1e7935d8a4e16407ef819c978086ec8d4a29bc23ce024aac7ba",
+        "version": "5b9460ade9dd97bab7efdb9705bf70634b8717674da5c41b53f6a019729b8bb7",
         "signature": "9e9bc2516cd143758e32398b971e0a45fc6c6b449821862d88f26a2dbc37774c",
         "affectsGlobalScope": false
       },
@@ -1310,13 +1340,6 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/discord.js/typings/index.d.ts",
         "../node_modules/lavacord/dist/index.d.ts"
-      ],
-      "../node_modules/@types/cheerio/index.d.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/ts3.7/index.d.ts",
-        "../node_modules/@types/node/util.d.ts"
       ],
       "../node_modules/@types/color-name/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
@@ -1865,6 +1888,63 @@
         "../node_modules/@types/ws/index.d.ts",
         "../node_modules/lavacord/dist/lib/Player.d.ts"
       ],
+      "../node_modules/node-html-parser/dist/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/comment.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/html.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/node.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/text.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/type.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/matcher.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/html.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/nodes/comment.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/node.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/type.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/nodes/html.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/matcher.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/node.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/text.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/type.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/nodes/node.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/type.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/nodes/text.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/node.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/type.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/nodes/type.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
       "../node_modules/typescript/lib/lib.es2015.collection.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -2129,13 +2209,13 @@
         "../src/lib/utils/Decorators.ts"
       ],
       "../src/commands/lyrics.ts": [
-        "../node_modules/@types/cheerio/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/discord.js/typings/index.d.ts",
         "../node_modules/klasa/typings/index.d.ts",
+        "../node_modules/node-html-parser/dist/index.d.ts",
         "../src/lib/structures/MusicCommand.ts",
         "../src/lib/utils/Decorators.ts",
         "../src/lib/utils/utils.ts"
@@ -2789,13 +2869,6 @@
         "../node_modules/discord.js/typings/index.d.ts",
         "../node_modules/lavacord/dist/index.d.ts"
       ],
-      "../node_modules/@types/cheerio/index.d.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/ts3.7/index.d.ts",
-        "../node_modules/@types/node/util.d.ts"
-      ],
       "../node_modules/@types/color-name/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -3343,6 +3416,63 @@
         "../node_modules/@types/ws/index.d.ts",
         "../node_modules/lavacord/dist/lib/Player.d.ts"
       ],
+      "../node_modules/node-html-parser/dist/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/comment.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/html.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/node.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/text.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/type.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/matcher.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/html.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/nodes/comment.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/node.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/type.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/nodes/html.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/matcher.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/node.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/text.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/type.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/nodes/node.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/type.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/nodes/text.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/node.d.ts",
+        "../node_modules/node-html-parser/dist/nodes/type.d.ts"
+      ],
+      "../node_modules/node-html-parser/dist/nodes/type.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
       "../node_modules/typescript/lib/lib.es2015.collection.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -3766,7 +3896,6 @@
       "../node_modules/@klasa/utils/dist/src/lib/tryParse.d.ts",
       "../node_modules/@klasa/utils/dist/src/lib/utilityTypes.d.ts",
       "../node_modules/@lavacord/discord.js/dist/index.d.ts",
-      "../node_modules/@types/cheerio/index.d.ts",
       "../node_modules/@types/color-name/index.d.ts",
       "../node_modules/@types/eslint-visitor-keys/index.d.ts",
       "../node_modules/@types/json-schema/index.d.ts",
@@ -3833,6 +3962,13 @@
       "../node_modules/lavacord/dist/lib/Player.d.ts",
       "../node_modules/lavacord/dist/lib/Rest.d.ts",
       "../node_modules/lavacord/dist/lib/Types.d.ts",
+      "../node_modules/node-html-parser/dist/index.d.ts",
+      "../node_modules/node-html-parser/dist/matcher.d.ts",
+      "../node_modules/node-html-parser/dist/nodes/comment.d.ts",
+      "../node_modules/node-html-parser/dist/nodes/html.d.ts",
+      "../node_modules/node-html-parser/dist/nodes/node.d.ts",
+      "../node_modules/node-html-parser/dist/nodes/text.d.ts",
+      "../node_modules/node-html-parser/dist/nodes/type.d.ts",
       "../node_modules/typescript/lib/lib.es2015.collection.d.ts",
       "../node_modules/typescript/lib/lib.es2015.core.d.ts",
       "../node_modules/typescript/lib/lib.es2015.d.ts",

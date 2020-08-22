@@ -83,7 +83,7 @@ class default_1 extends klasa_1.Argument {
         const searchResult = await this.fetchTracks(`ytsearch:${artist ? artist.name : ""} ${data.name} audio`);
         if (!searchResult.tracks.length)
             throw message.language.get("ER_MUSIC_NF");
-        return { loadType: discord_js_1.LoadType.SEARCH_RESULT, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
+        return { loadType: discord_js_1.LoadType.TRACK_LOADED, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
     }
     async fetchTracks(arg) {
         const result = await discord_js_1.Rest.load(this.client.lavalink.idealNodes[0], arg);
