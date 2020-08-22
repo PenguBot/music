@@ -23,7 +23,7 @@ export default class extends Argument {
         throw "I could not find any search results, please try again later!";
     }
 
-    public async search(message: KlasaMessage, arg: string): Promise<TrackResponse> {
+    private async search(message: KlasaMessage, arg: string): Promise<TrackResponse> {
         const data = await this.fetchTracks(`ytsearch:${arg}`);
         if (!data.tracks.length) throw "No search results found for this argument.";
 
@@ -42,14 +42,14 @@ export default class extends Argument {
         return { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
     }
 
-    public async dump(message: KlasaMessage, arg: string): Promise<TrackResponse> {
+    private async dump(message: KlasaMessage, arg: string): Promise<TrackResponse> {
         const tracks: TrackData[] = await fetch(`https://paste.pengubot.com/raw/${DUMP.exec(arg)![1]}`, "json");
         if (!tracks) throw message.language.get("ER_MUSIC_NF");
 
         return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks };
     }
 
-    public async spotify(message: KlasaMessage, arg: string): Promise<TrackResponse> {
+    private async spotify(message: KlasaMessage, arg: string): Promise<TrackResponse> {
         const endpoint = SPOTIFY_ALBUM.test(arg) ? "albums" : "playlists";
         const id = endpoint.startsWith("a") ? SPOTIFY_ALBUM.exec(arg)![1] : SPOTIFY_PLAYLIST.exec(arg)![1];
 
@@ -79,7 +79,7 @@ export default class extends Argument {
 
     }
 
-    async spotifyTrack(message: KlasaMessage, arg: string): Promise<TrackResponse> {
+    private async spotifyTrack(message: KlasaMessage, arg: string): Promise<TrackResponse> {
         const data = await fetch(`https://api.spotify.com/v1/tracks/${SPOTIFY_TRACK.exec(arg)![1]}`,
             { headers: { Authorization: `Bearer ${this.client.options.music.spotify.token}` } }, "json");
         if (!data) throw message.language.get("ER_MUSIC_NF");
@@ -88,10 +88,10 @@ export default class extends Argument {
 
         const searchResult = await this.fetchTracks(`ytsearch:${artist ? artist.name : ""} ${data.name} audio`);
         if (!searchResult.tracks.length) throw message.language.get("ER_MUSIC_NF");
-        return { loadType: LoadType.SEARCH_RESULT, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
+        return { loadType: LoadType.TRACK_LOADED, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
     }
 
-    public async fetchTracks(arg: string): Promise<TrackResponse> {
+    private async fetchTracks(arg: string): Promise<TrackResponse> {
         const result = await Rest.load(this.client.lavalink.idealNodes[0], arg);
         if (result.loadType === "LOAD_FAILED") throw "There was an error trying to search for that song.";
         if (result.loadType === "NO_MATCHES") throw "No tracks or playlists could be found with the given argument.";

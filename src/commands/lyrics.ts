@@ -3,7 +3,7 @@ import { MusicCommand, MusicCommandOptions } from "../lib/structures/MusicComman
 import { ApplyOptions } from "../lib/utils/Decorators";
 import { MessageEmbed } from "discord.js";
 import { fetch } from "../lib/utils/utils";
-import cheerio from "cheerio";
+import { parse } from "node-html-parser";
 
 @ApplyOptions<MusicCommandOptions>({
     description: "Get lyrics for the current song or any song by name.",
@@ -47,9 +47,9 @@ export default class extends MusicCommand {
 
     public async scrapeLyrics(url: string): Promise<string|null> {
         const data = await fetch(url, "text");
-        const $ = cheerio.load(data);
-        const lyrics = $(".lyrics");
-        return lyrics ? lyrics.text().trim() : null;
+        const parsedDOM = parse(data);
+        const lyrics = parsedDOM.querySelector(".lyrics");
+        return lyrics ? lyrics.text.trim() : null;
     }
 
     public async init(): Promise<void> {
