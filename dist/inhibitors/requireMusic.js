@@ -24,7 +24,7 @@ let default_1 = class extends klasa_1.Inhibitor {
             throw "I have no permission to connect or play in your voice channel.";
         if (command.music.has(FLAGS.COMMON_VOICE_CHANNEL) && (message.member.voice.channelID !== music.guild.me.voice.channelID))
             throw "You are not in the same voice channel as the bot.";
-        if (command.music.has(FLAGS.QUEUE_NOT_EMPTY) && !music.queue.length)
+        if (command.music.has(FLAGS.QUEUE_NOT_EMPTY) && (!music.queue.length || (music.queue[0] ? !music.queue[0].track : false)))
             throw "There are no songs in the queue.";
         if (command.music.has(FLAGS.VOICE_PLAYING) && !music.playing)
             throw "There is currently no music playing.";

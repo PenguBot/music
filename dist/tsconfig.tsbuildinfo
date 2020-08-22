@@ -932,7 +932,7 @@
         "affectsGlobalScope": false
       },
       "../src/inhibitors/requireMusic.ts": {
-        "version": "5b9460ade9dd97bab7efdb9705bf70634b8717674da5c41b53f6a019729b8bb7",
+        "version": "fd5092ad01f1e9a79ca2f5fdff47c41033c0ea3fbd0e2387fae5372697ff6dc2",
         "signature": "9e9bc2516cd143758e32398b971e0a45fc6c6b449821862d88f26a2dbc37774c",
         "affectsGlobalScope": false
       },
