@@ -6,7 +6,7 @@ import { VoiceStateUpdate } from "@lavacord/discord.js";
 export default class extends Event {
 
     public async run(data: VoiceStateUpdate): Promise<void> {
-        const guild = this.client.guilds.get(data.guild_id);
+        const guild = this.client.guilds.cache.get(data.guild_id);
         if (!guild) return;
 
         await guild.members.fetch(data.user_id).catch(() => null);

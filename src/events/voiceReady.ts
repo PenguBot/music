@@ -15,7 +15,7 @@ export default class extends Event {
     }
 
     private ensureTask(name: string, time: string): Promise<ScheduledTask> | void {
-        const schedules = this.client.settings!.get("schedules") as any[];
+        const schedules = this.client.schedule.tasks;
         if (!schedules.some(task => task.taskName === name)) return this.client.schedule.create(name, time);
     }
 
