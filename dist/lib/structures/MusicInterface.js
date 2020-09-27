@@ -91,7 +91,7 @@ class MusicInterface {
     }
     isMemberDJ(member) {
         const isDJ = member.guild.settings.get("users.dj").includes(member.id);
-        const hasDJRole = member.roles.has(member.guild.settings.get("roles.dj"));
+        const hasDJRole = member.roles.cache.has(member.guild.settings.get("roles.dj"));
         return isDJ || hasDJRole;
     }
     get currentTimeString() {

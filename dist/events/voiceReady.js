@@ -20,7 +20,7 @@ let default_1 = class extends klasa_1.Event {
         await this.ensureTask("spotify", "*/30 * * * *");
     }
     ensureTask(name, time) {
-        const schedules = this.client.settings.get("schedules");
+        const schedules = this.client.schedule.tasks;
         if (!schedules.some(task => task.taskName === name))
             return this.client.schedule.create(name, time);
     }
