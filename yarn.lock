@@ -762,9 +762,9 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
-"klasa@github:pengubot/klasa":
+"klasa@github:pengubot/klasa#stable":
   version "0.5.0"
-  resolved "https://codeload.github.com/pengubot/klasa/tar.gz/755f312be7e379dd457ee7c83bf616621ccaaffb"
+  resolved "https://codeload.github.com/pengubot/klasa/tar.gz/e10154d898652735630209fc1e591d1bb8cf1102"
   dependencies:
     "@klasa/settings-gateway" "github:skyra-project/settings-gateway#build"
     fs-nextra "^0.4.7"
