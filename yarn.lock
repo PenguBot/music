@@ -764,7 +764,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
 
 "klasa@github:pengubot/klasa#stable":
   version "0.5.0"
-  resolved "https://codeload.github.com/pengubot/klasa/tar.gz/e10154d898652735630209fc1e591d1bb8cf1102"
+  resolved "https://codeload.github.com/pengubot/klasa/tar.gz/42dc3f87073ebb6e747ed9e5d625d682c48dab7e"
   dependencies:
     "@klasa/settings-gateway" "github:skyra-project/settings-gateway#build"
     fs-nextra "^0.4.7"
