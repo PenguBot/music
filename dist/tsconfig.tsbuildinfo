@@ -877,7 +877,7 @@
         "affectsGlobalScope": false
       },
       "../src/commands/stop.ts": {
-        "version": "810041a832c931a58ac1f4288ff04371dc42dde7a70ebddfbdf47d7659cfecb9",
+        "version": "48bcf59a7e933e2639d60d05eadf8c823fbc771c4227c69f2a4ad1a603da7d53",
         "signature": "2a35f48f18334d08ef63619f64ac8b48cc3d7f05ce069372b0c12cd6f509eadc",
         "affectsGlobalScope": false
       },
