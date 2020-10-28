@@ -1,4 +1,4 @@
-import { Event, EventOptions, ScheduledTask } from "klasa";
+import { Event, EventOptions, ScheduledTask } from "@pengubot/klasa";
 import { ApplyOptions } from "../lib/utils/Decorators";
 
 @ApplyOptions<EventOptions>({ event: "klasaReady" })

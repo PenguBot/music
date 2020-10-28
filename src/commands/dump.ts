@@ -1,4 +1,4 @@
-import { KlasaMessage } from "klasa";
+import { KlasaMessage } from "@pengubot/klasa";
 import { MusicCommand, MusicCommandOptions } from "../lib/structures/MusicCommand";
 import { ApplyOptions } from "../lib/utils/Decorators";
 import { haste } from "../lib/utils/utils";

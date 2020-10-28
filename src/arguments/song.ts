@@ -1,4 +1,4 @@
-import { Argument, KlasaMessage, Possible } from "klasa";
+import { Argument, KlasaMessage, Possible } from "@pengubot/klasa";
 import { Rest, TrackResponse, TrackData, LoadType } from "@lavacord/discord.js";
 import { getTimeString, isLink, fetch } from "../lib/utils/utils";
 import { WILDCARD, DUMP, SPOTIFY_ALBUM, SPOTIFY_PLAYLIST, SPOTIFY_TRACK } from "../lib/utils/constants";

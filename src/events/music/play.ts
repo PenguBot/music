@@ -1,4 +1,4 @@
-import { Event, EventOptions } from "klasa";
+import { Event, EventOptions } from "@pengubot/klasa";
 import { ApplyOptions } from "../../lib/utils/Decorators";
 import { Message } from "discord.js";
 import { MusicInterface } from "../../lib/structures/MusicInterface";

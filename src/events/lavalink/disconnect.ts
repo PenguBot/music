@@ -1,4 +1,4 @@
-import { Event, EventOptions } from "klasa";
+import { Event, EventOptions } from "@pengubot/klasa";
 import { ApplyOptions } from "../../lib/utils/Decorators";
 import { LavalinkNode, WebsocketCloseEvent } from "@lavacord/discord.js";
 

@@ -1,4 +1,4 @@
-import { Task } from "klasa";
+import { Task } from "@pengubot/klasa";
 import { fetch } from "../lib/utils/utils";
 
 export default class extends Task {

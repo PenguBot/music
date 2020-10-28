@@ -1,4 +1,4 @@
-import { Client as KlasaClient } from "klasa";
+import { Client as KlasaClient } from "@pengubot/klasa";
 import { MusicClient as Client } from "./lib/Client";
 
 export { Client };

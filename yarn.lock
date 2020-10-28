@@ -81,6 +81,15 @@
   dependencies:
     lavacord "1.1.9"
 
+"@pengubot/klasa@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@pengubot/klasa/-/klasa-1.0.1.tgz#47721ab387fd4d162d6664ef7335d069a445f7c4"
+  integrity sha512-+auISldHA2bCBLN9aXAFGbS0MzEqcKnXEvb0OiXc2OTTy3R6njjfcyCbR7bW+fktUXY9PhSyZmB1OlLVuHHqRQ==
+  dependencies:
+    "@klasa/settings-gateway" "github:skyra-project/settings-gateway#build"
+    discord.js "^12.4.1"
+    fs-nextra "^0.4.7"
+
 "@sapphire/utilities@github:sapphire-project/utilities#build-utilities":
   version "1.0.1"
   resolved "https://codeload.github.com/sapphire-project/utilities/tar.gz/8b97a376e07bcfcfcd9a87e685c4d8fb6266f388"
@@ -371,6 +380,20 @@ discord.js@^12.3.1:
     "@discordjs/form-data" "^3.0.1"
     abort-controller "^3.0.0"
     node-fetch "^2.6.0"
+    prism-media "^1.2.2"
+    setimmediate "^1.0.5"
+    tweetnacl "^1.0.3"
+    ws "^7.3.1"
+
+discord.js@^12.4.1:
+  version "12.4.1"
+  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-12.4.1.tgz#be88bb32caa9e41eae67749a4e2387585745ac3b"
+  integrity sha512-KxOB8LOAN3GmrvkD6a6Fr1nlfArIFZ+q7Uqg4T/5duB90GZy9a0/Py2E+Y+eHKP6ZUCR2mbNMLCcHGjahiaNqA==
+  dependencies:
+    "@discordjs/collection" "^0.1.6"
+    "@discordjs/form-data" "^3.0.1"
+    abort-controller "^3.0.0"
+    node-fetch "^2.6.1"
     prism-media "^1.2.2"
     setimmediate "^1.0.5"
     tweetnacl "^1.0.3"
@@ -845,6 +868,11 @@ node-fetch@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+
+node-fetch@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node-html-parser@^1.2.20:
   version "1.2.20"
