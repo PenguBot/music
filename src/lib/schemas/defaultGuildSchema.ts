@@ -1,4 +1,4 @@
-import { Client } from "@pengubot/klasa";
+import { Client } from "klasa";
 
 module.exports = Client.defaultGuildSchema
     .add("misc", folder => folder

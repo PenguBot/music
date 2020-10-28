@@ -1,5 +1,5 @@
 import { MusicInterface } from "./MusicInterface";
-import { KlasaGuild as Guild } from "@pengubot/klasa";
+import { KlasaGuild as Guild } from "klasa";
 import { Collection } from "discord.js";
 
 export class MusicManager extends Collection<string, MusicInterface> {

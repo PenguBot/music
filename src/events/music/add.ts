@@ -1,4 +1,4 @@
-import { Event, EventOptions } from "@pengubot/klasa";
+import { Event, EventOptions } from "klasa";
 import { TrackResponse } from "@lavacord/discord.js";
 import { ApplyOptions } from "../../lib/utils/Decorators";
 import { Message } from "discord.js";

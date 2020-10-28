@@ -1,4 +1,4 @@
-import { KlasaMessage } from "@pengubot/klasa";
+import { KlasaMessage } from "klasa";
 import { TrackResponse } from "@lavacord/discord.js";
 import { MusicCommand, MusicCommandOptions } from "../lib/structures/MusicCommand";
 import { TextChannel } from "discord.js";

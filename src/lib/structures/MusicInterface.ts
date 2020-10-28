@@ -1,4 +1,4 @@
-import { KlasaGuild, KlasaUser } from "@pengubot/klasa";
+import { KlasaGuild, KlasaUser } from "klasa";
 import { VoiceChannel, TextChannel, GuildMember, Client } from "discord.js";
 import { Player, LavalinkNode, TrackResponse } from "@lavacord/discord.js";
 import { Song } from "./Song";

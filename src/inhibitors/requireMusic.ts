@@ -1,7 +1,7 @@
 // Copyright (c) 2019-2020 Antonio Román. All rights reserved. Apache License 2.0.
 // Source: https://github.com/skyra-project/skyra
 
-import { Inhibitor, KlasaMessage, Command, InhibitorOptions } from "@pengubot/klasa";
+import { Inhibitor, KlasaMessage, Command, InhibitorOptions } from "klasa";
 import { MusicCommand } from "../lib/structures/MusicCommand";
 import { MusicBitField } from "../lib/structures/MusicBitField";
 import { ApplyOptions } from "../lib/utils/Decorators";

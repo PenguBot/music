@@ -1,4 +1,4 @@
-import { PieceOptions, Piece, Store } from "@pengubot/klasa";
+import { PieceOptions, Piece, Store } from "klasa";
 import { Constructor } from "discord.js";
 
 export function createClassDecorator<TFunction extends(...args: any[]) => void>(fn: TFunction): ClassDecorator {

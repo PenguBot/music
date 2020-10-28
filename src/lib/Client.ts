@@ -1,5 +1,5 @@
 /* eslint-disable dot-notation */
-import { Client, KlasaClientOptions } from "@pengubot/klasa";
+import { Client, KlasaClientOptions } from "klasa";
 import { Manager as LavacordManager, ManagerOptions as LavacordManagerOptions, LavalinkNodeOptions } from "@lavacord/discord.js";
 import { MusicManager } from "./structures/MusicManager";
 import { join } from "path";

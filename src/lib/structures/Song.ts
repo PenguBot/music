@@ -1,4 +1,4 @@
-import { KlasaUser } from "@pengubot/klasa";
+import { KlasaUser } from "klasa";
 import { TrackData } from "@lavacord/discord.js";
 import { getTimeString } from "../utils/utils";
 

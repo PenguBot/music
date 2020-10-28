@@ -1,7 +1,7 @@
 import { MusicCommand, MusicCommandOptions } from "../lib/structures/MusicCommand";
 import { MessageEmbed } from "discord.js";
 import { ApplyOptions } from "../lib/utils/Decorators";
-import { RichDisplay, KlasaMessage } from "@pengubot/klasa";
+import { RichDisplay, KlasaMessage } from "klasa";
 
 @ApplyOptions<MusicCommandOptions>({
     description: "List of song's in the current queue.",
