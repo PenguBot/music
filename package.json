@@ -18,7 +18,7 @@
   "dependencies": {
     "@klasa/utils": "^0.0.8",
     "@lavacord/discord.js": "^0.0.7",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-html-parser": "^1.2.20"
   },
   "devDependencies": {
