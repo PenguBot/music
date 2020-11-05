@@ -15,10 +15,13 @@ class default_1 extends klasa_1.Argument {
         if (validLink) {
             if (constants_1.DUMP.test(arg))
                 return this.dump(message, arg);
-            return this.fetchTracks(arg);
+            message.guild.music.selection = await this.fetchTracks(arg);
+            return message.guild.music.selection;
         }
-        if (constants_1.WILDCARD.test(arg) && !validLink)
-            return this.fetchTracks(arg);
+        if (constants_1.WILDCARD.test(arg) && !validLink) {
+            message.guild.music.selection = await this.fetchTracks(arg);
+            return message.guild.music.selection;
+        }
         if (!validLink)
             return this.search(message, arg);
         throw "I could not find any search results, please try again later!";
@@ -39,13 +42,15 @@ class default_1 extends klasa_1.Argument {
             throw "Invalid Option Selected, please select one number between `1-5`. Cancelled song selection.";
         if (!strippedList[selection - 1])
             throw "Specified track could not be loaded, please try again with a different one.";
-        return { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
+        message.guild.music.selection = { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
+        return message.guild.music.selection;
     }
     async dump(message, arg) {
         const tracks = await utils_1.fetch(`https://paste.pengubot.com/raw/${constants_1.DUMP.exec(arg)[1]}`, "json");
         if (!tracks)
             throw message.language.get("ER_MUSIC_NF");
-        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks };
+        message.guild.music.selection = { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks };
+        return message.guild.music.selection;
     }
     async spotify(message, arg) {
         const endpoint = constants_1.SPOTIFY_ALBUM.test(arg) ? "albums" : "playlists";
@@ -73,7 +78,8 @@ class default_1 extends klasa_1.Argument {
         }
         if (!tracks.length)
             throw "For some reason, I couldn't find alternatives for these tracks on YouTube, sorry!";
-        return { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
+        message.guild.music.selection = { loadType: discord_js_1.LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
+        return message.guild.music.selection;
     }
     async spotifyTrack(message, arg) {
         const data = await utils_1.fetch(`https://api.spotify.com/v1/tracks/${constants_1.SPOTIFY_TRACK.exec(arg)[1]}`, { headers: { Authorization: `Bearer ${this.client.options.music.spotify.token}` } }, "json");
@@ -83,7 +89,8 @@ class default_1 extends klasa_1.Argument {
         const searchResult = await this.fetchTracks(`ytsearch:${artist ? artist.name : ""} ${data.name} audio`);
         if (!searchResult.tracks.length)
             throw message.language.get("ER_MUSIC_NF");
-        return { loadType: discord_js_1.LoadType.TRACK_LOADED, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
+        message.guild.music.selection = { loadType: discord_js_1.LoadType.TRACK_LOADED, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
+        return message.guild.music.selection;
     }
     async fetchTracks(arg) {
         const result = await discord_js_1.Rest.load(this.client.lavalink.idealNodes[0], arg);

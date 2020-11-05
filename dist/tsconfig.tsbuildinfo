@@ -462,8 +462,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/discord.js/typings/index.d.ts": {
-        "version": "453abbd598aa3aeac131ddad5e17dcf7aa29c38dd3da1aaad47adb619900896a",
-        "signature": "453abbd598aa3aeac131ddad5e17dcf7aa29c38dd3da1aaad47adb619900896a",
+        "version": "3e0c924c29dcc8645a2d881e0b5cb919c88fe4f46208fe118ee90b426576d16a",
+        "signature": "3e0c924c29dcc8645a2d881e0b5cb919c88fe4f46208fe118ee90b426576d16a",
         "affectsGlobalScope": true
       },
       "../node_modules/@klasa/request-handler/dist/index.d.ts": {
@@ -627,8 +627,8 @@
         "affectsGlobalScope": false
       },
       "../src/lib/structures/MusicInterface.ts": {
-        "version": "8c7cd82ae8cf8525e704405043089ab009f466ceb19e633f91d6bd398f35c8cb",
-        "signature": "494af54fdab80e3ad6b3609f0a21024c4c045718e6a78b87107719260a66656e",
+        "version": "c29427b83b38b8982901faf235395c99ce228685c560f3dd78b57ef89f8f6c7e",
+        "signature": "b8ae48f03f0b08cd632e35e8a00d17cad6f80b720ca6186c2d82e78e2b83bc04",
         "affectsGlobalScope": false
       },
       "../src/lib/structures/MusicManager.ts": {
@@ -667,7 +667,7 @@
         "affectsGlobalScope": false
       },
       "../src/arguments/song.ts": {
-        "version": "b394c561ca7a444056d2f4763f8704e69a1659a44db84bae9eaa44b46762cf7f",
+        "version": "a042d770ec6630faad1826b7d334991af0f5b440c0f1318fc4ddcf4ddd077354",
         "signature": "5c010795055cf7e5e1e59714d3a73a4e11f21a07915cf51f79aed666b7eff938",
         "affectsGlobalScope": false
       },

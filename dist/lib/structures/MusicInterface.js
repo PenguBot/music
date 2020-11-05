@@ -10,6 +10,7 @@ class MusicInterface {
         this.looping = false;
         this.client = guild.client;
         this.guild = guild;
+        this.selection = null;
     }
     async join(id) {
         if (!this.idealNode)
@@ -35,7 +36,7 @@ class MusicInterface {
         return this.client.lavalink.leave(this.guild.id);
     }
     add(user, data) {
-        const structuredSongs = data.tracks.map(s => new Song_1.Song(s, user));
+        const structuredSongs = this.selection.tracks.map(s => new Song_1.Song(s, user));
         this.queue.push(...structuredSongs);
         this.client.emit("musicAdd", this, data);
         return structuredSongs;
@@ -82,6 +83,7 @@ class MusicInterface {
         this.queue = [];
         this.textChannel = null;
         this.looping = false;
+        this.selection = null;
         await this.leave();
         this.client.music.delete(this.guild.id);
     }
