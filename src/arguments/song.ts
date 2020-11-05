@@ -14,10 +14,15 @@ export default class extends Argument {
         const validLink = isLink(arg);
         if (validLink) {
             if (DUMP.test(arg)) return this.dump(message, arg);
-            return this.fetchTracks(arg);
+            message.guild!.music.selection = await this.fetchTracks(arg);
+            return message.guild!.music.selection;
         }
 
-        if (WILDCARD.test(arg) && !validLink) return this.fetchTracks(arg);
+        if (WILDCARD.test(arg) && !validLink) {
+            message.guild!.music.selection = await this.fetchTracks(arg);
+            return message.guild!.music.selection;
+        }
+
         if (!validLink) return this.search(message, arg);
 
         throw "I could not find any search results, please try again later!";
@@ -39,14 +44,16 @@ export default class extends Argument {
         if (isNaN(selection) || selection < 1 || selection > 5) throw "Invalid Option Selected, please select one number between `1-5`. Cancelled song selection.";
         if (!strippedList[selection - 1]) throw "Specified track could not be loaded, please try again with a different one.";
 
-        return { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
+        message.guild!.music.selection = { loadType: data.loadType, playlistInfo: data.playlistInfo, tracks: [strippedList[selection - 1]] };
+        return message.guild!.music.selection;
     }
 
     private async dump(message: KlasaMessage, arg: string): Promise<TrackResponse> {
         const tracks: TrackData[] = await fetch(`https://paste.pengubot.com/raw/${DUMP.exec(arg)![1]}`, "json");
         if (!tracks) throw message.language.get("ER_MUSIC_NF");
 
-        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks };
+        message.guild!.music.selection = { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: "PenguBot Dump" }, tracks };
+        return message.guild!.music.selection;
     }
 
     private async spotify(message: KlasaMessage, arg: string): Promise<TrackResponse> {
@@ -75,8 +82,9 @@ export default class extends Argument {
         }
 
         if (!tracks.length) throw "For some reason, I couldn't find alternatives for these tracks on YouTube, sorry!";
-        return { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
 
+        message.guild!.music.selection = { loadType: LoadType.PLAYLIST_LOADED, playlistInfo: { name: data.name }, tracks };
+        return message.guild!.music.selection;
     }
 
     private async spotifyTrack(message: KlasaMessage, arg: string): Promise<TrackResponse> {
@@ -88,7 +96,9 @@ export default class extends Argument {
 
         const searchResult = await this.fetchTracks(`ytsearch:${artist ? artist.name : ""} ${data.name} audio`);
         if (!searchResult.tracks.length) throw message.language.get("ER_MUSIC_NF");
-        return { loadType: LoadType.TRACK_LOADED, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
+
+        message.guild!.music.selection = { loadType: LoadType.TRACK_LOADED, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
+        return message.guild!.music.selection;
     }
 
     private async fetchTracks(arg: string): Promise<TrackResponse> {

@@ -11,10 +11,12 @@ export class MusicInterface {
     public textChannel: TextChannel | null = null;
     public queue: Song[] = [];
     public looping = false;
+    public selection: null|TrackResponse;
 
     public constructor(guild: KlasaGuild) {
         this.client = guild.client;
         this.guild = guild;
+        this.selection = null;
     }
 
     public async join(id: string): Promise<Player> {
@@ -42,7 +44,7 @@ export class MusicInterface {
     }
 
     public add(user: KlasaUser, data: TrackResponse): Song[] {
-        const structuredSongs = data.tracks.map(s => new Song(s, user));
+        const structuredSongs = this.selection!.tracks.map(s => new Song(s, user));
         this.queue.push(...structuredSongs);
         this.client.emit("musicAdd", this, data);
         return structuredSongs;
@@ -97,6 +99,7 @@ export class MusicInterface {
         this.queue = [];
         this.textChannel = null;
         this.looping = false;
+        this.selection = null;
 
         await this.leave();
         this.client.music.delete(this.guild.id);
