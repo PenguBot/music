@@ -18,7 +18,9 @@ let default_1 = class extends klasa_1.Event {
                 `**Author:** ${song.author}`,
                 `**Length:** ${song.friendlyDuration}`,
                 `**Requested By:** ${song.requester.tag}`,
-                `**Link:** <${song.url}>`
+                `**Link:** <${song.url}>`,
+                "",
+                "💟 **We need your help!** Keeping this bot online is expensive and we need your support to keep it available for everyone to enjoy. Please visit: <https://pengubot.com/premium> to learn more."
             ];
             return music.textChannel.send(playString.join("\n> "));
         }

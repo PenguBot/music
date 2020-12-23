@@ -627,7 +627,7 @@
         "affectsGlobalScope": false
       },
       "../src/lib/structures/MusicInterface.ts": {
-        "version": "c29427b83b38b8982901faf235395c99ce228685c560f3dd78b57ef89f8f6c7e",
+        "version": "36de3a97ee299e489da06d31fad6039783fee328dd2102f0ea167385f69622fd",
         "signature": "b8ae48f03f0b08cd632e35e8a00d17cad6f80b720ca6186c2d82e78e2b83bc04",
         "affectsGlobalScope": false
       },
@@ -922,7 +922,7 @@
         "affectsGlobalScope": false
       },
       "../src/events/music/play.ts": {
-        "version": "5d8a0574a1d78159c95e197b74bd1022d23d6c5e6c93f920c3091830162fdf32",
+        "version": "fefae5989522c9e0f492f74c1c45fa1758253e7ad367638ab0355855dfe76be2",
         "signature": "3c11881327fc607b7c6a71b6607c8cc19398708873bb70b2bcf4823d21fae9bd",
         "affectsGlobalScope": false
       },

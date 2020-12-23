@@ -84,7 +84,7 @@ class MusicInterface {
         this.textChannel = null;
         this.looping = false;
         this.selection = null;
-        await this.leave();
+        await this.leave().catch(() => null);
         this.client.music.delete(this.guild.id);
     }
     hasPermission(member) {
