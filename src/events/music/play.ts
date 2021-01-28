@@ -11,14 +11,14 @@ export default class extends Event {
             const [song] = music.queue;
             const playString = [
                 "> ▶️ __**Now Playing:**__",
-                `**Title:** ${song.title}`,
-                `**Author:** ${song.author}`,
-                `**Length:** ${song.friendlyDuration}`,
-                `**Requested By:** ${song.requester.tag}`,
-                `**Link:** <${song.url}>`,
-                "",
-                "💟 **We need your help!** Keeping this bot online is expensive and we need your support to keep it available for everyone to enjoy. Please visit: <https://pengubot.com/premium> to learn more."];
-            return music.textChannel!.send(playString.join("\n> "));
+                `> **Title:** ${song.title}`,
+                `> **Author:** ${song.author}`,
+                `> **Length:** ${song.friendlyDuration}`,
+                `> **Requested By:** ${song.requester.tag}`,
+                `> **Link:** <${song.url}>`,
+                " ",
+                "> 💟 **We need your help!** Enjoying the music? Consider supporting us on [Patreon](https://patreon.com/join/PenguBot) so we can keep it going."];
+            return music.textChannel!.send(playString.join("\n"));
         }
     }
 
