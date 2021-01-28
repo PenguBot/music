@@ -89,7 +89,7 @@ class MusicInterface {
     }
     hasPermission(member) {
         var _a;
-        return (_a = (member.voice.channel.speakable || member.voice.channel.joinable)) !== null && _a !== void 0 ? _a : null;
+        return (_a = (member.voice.channel.viewable && member.voice.channel.speakable && member.voice.channel.joinable)) !== null && _a !== void 0 ? _a : null;
     }
     isMemberDJ(member) {
         const isDJ = member.guild.settings.get("users.dj").includes(member.id);
