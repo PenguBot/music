@@ -106,7 +106,7 @@ export class MusicInterface {
     }
 
     public hasPermission(member: GuildMember): boolean | null {
-        return (member.voice.channel!.speakable || member.voice.channel!.joinable) ?? null;
+        return (member.voice.channel!.viewable && member.voice.channel!.speakable && member.voice.channel!.joinable) ?? null;
     }
 
     public isMemberDJ(member: GuildMember): boolean {

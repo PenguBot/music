@@ -18,7 +18,7 @@ export default class extends Inhibitor {
         const { music } = message.guild!;
         if (command.music.has(FLAGS.USER_VOICE_CHANNEL) && !message.member!.voice.channel) throw "You're currently not in a voice channel";
         if (command.music.has(FLAGS.BOT_VOICE_CHANNEL) && !music.guild.me!.voice.channel) throw "I am not connected to a voice channel.";
-        if (command.music.has(FLAGS.HAS_PERMISSION) && !music.hasPermission(message.member!)) throw "I have no permission to connect or play in your voice channel.";
+        if (command.music.has(FLAGS.HAS_PERMISSION) && !music.hasPermission(message.member!)) throw "I have no permission to view/connect/speak in your voice channel.";
         if (command.music.has(FLAGS.COMMON_VOICE_CHANNEL) && (message.member!.voice.channelID !== music.guild.me!.voice.channelID)) throw "You are not in the same voice channel as the bot.";
         if (command.music.has(FLAGS.QUEUE_NOT_EMPTY) && (!music.queue.length || (music.queue[0] ? !music.queue[0].track : false))) throw "There are no songs in the queue.";
         if (command.music.has(FLAGS.VOICE_PLAYING) && !music.playing) throw "There is currently no music playing.";
