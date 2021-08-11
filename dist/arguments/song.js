@@ -27,7 +27,7 @@ class default_1 extends klasa_1.Argument {
         throw "I could not find any search results, please try again later!";
     }
     async search(message, arg) {
-        const data = await this.fetchTracks(`ytsearch:${arg}`);
+        const data = await this.fetchTracks(`scsearch:${arg}`);
         if (!data.tracks.length)
             throw "No search results found for this argument.";
         const strippedList = data.tracks.slice(0, 5);
@@ -62,7 +62,7 @@ class default_1 extends klasa_1.Argument {
         const tracks = [];
         if (endpoint.startsWith("a")) {
             for (const track of data.tracks.items) {
-                const res = await this.fetchTracks(`ytsearch:${data.artists[0].name || ""} ${track.title || track.name} audio`);
+                const res = await this.fetchTracks(`scsearch:${data.artists[0].name || ""} ${track.title || track.name} audio`);
                 if (!res.tracks.length)
                     continue;
                 tracks.push(res.tracks[0]);
@@ -70,7 +70,7 @@ class default_1 extends klasa_1.Argument {
         }
         else {
             for (const { track } of data.tracks.items) {
-                const res = await this.fetchTracks(`ytsearch:${track.artists[0].name || ""} ${track.title || track.name} audio`);
+                const res = await this.fetchTracks(`scsearch:${track.artists[0].name || ""} ${track.title || track.name} audio`);
                 if (!res.tracks.length)
                     continue;
                 tracks.push(res.tracks[0]);
@@ -86,7 +86,7 @@ class default_1 extends klasa_1.Argument {
         if (!data)
             throw message.language.get("ER_MUSIC_NF");
         const [artist] = data.artists;
-        const searchResult = await this.fetchTracks(`ytsearch:${artist ? artist.name : ""} ${data.name} audio`);
+        const searchResult = await this.fetchTracks(`scsearch:${artist ? artist.name : ""} ${data.name} audio`);
         if (!searchResult.tracks.length)
             throw message.language.get("ER_MUSIC_NF");
         message.guild.music.selection = { loadType: discord_js_1.LoadType.TRACK_LOADED, playlistInfo: {}, tracks: [searchResult.tracks[0]] };

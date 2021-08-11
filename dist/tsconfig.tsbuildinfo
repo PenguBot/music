@@ -667,7 +667,7 @@
         "affectsGlobalScope": false
       },
       "../src/arguments/song.ts": {
-        "version": "a042d770ec6630faad1826b7d334991af0f5b440c0f1318fc4ddcf4ddd077354",
+        "version": "df9de73a1bd04cd930e10cdbbc5110c4eb2f5ed4dc530dff0b36a2a1bb244322",
         "signature": "5c010795055cf7e5e1e59714d3a73a4e11f21a07915cf51f79aed666b7eff938",
         "affectsGlobalScope": false
       },
