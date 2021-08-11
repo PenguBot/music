@@ -29,7 +29,7 @@ export default class extends Argument {
     }
 
     private async search(message: KlasaMessage, arg: string): Promise<TrackResponse> {
-        const data = await this.fetchTracks(`ytsearch:${arg}`);
+        const data = await this.fetchTracks(`scsearch:${arg}`);
         if (!data.tracks.length) throw "No search results found for this argument.";
 
         const strippedList = data.tracks.slice(0, 5);
@@ -69,13 +69,13 @@ export default class extends Argument {
 
         if (endpoint.startsWith("a")) {
             for (const track of data.tracks.items) {
-                const res = await this.fetchTracks(`ytsearch:${data.artists[0].name || ""} ${track.title || track.name} audio`);
+                const res = await this.fetchTracks(`scsearch:${data.artists[0].name || ""} ${track.title || track.name} audio`);
                 if (!res.tracks.length) continue;
                 tracks.push(res.tracks[0]);
             }
         } else {
             for (const { track } of data.tracks.items) {
-                const res = await this.fetchTracks(`ytsearch:${track.artists[0].name || ""} ${track.title || track.name} audio`);
+                const res = await this.fetchTracks(`scsearch:${track.artists[0].name || ""} ${track.title || track.name} audio`);
                 if (!res.tracks.length) continue;
                 tracks.push(res.tracks[0]);
             }
@@ -94,7 +94,7 @@ export default class extends Argument {
 
         const [artist] = data.artists;
 
-        const searchResult = await this.fetchTracks(`ytsearch:${artist ? artist.name : ""} ${data.name} audio`);
+        const searchResult = await this.fetchTracks(`scsearch:${artist ? artist.name : ""} ${data.name} audio`);
         if (!searchResult.tracks.length) throw message.language.get("ER_MUSIC_NF");
 
         message.guild!.music.selection = { loadType: LoadType.TRACK_LOADED, playlistInfo: {}, tracks: [searchResult.tracks[0]] };
